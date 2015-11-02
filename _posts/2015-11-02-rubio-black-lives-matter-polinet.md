@@ -2,7 +2,7 @@
 layout: post
 title: Rubio's Black Lives Matter Comment and Politically Homogeneous Social Networks
 category: blog
-breadcrumb: True
+tags: blacklivesmatter,twitter,charts and graphs,marco rubio,election2016,politics
 ---
 
 <link href="/_site/assets/css/lightbox.css" rel="stylesheet">
