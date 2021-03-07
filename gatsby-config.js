@@ -6,7 +6,7 @@ module.exports = {
       summary: `who lives in Denver and works at Azavea with open source geospatial technology for good.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    siteUrl: `https://jisantuc.github.io/`,
     social: {
       twitter: `james_santucci`,
     },
