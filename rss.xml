@@ -1,1 +1,103 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[James Santucci's development blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://jisantuc.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 07 Mar 2021 18:22:40 GMT</lastBuildDate></channel></rss>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[James Santucci's development blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://jisantuc.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 23 Mar 2021 22:12:44 GMT</lastBuildDate><item><title><![CDATA[Getting started with STAC APIs]]></title><description><![CDATA[STAC is a specification for “enabling online search and discovery of geospatial assets.”
+Right now, a lot of work has gone into the core…]]></description><link>https://jisantuc.github.io/Getting-started-with-STAC-APIs/Getting-started-with-STAC-APIs/</link><guid isPermaLink="false">https://jisantuc.github.io/Getting-started-with-STAC-APIs/Getting-started-with-STAC-APIs/</guid><pubDate>Tue, 23 Mar 2021 21:26:42 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://stacspec.org/&quot;&gt;STAC&lt;/a&gt; is a specification for “enabling online search and discovery of geospatial assets.”
+Right now, a lot of work has gone into the core specification, with a 1.0.0-rc1 for the
+core specification released 20 days ago. Following the core spec’s 1.0.0 release, more
+work will go into the API spec.&lt;/p&gt;
+&lt;center&gt;&lt;img src=&quot;https://stacspec.org/images/logo/STAC-04.png&quot; width=&quot;200/&quot;&gt;&lt;/center&gt;
+&lt;p&gt;The tooling story on the way to standing up a STAC API is pretty well ironed out. If you want to create
+a catalog that follows all the rules in the pretty sizable
+&lt;a href=&quot;https://github.com/radiantearth/stac-spec/blob/master/best-practices.md&quot;&gt;best practices doc&lt;/a&gt;, use &lt;a href=&quot;https://github.com/stac-utils/pystac&quot;&gt; &lt;code class=&quot;language-text&quot;&gt;PySTAC&lt;/code&gt; &lt;/a&gt;. If you just want a typed STAC datamodel for building
+applications on top of STAC, use [ &lt;code class=&quot;language-text&quot;&gt;stac-pydantic&lt;/code&gt; ] or [ &lt;code class=&quot;language-text&quot;&gt;stac4s&lt;/code&gt; ]. They’re both dogfooded
+in STAC API implementations, &lt;code class=&quot;language-text&quot;&gt;stac-pydantic&lt;/code&gt; in &lt;a href=&quot;https://github.com/stac-utils/arturo-stac-api&quot;&gt; &lt;code class=&quot;language-text&quot;&gt;arturo-stac-api&lt;/code&gt; &lt;/a&gt; and &lt;code class=&quot;language-text&quot;&gt;stac4s&lt;/code&gt; in &lt;a href=&quot;https://azavea.github.io/franklin/&quot;&gt; &lt;code class=&quot;language-text&quot;&gt;Franklin&lt;/code&gt; &lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One area where tools are lacking is clients. Most clients in &lt;a href=&quot;https://stacindex.org/ecosystem?category=Client&quot;&gt;stacindex.org&lt;/a&gt; are either libraries
+that require you to write code or full on frontend applications. An exception to this
+is &lt;a href=&quot;https://github.com/sat-utils/sat-search&quot;&gt; &lt;code class=&quot;language-text&quot;&gt;sat-search&lt;/code&gt; &lt;/a&gt; , which is a CLI tool.
+To support a more interactive browsing adventure, I wrote &lt;a href=&quot;https://github.com/jisantuc/stac-repl&quot;&gt; &lt;code class=&quot;language-text&quot;&gt;stac-repl&lt;/code&gt; &lt;/a&gt;, which is built on top
+of a PureScript client I wrote called &lt;a href=&quot;https://github.com/jisantuc/purescript-stac&quot;&gt; &lt;code class=&quot;language-text&quot;&gt;purescript-stac&lt;/code&gt; &lt;/a&gt;.
+I completed both of these as part of 10% time work at &lt;a href=&quot;https://www.azavea.com/&quot;&gt;Azavea&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The goal of &lt;code class=&quot;language-text&quot;&gt;stac-repl&lt;/code&gt; is to provide an interactive, ipython-ish experience around browsing
+STAC APIs. You can run it with &lt;code class=&quot;language-text&quot;&gt;node&lt;/code&gt; by downloading the bundled js file from the &lt;a href=&quot;https://github.com/jisantuc/stac-repl/releases/tag/v0.1.1&quot;&gt;v0.1.1 release&lt;/a&gt; or
+in a container with &lt;code class=&quot;language-text&quot;&gt;docker run jisantuc/stac-repl:0.1.1&lt;/code&gt; .&lt;/p&gt;
+&lt;p&gt;You should be able to figure out everything you can do by mashing the &lt;code class=&quot;language-text&quot;&gt;&amp;lt;TAB&amp;gt;&lt;/code&gt; key. For example,
+when you start up &lt;code class=&quot;language-text&quot;&gt;stac-repl&lt;/code&gt; , you only get one completion:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stac &amp;gt; &amp;lt;TAB&amp;gt;
+stac &amp;gt; set root url&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For this example, I’ll point the root to a catalog of &lt;a href=&quot;https://aviris.jpl.nasa.gov/&quot;&gt;AVIRIS&lt;/a&gt; data that can be found
+at &lt;code class=&quot;language-text&quot;&gt;https://franklin.nasa-hsi.azavea.com&lt;/code&gt; . Tabbing from there,
+commands get a little more interesting:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stac &amp;gt; set root url https://franklin.nasa-hsi.azavea.com
+stac https://franklin.nasa-hsi.azavea.com &amp;gt; &amp;lt;TAB&amp;gt;
+set root url      get conformance   set collection    list collections&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that we know where the catalog root is, we can check its conformance information, list collections,
+or pick a specific collection. We don’t know any collections yet, so let’s list some (naturally, by typing
+just an &lt;code class=&quot;language-text&quot;&gt;li&lt;/code&gt; and a &lt;code class=&quot;language-text&quot;&gt;&amp;lt;TAB&amp;gt;&lt;/code&gt; ):&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stac https://franklin.nasa-hsi.azavea.com &amp;gt; list collections
+aviris-classic: AVIRIS is an acronym for the Airborne Visible InfraRed Imaging Spectrometer. AVIRIS is a premier instrument in the realm of Earth Remote Sensing. It is a unique optical sensor that delivers calibrated images of the upwelling spectral radiance in 224 contiguous spectral channels (also called bands) with wavelengths from 400 to 2500 nanometers (nm). AVIRIS has been flown on four aircraft platforms: NASA&amp;#39;s ER-2 jet, Twin Otter International&amp;#39;s turboprop, Scaled Composites&amp;#39; Proteus, and NASA&amp;#39;s WB-57. The ER-2 flies at approximately 20 km above sea level, at about 730 km/hr. The Twin Otter aircraft flies at 4km above ground level at 130km/hr. AVIRIS has flown all across the US, plus Canada and Europe. This catalog contains all AVIRIS missions from 2006 - 2019.
+
+aviris-ng: AVIRIS is an acronym for the Airborne Visible InfraRed Imaging Spectrometer. AVIRIS is a premier instrument in the realm of Earth Remote Sensing. It is a unique optical sensor that delivers calibrated images of the upwelling spectral radiance in 224 contiguous spectral channels (also called bands) with wavelengths from 400 to 2500 nanometers (nm). AVIRIS has been flown on four aircraft platforms: NASA&amp;#39;s ER-2 jet, Twin Otter International&amp;#39;s turboprop, Scaled Composites&amp;#39; Proteus, and NASA&amp;#39;s WB-57. The ER-2 flies at approximately 20 km above sea level, at about 730 km/hr. The Twin Otter aircraft flies at 4km above ground level at 130km/hr. AVIRIS has flown all across the US, plus Canada and Europe. This catalog contains all AVIRIS missions from 2006 - 2019.
+
+aviris-l2-cogs: AVIRIS L2 Refl Imagery converted to pixel-interleaved COGs
+
+aviris-l2-chips: A STAC Collection containing COGs created by the nasa-hsi cog-clip activator&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you list collections, &lt;code class=&quot;language-text&quot;&gt;stac-repl&lt;/code&gt; remembers their ids, so when you want
+to pick a collection you can also get tab completions. For example, since all of these collection IDs start with
+&lt;code class=&quot;language-text&quot;&gt;aviris&lt;/code&gt; , &lt;code class=&quot;language-text&quot;&gt;set collection a&amp;lt;TAB&amp;gt;&amp;lt;TAB&amp;gt;&lt;/code&gt; completes to:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stac https://franklin.nasa-hsi.azavea.com &amp;gt; set collection aviris-
+set collection aviris-classic   set collection aviris-l2-chips  set collection aviris-l2-cogs   set collection aviris-ng&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I’ll pick &lt;code class=&quot;language-text&quot;&gt;aviris-ng&lt;/code&gt; .&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stac https://franklin.nasa-hsi.azavea.com &amp;gt; set collection aviris-ng
+Set context to collection aviris-ng&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that I’m in a different context, the available commands are different:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stac https://franklin.nasa-hsi.azavea.com &amp;gt; &amp;lt;TAB&amp;gt;
+view               unset collection   locate collection  get conformance    list items         next page          locate item&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here, the new commands are &lt;code class=&quot;language-text&quot;&gt;view&lt;/code&gt; , &lt;code class=&quot;language-text&quot;&gt;unset collection&lt;/code&gt; , &lt;code class=&quot;language-text&quot;&gt;list items&lt;/code&gt; , &lt;code class=&quot;language-text&quot;&gt;next page&lt;/code&gt; , and &lt;code class=&quot;language-text&quot;&gt;locate item&lt;/code&gt; . Let’s see what items are available:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stac https://franklin.nasa-hsi.azavea.com &amp;gt; list items
+...
+Id: &amp;quot;aviris_ang20140605t182232&amp;quot;
+Extensions: []
+Bbox: [-122.73583300000001,38.558091,-122.676149,38.632746999999995]
+Assets:
+ftp: ftp://avng_dp:P73axIvP@avng.jpl.nasa.gov/y14_data/ang20140605t182232.tar.gz ((VendorMediaType &amp;quot;application/gzip&amp;quot;))
+rgb: http://avirisng.jpl.nasa.gov/aviris_locator/y14_RGB/ang20140605t182232_RGB.jpeg (JPEG)
+kml_overlay: http://avirisng.jpl.nasa.gov/aviris_locator/y14_KML/ang20140605t182232_overlay_KML.kml ((VendorMediaType &amp;quot;application/vnd.google-earth.kml+xml&amp;quot;))
+rgb_small: http://avirisng.jpl.nasa.gov/aviris_locator/y14_RGB/ang20140605t182232_RGB-W200.jpg (JPEG)
+flight_log: http://avirisng.jpl.nasa.gov/cgi/flights_14.cgi?step=view_flightlog&amp;amp;flight_id=ang20140605t (HTML)
+kml_outline: http://avirisng.jpl.nasa.gov/aviris_locator/y14_KML/ang20140605t182232_outline_KML.kml ((VendorMediaType &amp;quot;application/vnd.google-earth.kml+xml&amp;quot;))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The API returns them 30 at a time, but I’m only showing the last one on the first page to avoid a huge wall of text.
+Similarly to listing collections, &lt;code class=&quot;language-text&quot;&gt;stac-repl&lt;/code&gt; remembers item IDs so that we can tab complete them for item-specific
+commands.&lt;/p&gt;
+&lt;p&gt;In this case, the only item-specific command is &lt;code class=&quot;language-text&quot;&gt;locate item&lt;/code&gt; , so tabbing after that, we can eventually get to&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stac https://franklin.nasa-hsi.azavea.com &amp;gt; locate item aviris_ang20140605t182232&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This gets us a delightful &lt;a href=&quot;https://github.com/rastapasta/mapscii/&quot;&gt;Mapscii&lt;/a&gt; map.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6b01c5f0da9df8e0f34e48d091301dae/c483d/mapscii-map.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 87.9746835443038%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAIAAADUsmlHAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB20lEQVQ4y41T4XrTMAy0LVmW7dhtU9IN+gt4hRVY2Mb7vxXnOE35gA3y5WtcRSedThfDZM0/L2u9sHNrJjEj9DxfjAp7cv8Bt+Kpn51r+fO3BzMk8Z5ECK9fQ6KtF2JyvLTpmQ2sgT23kihMr1Coh3g4DRq9W2A3MDrvinrPwRMokFtr03VCZAJ5/3H89Hna7eJC+woGpmRFZGXIJG0KXg7cS1hn65TO593pVBxCW+cUvb8q0S/GAtb+rRYTdS6IE7tcMWeLzI8P5l2OdyV7634RFuLd/qJ/5xnE45GKBvUr+Jj0vC9F5e0loQL0ACzv9UYbVdn7IYe3vYK0nYZjjmOJZgNjwJjHWsGGGmP++7ZghOh5H3VMUbXxnx8vBg/sCaTGQUV8SDf+WBsE2+51CocpYE/z8vSlgSVo1HwueSr5OmhbYZPK2iAMIy0xY68q4PfH81cDIWutxkkQup/KEEWz7KchJ7FrfyzJ/SbhCoaSQ52cEwwPb8BtOQsLoWE3ezOKNX+CF4cJb/ZCLEe5Ow7gDFW6eQDeBm5EyPVPoIGbGdsaqR8g0pBCDBxTzCm4Js+tNXZx/FDrIa0m6eXxFjOHpUqKktQfagQ9xYYCb2BRPr4vw/J5fJ8vPwFrJxpY+MlpzQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;mapscii map&quot;
+        title=&quot;mapscii map&quot;
+        src=&quot;/static/6b01c5f0da9df8e0f34e48d091301dae/f058b/mapscii-map.png&quot;
+        srcset=&quot;/static/6b01c5f0da9df8e0f34e48d091301dae/c26ae/mapscii-map.png 158w,
+/static/6b01c5f0da9df8e0f34e48d091301dae/6bdcf/mapscii-map.png 315w,
+/static/6b01c5f0da9df8e0f34e48d091301dae/f058b/mapscii-map.png 630w,
+/static/6b01c5f0da9df8e0f34e48d091301dae/c483d/mapscii-map.png 751w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This first release of &lt;code class=&quot;language-text&quot;&gt;stac-repl&lt;/code&gt; covers only the most basic interactions, but I’m looking forward to building
+out support for more features like &lt;a href=&quot;https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1/item-search&quot;&gt;search&lt;/a&gt; and &lt;a href=&quot;https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1/ogcapi-features/extensions/transaction&quot;&gt;transactions&lt;/a&gt;.&lt;/p&gt;</content:encoded></item></channel></rss>
