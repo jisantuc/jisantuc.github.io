@@ -14,3 +14,4 @@ EOF
 
 mkdir "content/blog/${titleSlug}"
 echo "$header" > "content/blog/${titleSlug}/${titleSlug}.md"
+git add "content/blog/${titleSlug}"
