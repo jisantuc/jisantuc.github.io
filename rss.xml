@@ -1,4 +1,205 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[James Santucci's development blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://jisantuc.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 23 Mar 2021 22:12:44 GMT</lastBuildDate><item><title><![CDATA[Getting started with STAC APIs]]></title><description><![CDATA[STAC is a specification for “enabling online search and discovery of geospatial assets.”
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[James Santucci's development blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://jisantuc.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 01 Apr 2021 00:45:05 GMT</lastBuildDate><item><title><![CDATA[tiny-test, for non-production property testing games]]></title><description><![CDATA[Property testing is a testing strategy where the programmer defers the
+responsibility of writing example cases to the computer. That’s most…]]></description><link>https://jisantuc.github.io/tiny-test-for-Non-production-Property-Testing-Games/tiny-test-for-Non-production-Property-Testing-Games/</link><guid isPermaLink="false">https://jisantuc.github.io/tiny-test-for-Non-production-Property-Testing-Games/tiny-test-for-Non-production-Property-Testing-Games/</guid><pubDate>Mon, 29 Mar 2021 21:52:01 GMT</pubDate><content:encoded>&lt;p&gt;Property testing is a testing strategy where the programmer defers the
+responsibility of writing example cases to the computer. That’s most of the
+game, but isn’t super useful for practice with property testing outside
+of a production setting.&lt;/p&gt;
+&lt;p&gt;Property
+testing is an area of software development dear to my heart — one of the first
+software talks I ever saw where I thought I’d like to be a developer was on
+&lt;a href=&quot;https://hypothesis.readthedocs.io/en/latest/&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;hypothesis&lt;/code&gt;&lt;/a&gt; by &lt;a href=&quot;https://www.youtube.com/watch?v=jvwfDdgg93E&quot;&gt;Matt Bachmann&lt;/a&gt;. However, I’ve often
+had trouble explaining the mechanics to people without hand-waving. To that end,
+I created &lt;a href=&quot;https://github.com/jisantuc/tiny-test/&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt;&lt;/a&gt;, a testing framework
+you &lt;em&gt;absolutely should not use&lt;/em&gt; in any production setting, but which is fine for playing
+around.&lt;/p&gt;
+&lt;p&gt;What’s the goal with &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt;? Write a “test framework” that illustrates the
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Stylized_fact&quot;&gt;stylized facts&lt;/a&gt; of property testing.&lt;/p&gt;
+&lt;h2&gt;What are the stylized facts of property testing frameworks?&lt;/h2&gt;
+&lt;p&gt;Property testing goes by a lot of names — &lt;a href=&quot;https://en.wikipedia.org/wiki/Fuzzing&quot;&gt;fuzz testing&lt;/a&gt;, &lt;a href=&quot;https://medium.com/geckoboard-under-the-hood/how-generative-testing-changed-the-way-we-qa-geckoboard-b4a48a193449&quot;&gt;generative testing&lt;/a&gt;,
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Monkey_testing&quot;&gt;monkey testing&lt;/a&gt;… there are a lot. These names collectively emphasize that the test cases
+will be driven by &lt;em&gt;randomness&lt;/em&gt;, so that will be the first stylized fact:
+test cases in &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt; should be driven by randomness.&lt;/p&gt;
+&lt;p&gt;Second, since &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt; is a testing framework, it should have opinions about what
+a test is. The second stylized fact is that tests are things that produce test results.
+What are test results? Test results are checked expectations — e.g., “I think this
+should run without crashing,” or “I think the result should be less than six.”&lt;/p&gt;
+&lt;p&gt;With these two stylized facts, there’s a pretty straightforward main requirement:
+&lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt; needs to provide APIs for transforming randomness into test results. Cool! Let’s
+work on that.&lt;/p&gt;
+&lt;h2&gt;Useful randomness&lt;/h2&gt;
+&lt;p&gt;The hello world of property testing is a custom &lt;code class=&quot;language-text&quot;&gt;add&lt;/code&gt; function that acts like the built-in
+&lt;code class=&quot;language-text&quot;&gt;+&lt;/code&gt; operator.&lt;/p&gt;
+&lt;p&gt;In Haskell, that would look like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;haskell&quot;&gt;&lt;pre class=&quot;language-haskell&quot;&gt;&lt;code class=&quot;language-haskell&quot;&gt;&lt;span class=&quot;token hvariable&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;token hvariable&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;However, that’s not how &lt;code class=&quot;language-text&quot;&gt;add&lt;/code&gt; is &lt;a href=&quot;https://github.com/jisantuc/tiny-test/blob/master/src/Lib.hs&quot;&gt;implemented in &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt;&lt;/a&gt;. How do
+we explore the possible integer inputs such that we can find the values where the &lt;code class=&quot;language-text&quot;&gt;add&lt;/code&gt; implementation
+is wrong?&lt;/p&gt;
+&lt;h3&gt;In Python&lt;/h3&gt;
+&lt;p&gt;Let’s suppose we’re working in a language where we can freely mix effectful and non-effectful code,
+like python. In that case, our test might look something like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; random
+
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;test_add&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; random&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;randint&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    b &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; random&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;randint&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;assert&lt;/span&gt; add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; b&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Cool, now we can run &lt;em&gt;one test&lt;/em&gt; with two random inputs. What if we want to run &lt;em&gt;lots&lt;/em&gt; of tests?
+Let’s try that instead:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;test_add_a_lot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    some_as &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;random&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;randint&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; _ &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    some_bs &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;random&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;randint&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; _ &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; b &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;some_as&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; some_bs&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;assert&lt;/span&gt; add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; b&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Nice, now we’ve run &lt;em&gt;lots of tests&lt;/em&gt;. This is great because we didn’t have to do very much work and
+we got to make sure that our &lt;code class=&quot;language-text&quot;&gt;add&lt;/code&gt; function works for lots of different int combinations, instead
+of the six combinations we might come up with in a unit test.&lt;/p&gt;
+&lt;p&gt;What if we want to test some property about strings?&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;some_rand_string_fn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# This returns a random string, I swear.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;test_append&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    some_strings &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;some_rand_string_fn&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; _ &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; st &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; some_strings&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;assert&lt;/span&gt; st &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;st &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; st&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This pattern looks familiar — generate a bunch of data of the type that we need,
+call some function on the generated data, and assert some expectation about the result.&lt;/p&gt;
+&lt;h2&gt;Properties over arbitrary functions&lt;/h2&gt;
+&lt;p&gt;We saw in the Python example that it’s useful to be able to generate data of different types.
+That example included only &lt;code class=&quot;language-text&quot;&gt;ints&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;strings&lt;/code&gt;, but we could conceivably want to test functions
+with &lt;em&gt;any&lt;/em&gt; input type. In that case, we’d want some way to express the requirements that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;we can generate data of the type needed&lt;/li&gt;
+&lt;li&gt;we have some function on the generated data that gives us a test result&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In languages with typeclasses, we can represent some capability that we want to express like
+“we can generate data of this type” with a &lt;em&gt;typeclass&lt;/em&gt;. In property testing libraries, this capability is frequently
+(&lt;a href=&quot;https://github.com/typelevel/scalacheck/blob/main/src/main/scala/org/scalacheck/Gen.scala&quot;&gt;scalacheck&lt;/a&gt;, &lt;a href=&quot;https://hackage.haskell.org/package/QuickCheck-2.14.2/docs/Test-QuickCheck-Gen.html&quot;&gt;quickcheck&lt;/a&gt;, &lt;a href=&quot;https://hackage.haskell.org/package/hedgehog-1.0.5/docs/Hedgehog-Internal-Gen.html&quot;&gt;hedgehog&lt;/a&gt;) wrapped up in a &lt;code class=&quot;language-text&quot;&gt;Gen&lt;/code&gt; type. A value of type &lt;code class=&quot;language-text&quot;&gt;Gen a&lt;/code&gt;
+or &lt;code class=&quot;language-text&quot;&gt;Gen[A]&lt;/code&gt; says “I can generate values of type &lt;code class=&quot;language-text&quot;&gt;a&lt;/code&gt;/&lt;code class=&quot;language-text&quot;&gt;A&lt;/code&gt;.” Often, access to that generator
+is hidden in an &lt;a href=&quot;https://hackage.haskell.org/package/QuickCheck-2.14.2/docs/Test-QuickCheck-Arbitrary.html&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Arbitrary&lt;/code&gt; typeclass&lt;/a&gt;. In &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt;, we’ll make things a little simpler in
+our &lt;code class=&quot;language-text&quot;&gt;Arbitrary&lt;/code&gt; typeclass,
+and just say that we have a &lt;code class=&quot;language-text&quot;&gt;sample&lt;/code&gt; method that effectfully procures us a list of values
+of the type we want:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;haskell&quot;&gt;&lt;pre class=&quot;language-haskell&quot;&gt;&lt;code class=&quot;language-haskell&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Arbitrary&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;where&lt;/span&gt;
+  &lt;span class=&quot;token hvariable&quot;&gt;sample&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;IO&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token hvariable&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The second requirement is simpler — we said tests are things that produce test results, so let’s
+summon a type called &lt;code class=&quot;language-text&quot;&gt;Result&lt;/code&gt; (the details aren’t important here) and say that we need a function
+from something we can summon to a &lt;code class=&quot;language-text&quot;&gt;Result&lt;/code&gt;. In Haskell, that looks like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;haskell&quot;&gt;&lt;pre class=&quot;language-haskell&quot;&gt;&lt;code class=&quot;language-haskell&quot;&gt;&lt;span class=&quot;token hvariable&quot;&gt;prop&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Arbitrary&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token hvariable&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;IO&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Result&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Provided you know how to summon values of type &lt;code class=&quot;language-text&quot;&gt;a&lt;/code&gt;, we have a function that we can use to
+run lots of tests. Let’s assume that &lt;code class=&quot;language-text&quot;&gt;Results&lt;/code&gt; can be combined — in that case, we can smash
+all of our results in the implementation with:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;haskell&quot;&gt;&lt;pre class=&quot;language-haskell&quot;&gt;&lt;code class=&quot;language-haskell&quot;&gt;&lt;span class=&quot;token hvariable&quot;&gt;prop&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Arbitrary&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token hvariable&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;IO&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Result&lt;/span&gt;
+&lt;span class=&quot;token hvariable&quot;&gt;prop&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;token hvariable&quot;&gt;someAs&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;sample&lt;/span&gt;
+  &lt;span class=&quot;token hvariable&quot;&gt;pure&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;mconcat&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token hvariable&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;$&gt;&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;someAs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;do&lt;/code&gt; takes us into something that looks a little imperative — you can read each line as “this, then
+that, then the other thing,” similar to languages like Python and JavaScript.
+The first line says “get me the list of &lt;code class=&quot;language-text&quot;&gt;a&lt;/code&gt;-s that you promised,” and the second says “test them all,
+smash the results together, and give me the result.” The &lt;code class=&quot;language-text&quot;&gt;pure $&lt;/code&gt; at the beginning is just there to
+make the types cooperate.&lt;/p&gt;
+&lt;p&gt;Similarly, for functions of two parameters where we know how to generate values of both types, we can implement
+&lt;code class=&quot;language-text&quot;&gt;prop2&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;haskell&quot;&gt;&lt;pre class=&quot;language-haskell&quot;&gt;&lt;code class=&quot;language-haskell&quot;&gt;&lt;span class=&quot;token hvariable&quot;&gt;prop2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Arbitrary&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Arbitrary&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token hvariable&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;IO&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Result&lt;/span&gt;
+&lt;span class=&quot;token hvariable&quot;&gt;prop2&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;token hvariable&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;sample&lt;/span&gt;
+    &lt;span class=&quot;token hvariable&quot;&gt;bs&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;sample&lt;/span&gt;
+    &lt;span class=&quot;token hvariable&quot;&gt;pure&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt; . &lt;/span&gt;&lt;span class=&quot;token hvariable&quot;&gt;fold&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;zipWith&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;bs&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;How high can we go with this? All the way to infinity! &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt; stops at &lt;code class=&quot;language-text&quot;&gt;prop3&lt;/code&gt; because that’s not the point of &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt;.
+&lt;em&gt;Real&lt;/em&gt; property testing libraries don’t have this kind of limit or require you to count arguments on your own. For example,
+the &lt;a href=&quot;https://www.scalacheck.org/#quickstart&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;ScalaCheck&lt;/code&gt; quickstart&lt;/a&gt; shows that the &lt;code class=&quot;language-text&quot;&gt;forAll&lt;/code&gt; method, which is like &lt;code class=&quot;language-text&quot;&gt;prop&lt;/code&gt; above, can take functions of different
+numbers of parameters.&lt;/p&gt;
+&lt;h2&gt;Using &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;You can use &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt; in the &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt; test suite. To run the test suite, you’ll need &lt;code class=&quot;language-text&quot;&gt;stack&lt;/code&gt;. If you clone the repo and
+run &lt;code class=&quot;language-text&quot;&gt;stack test&lt;/code&gt;, you’ll see:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Running test suite addition unit tests
+Success!&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you then apply a small diff to the &lt;code class=&quot;language-text&quot;&gt;Spec.hs&lt;/code&gt; file and rerun…&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;diff&quot;&gt;&lt;pre class=&quot;language-diff&quot;&gt;&lt;code class=&quot;language-diff&quot;&gt;diff --git a/test/Spec.hs b/test/Spec.hs
+index a114364..b776925 100644
+&lt;span class=&quot;token coord&quot;&gt;--- a/test/Spec.hs&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;+++ b/test/Spec.hs&lt;/span&gt;
+@@ -10,8 +10,8 @@ import TestSuite (TestSuite (..), runTests)
+&lt;span class=&quot;token unchanged&quot;&gt;&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;main :: IO ()
+&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;main = do
+&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;  addUnitExit &amp;lt;- runTestSuite addUnitSuite
+&lt;/span&gt;&lt;span class=&quot;token deleted-sign deleted&quot;&gt;&lt;span class=&quot;token prefix deleted&quot;&gt;-&lt;/span&gt;  -- addPropExit &amp;lt;- addPropSuite &gt;&gt;= runTestSuite
+&lt;span class=&quot;token prefix deleted&quot;&gt;-&lt;/span&gt;  exitWith addUnitExit
+&lt;/span&gt;&lt;span class=&quot;token inserted-sign inserted&quot;&gt;&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;  addPropExit &amp;lt;- addPropSuite &gt;&gt;= runTestSuite
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;  exitWith $ addUnitExit `max` addPropExit
+&lt;/span&gt;&lt;span class=&quot;token unchanged&quot;&gt;&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;
+&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;runTestSuite :: TestSuite -&gt; IO ExitCode
+&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;runTestSuite testSuite =
+&lt;/span&gt;@@ -42,12 +42,12 @@ addUnitSuite =
+&lt;span class=&quot;token unchanged&quot;&gt;&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;        ]
+&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;    }
+&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;
+&lt;/span&gt;&lt;span class=&quot;token coord&quot;&gt;--- addPropSuite :: IO TestSuite&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;--- addPropSuite =&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;---   do&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;---     result &amp;lt;- Result.fromProp2 (\x y -&gt; add x y `shouldBe` (x + y))&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;---     pure $&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;---       NamedTestSuite&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;---         { suiteName = &quot;addition prop tests&quot;,&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;---           suite = [result]&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;---         }&lt;/span&gt;
+\ No newline at end of file
+&lt;span class=&quot;token inserted-sign inserted&quot;&gt;&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;addPropSuite :: IO TestSuite
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;addPropSuite =
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;  do
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;    result &amp;lt;- Result.fromProp2 (\x y -&gt; add x y `shouldBe` (x + y))
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;    pure $
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;      NamedTestSuite
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;        { suiteName = &quot;addition prop tests&quot;,
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;          suite = [result]
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;        }&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You’ll see a nice collection of failures:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Running test suite addition prop tests
+15 was not equal to 16. Input: (13,3)
+69 was not equal to 70. Input: (13,57)
+34 was not equal to 35. Input: (0,35)
+101 was not equal to 102. Input: (26,76)
+138 was not equal to 139. Input: (91,48)
+76 was not equal to 77. Input: (13,64)
+23 was not equal to 24. Input: (13,11)
+80 was not equal to 81. Input: (0,81)
+103 was not equal to 104. Input: (13,91)
+144 was not equal to 145. Input: (78,67)
+146 was not equal to 147. Input: (52,95)
+94 was not equal to 95. Input: (26,69)
+102 was not equal to 103. Input: (52,51)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you’re quick with dividing things by 13, you might be suspicious already about how
+this function was implemented, and of course the implementation in &lt;code class=&quot;language-text&quot;&gt;tiny-test&lt;/code&gt;
+looks like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;haskell&quot;&gt;&lt;pre class=&quot;language-haskell&quot;&gt;&lt;code class=&quot;language-haskell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;-- |&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;-- add two numbers&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;-- but do a bad enough job that property tests show something interesting&lt;/span&gt;
+&lt;span class=&quot;token hvariable&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;token hvariable&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;mod&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;y&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you want to play around with other function types, it’s easy to add new arbitrary
+instances. For example, if you wanted to generate instances of a type &lt;code class=&quot;language-text&quot;&gt;Foo&lt;/code&gt; with a &lt;code class=&quot;language-text&quot;&gt;num&lt;/code&gt; field
+that’s an &lt;code class=&quot;language-text&quot;&gt;Int&lt;/code&gt; and a &lt;code class=&quot;language-text&quot;&gt;ch&lt;/code&gt; field that’s a &lt;code class=&quot;language-text&quot;&gt;Char&lt;/code&gt;, you could apply the following diff:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;diff&quot;&gt;&lt;pre class=&quot;language-diff&quot;&gt;&lt;code class=&quot;language-diff&quot;&gt;diff --git a/src/Arbitrary.hs b/src/Arbitrary.hs
+index 66405b3..17cb6d2 100644
+&lt;span class=&quot;token coord&quot;&gt;--- a/src/Arbitrary.hs&lt;/span&gt;
+&lt;span class=&quot;token coord&quot;&gt;+++ b/src/Arbitrary.hs&lt;/span&gt;
+@@ -10,4 +10,12 @@ class Arbitrary a where
+&lt;span class=&quot;token unchanged&quot;&gt;&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;  sample :: IO [a]
+&lt;/span&gt;
+&lt;span class=&quot;token unchanged&quot;&gt;&lt;span class=&quot;token prefix unchanged&quot;&gt; &lt;/span&gt;instance Arbitrary Int where
+&lt;/span&gt;&lt;span class=&quot;token deleted-sign deleted&quot;&gt;&lt;span class=&quot;token prefix deleted&quot;&gt;-&lt;/span&gt;  sample = replicateM 100 ((flip mod) 100 &amp;lt;$&gt; randomIO)
+&lt;/span&gt;\ No newline at end of file
+&lt;span class=&quot;token inserted-sign inserted&quot;&gt;&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;  sample = replicateM 100 ((flip mod) 100 &amp;lt;$&gt; randomIO)
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;data Foo = Foo { num :: Int, ch :: Char }
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;instance Arbitrary Foo where
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;  sample = replicateM 100 $ do
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;    num &amp;lt;- randomIO
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;    ch &amp;lt;- randomIO
+&lt;span class=&quot;token prefix inserted&quot;&gt;+&lt;/span&gt;    pure $ Foo num ch&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and test what ever functions over &lt;code class=&quot;language-text&quot;&gt;Foos&lt;/code&gt; you can imagine.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Getting started with STAC APIs]]></title><description><![CDATA[STAC is a specification for “enabling online search and discovery of geospatial assets.”
 Right now, a lot of work has gone into the core…]]></description><link>https://jisantuc.github.io/Getting-started-with-STAC-APIs/Getting-started-with-STAC-APIs/</link><guid isPermaLink="false">https://jisantuc.github.io/Getting-started-with-STAC-APIs/Getting-started-with-STAC-APIs/</guid><pubDate>Tue, 23 Mar 2021 21:26:42 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://stacspec.org/&quot;&gt;STAC&lt;/a&gt; is a specification for “enabling online search and discovery of geospatial assets.”
 Right now, a lot of work has gone into the core specification, with a 1.0.0-rc1 for the
 core specification released 20 days ago. Following the core spec’s 1.0.0 release, more
