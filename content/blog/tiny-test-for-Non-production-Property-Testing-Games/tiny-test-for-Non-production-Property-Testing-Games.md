@@ -98,20 +98,21 @@ def test_append():
 This pattern looks familiar -- generate a bunch of data of the type that we need,
 call some function on the generated data, and assert some expectation about the result.
 
-## Functions over Arbitrary types
+## Properties over arbitrary functions
 
 We saw in the Python example that it's useful to be able to generate data of different types.
 That example included only `ints` and `strings`, but we could conceivably want to test functions
 with _any_ input type. In that case, we'd want some way to express the requirements that:
 
 * we can generate data of the type needed
-* We have some function on the generated data that gives us a test result
+* we have some function on the generated data that gives us a test result
 
-In languages with typeclasses, we can represent some capability that we want to express about
-a type with a _typeclass_. In property testing libraries, this capability is frequently
+In languages with typeclasses, we can represent some capability that we want to express like
+"we can generate data of this type" with a _typeclass_. In property testing libraries, this capability is frequently
 ([scalacheck], [quickcheck], [hedgehog]) wrapped up in a `Gen` type. A value of type `Gen a`
 or `Gen[A]` says "I can generate values of type `a`/`A`." Often, access to that generator
-is hidden in an `Arbitrary` typeclass. In `tiny-test`, we'll make things a little simpler,
+is hidden in an [`Arbitrary` typeclass]. In `tiny-test`, we'll make things a little simpler in
+our `Arbitrary` typeclass,
 and just say that we have a `sample` method that effectfully procures us a list of values
 of the type we want:
 
@@ -128,7 +129,7 @@ from something we can summon to a `Result`. In Haskell, that looks like:
 prop :: Arbitrary a => (a -> Result) -> IO Result
 ```
 
-Now we have a function that, provided you know how to summon values of type `a`, we can use to
+Provided you know how to summon values of type `a`, we have a function that we can use to
 run lots of tests. Let's assume that `Results` can be combined -- in that case, we can smash
 all of our results in the implementation with:
 
@@ -145,7 +146,7 @@ The first line says "get me the list of `a`-s that you promised," and the second
 smash the results together, and give me the result." The `pure $` at the beginning is just there to
 make the types cooperate.
 
-Similarly, for functions of two parameters that we know how to summon from nothing, we can implement
+Similarly, for functions of two parameters where we know how to generate values of both types, we can implement
 `prop2`:
 
 ```haskell
@@ -157,9 +158,123 @@ prop2 f =
     pure . fold $ zipWith f as bs
 ```
 
-How high can we go with this? Obviously all the way to infinity.
+How high can we go with this? All the way to infinity! `tiny-test` stops at `prop3` because that's not the point of `tiny-test`.
+_Real_ property testing libraries don't have this kind of limit or require you to count arguments on your own. For example,
+the [`ScalaCheck` quickstart] shows that the `forAll` method, which is like `prop` above, can take functions of different
+numbers of parameters.
 
-How high can we go? Obviously to infinity. But `tiny-test` stops at 3 because that's not the point.
+## Using `tiny-test`
+
+You can use `tiny-test` in the `tiny-test` test suite. To run the test suite, you'll need `stack`. If you clone the repo and
+run `stack test`, you'll see:
+
+```
+Running test suite addition unit tests
+Success!
+```
+
+If you then apply a small diff to the `Spec.hs` file and rerun...
+
+```diff
+diff --git a/test/Spec.hs b/test/Spec.hs
+index a114364..b776925 100644
+--- a/test/Spec.hs
++++ b/test/Spec.hs
+@@ -10,8 +10,8 @@ import TestSuite (TestSuite (..), runTests)
+ main :: IO ()
+ main = do
+   addUnitExit <- runTestSuite addUnitSuite
+-  -- addPropExit <- addPropSuite >>= runTestSuite
+-  exitWith addUnitExit
++  addPropExit <- addPropSuite >>= runTestSuite
++  exitWith $ addUnitExit `max` addPropExit
+ 
+ runTestSuite :: TestSuite -> IO ExitCode
+ runTestSuite testSuite =
+@@ -42,12 +42,12 @@ addUnitSuite =
+         ]
+     }
+ 
+--- addPropSuite :: IO TestSuite
+--- addPropSuite =
+---   do
+---     result <- Result.fromProp2 (\x y -> add x y `shouldBe` (x + y))
+---     pure $
+---       NamedTestSuite
+---         { suiteName = "addition prop tests",
+---           suite = [result]
+---         }
+\ No newline at end of file
++addPropSuite :: IO TestSuite
++addPropSuite =
++  do
++    result <- Result.fromProp2 (\x y -> add x y `shouldBe` (x + y))
++    pure $
++      NamedTestSuite
++        { suiteName = "addition prop tests",
++          suite = [result]
++        }
+```
+
+You'll see a nice collection of failures:
+
+```
+Running test suite addition prop tests
+15 was not equal to 16. Input: (13,3)
+69 was not equal to 70. Input: (13,57)
+34 was not equal to 35. Input: (0,35)
+101 was not equal to 102. Input: (26,76)
+138 was not equal to 139. Input: (91,48)
+76 was not equal to 77. Input: (13,64)
+23 was not equal to 24. Input: (13,11)
+80 was not equal to 81. Input: (0,81)
+103 was not equal to 104. Input: (13,91)
+144 was not equal to 145. Input: (78,67)
+146 was not equal to 147. Input: (52,95)
+94 was not equal to 95. Input: (26,69)
+102 was not equal to 103. Input: (52,51)
+```
+
+If you're quick with dividing things by 13, you might be suspicious already about how
+this function was implemented, and of course the implementation in `tiny-test`
+looks like this:
+
+```haskell
+-- |
+-- add two numbers
+-- but do a bad enough job that property tests show something interesting
+add :: Int -> Int -> Int
+add x y = if (mod x 13 == 0) then x + y - 1 else x + y
+```
+
+If you want to play around with other function types, it's easy to add new arbitrary
+instances. For example, if you wanted to generate instances of a type `Foo` with a `num` field
+that's an `Int` and a `ch` field that's a `Char`, you could apply the following diff:
+
+```diff
+diff --git a/src/Arbitrary.hs b/src/Arbitrary.hs
+index 66405b3..17cb6d2 100644
+--- a/src/Arbitrary.hs
++++ b/src/Arbitrary.hs
+@@ -10,4 +10,12 @@ class Arbitrary a where
+   sample :: IO [a]
+
+ instance Arbitrary Int where
+-  sample = replicateM 100 ((flip mod) 100 <$> randomIO)
+\ No newline at end of file
++  sample = replicateM 100 ((flip mod) 100 <$> randomIO)
++
++data Foo = Foo { num :: Int, ch :: Char }
++
++instance Arbitrary Foo where
++  sample = replicateM 100 $ do
++    num <- randomIO
++    ch <- randomIO
++    pure $ Foo num ch
+```
+
+and test what ever functions over `Foos` you can imagine.
+
 
 [`hypothesis`]: https://hypothesis.readthedocs.io/en/latest/
 [Matt Bachmann]: https://www.youtube.com/watch?v=jvwfDdgg93E
@@ -173,3 +288,6 @@ How high can we go? Obviously to infinity. But `tiny-test` stops at 3 because th
 [hedgehog]: https://hackage.haskell.org/package/hedgehog-1.0.5/docs/Hedgehog-Internal-Gen.html
 [quickcheck]: https://hackage.haskell.org/package/QuickCheck-2.14.2/docs/Test-QuickCheck-Gen.html
 [scalacheck]: https://github.com/typelevel/scalacheck/blob/main/src/main/scala/org/scalacheck/Gen.scala
+[`ScalaCheck` quickstart]: https://www.scalacheck.org/#quickstart
+[`Arbitrary` typeclass]: https://hackage.haskell.org/package/QuickCheck-2.14.2/docs/Test-QuickCheck-Arbitrary.html
+[`stack`]: https://docs.haskellstack.org/en/stable/README/
