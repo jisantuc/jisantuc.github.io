@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jisantuc-github-io
+spec:
+  selector:
+    matchLabels:
+      app: jisantuc-github-io
+  template:
+    metadata:
+      labels:
+        app: jisantuc-github-io
+    spec:
+      containers:
+        - name: jisantuc-github-io
+          image: jisantuc/jisantuc.github.io:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
