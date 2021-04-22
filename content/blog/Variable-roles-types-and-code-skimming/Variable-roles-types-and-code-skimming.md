@@ -1,7 +1,7 @@
 ---
-title: Variable roles and functional programming concepts
+title: Variable roles, types, and code skimming
 date: 2021-04-22T15:00:00+00:00
-description: Variable roles and functional programming concepts
+description: I've been reading *The Programmer's Brain*. One of the techniques for reading unfamiliar code is using the *roles of variables* framework. This post walks through combining information from roles and types to skim unfamiliar code written with folds faster.
 ---
 
 I've been reading [*The Programmer's Brain*], since I want to be better at explaining / teaching
@@ -140,6 +140,8 @@ recordSetters = foldl
 
 This example is similar to the preveious one. However, the container for our most wanted value is an array, which holds
 zero or any number of values, instead of zero or one like `Maybe`. Functions such as this one, where the best values are gathered into an unbounded container, are filters.
+
+Note that in the last example, there's no rule that says that each building can't expand the array -- it's only because we know we're looking for a kind of "best" value that this is a filter.
 
 ### The end
 
