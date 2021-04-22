@@ -141,7 +141,7 @@ recordSetters = foldl
 This example is similar to the preveious one. However, the container for our most wanted value is an array, which holds
 zero or any number of values, instead of zero or one like `Maybe`. Functions such as this one, where the best values are gathered into an unbounded container, are filters.
 
-Note that in the last example, there's no rule that says that each building can't expand the array -- it's only because we know we're looking for a kind of "best" value that this is a filter.
+While the types on their own wouldn't tell us that all of these functions are searches / filters, the variable role annotations tell us that we're always searching for a best value / values, so the implementations of `tallestBuildings`, `isItMedium`, and `compareBuildings` could be hidden and we'd still have a good sense of what these functions do.
 
 ### The end
 
