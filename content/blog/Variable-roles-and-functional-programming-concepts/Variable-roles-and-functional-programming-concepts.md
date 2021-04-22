@@ -1,81 +1,165 @@
 ---
 title: Variable roles and functional programming concepts
-date: 2021-04-16T16:51:08+00:00
+date: 2021-04-22T15:00:00+00:00
 description: Variable roles and functional programming concepts
 ---
 
-Reading [*The Programmer's Brain*], it's great, whatever
+I've been reading [*The Programmer's Brain*], since I want to be better at explaining / teaching
+unfamiliar programming concepts to people who might want me to go away so they can get some
+real work done. As someone who learned to program mostly on my own (not to program _well_, but to
+program), I was curious whether I'd recognize any of the cognitive patterns, since it's still
+pretty easy for me to remember when it was hard to open files in Python. I haven't been disappointed
+and the exercises have already re-shaped how I think about digging into unfamiliar code. I just
+finished chapter 5 a few days ago.
 
-Variable roles and FP concepts. "Roles" correspond to things that variables can
-represent in your code. Here are the roles listed in *The Programmer's Brain*:
+One of many concepts that was new to me was [_roles of variables_]. "Roles" describe what variables are _for_(unlike simple types, which describe what variables are).
+Here are some of the roles listed in *The Programmer's Brain*:
 
-- list
-- of
-- roles
-- here
+- stepper: a variable that iterates through some structure, e.g., `i` for loops, or whatever is keeping track of the index in a binary search
+- most-recent holder: holds the most recent value you've seen, e.g., while stepping through a list by index, you would put the most recent value you've seen in one of these.
+- most-wanted holder: holds the "best" value, whatever "best" means for you
+- gatherer: "a variable that collects data and aggregates it into one value"
+- container: "any data structure that holds multiple elements"
+
+I've picked these out in particular because of an example Felienne Hermans gives at the end of the section introducing roles:
+
+"a program with a stepper and a most-wanted holder value is a search program"
 
 ### Mapping roles to FP concepts
 
-Something I've believed for a while is that language features that are common
-in FP languages reduce complexity introduced by the language.
+Felienne Hermans mentions annotating roles of variables on printed code using some specific symbols, translated loosely into emojis here:
 
-- fixed value -- no ambiguity, everything is immutable so every value is fixed
-- stepper -- without mutability these also don't exist. two roles down! way closer to
-  irreducible complexity already. if you want to step, recurse
-- walker -- just pattern matching and recursion
-- flag -- with ADTs, not always necessary. model the data we care about, not information
-  about the data we care about. e.g., instead of `if isEmpty(someList): ...`, model non-empty
-  lists
-- most-recent holder / most-wanted holder -- two versions of "the best one." more on this soon
-  with `Foldable` and role combinations
-- gatherer -- can be smashed into. represented as things with a `semigroup`, and if I can get a
-  sensible default, `monoid`. 
-- container -- *can hold more stuff*. incidentally, `gatherer` and `container` are pretty much the
-  same -- very little difference between `+` and `append`
-- follower -- state
-- organizers / temporary -- purely local scope
+- most-recent holder: 📆
+- most-wanted holder: 💎
+- stepper: 🚶🏻‍♂️
+- gatherer: 🧺
+- container: 🔳
 
-### Combinations of roles
+This makes sense -- if you can pictorially represent the type of program you have, you can
+dramatically reduce the amount of code someone has to read to get the big picture. One of my favorite PureScript
+projects, [`prelewd`], plays a similar game, asking:
 
-"A program with a stepper and a most-wanted holder value is a search program."
+> Is `f <$> a <*> b` scarier than `f 🚂(a)🚋(b)🚋(c)`? If so, why?
 
-Let's talk about `Foldable` -- we have an array of values, and we want to find the value that's closest
-to a power of two... let's say logarithmically. That is, we have a function for some numeric type `a`,
-and it picks whichever of two values which, log base 2, is closest to a whole number:
+Mapping roles to the relevant concepts provides another analog for the `prelewd` emojis, so let's write a tiny search program
+in PureScript!
 
-```purescript
-bestNum :: Int -> Int -> Int
-bestNum = ...
-```
+### A search program in PureScript
 
-Here we have a search program, which we'll implement using a `fold`, specifically a left `fold` but it doesn't
-really matter in this case.
+PureScript is a statically typed pure functional programming language with a Haskell-y syntax.
 
-Here's the signature for `fold`:
+For our search program, we're going to find the tallest building from a list of buildings. We're also not going
+to use [`maximumBy`], because that's boring.
+
+Here's out list of buildings:
 
 ```purescript
-foldl :: forall f a b. Foldable f => (b -> a -> b) -> b -> f a -> b
+buildings = [
+  { "name": "Sears Tower", "height": 1000 }
+  , { "name": "Burj Khalifa", "height": 1200 }
+  , { "name": "Small building", "height": 20 }
+  , { "name": "Medium building", "height": 50 }
+  , { "name": "Non-notably tall buidling", "height": 200 }
+  , { "name": "Unreasonably tall building", "height": 10000 }
+]
 ```
 
-And here's what this signature is telling us:
+To find the tallest building, we'll use the `foldl` method. The `foldl` method's type signature looks like this:
 
-- `Foldable f =>`: whatever context we're working in, it can be folded. We'll fix this to an array.
-- `(b -> a -> b)`: give me a function that takes a `b` and an `a` and gives me a `b`. `a` and `b` can be the same or different.
-- `b`: give me an initial value of type `b`
-- `f a`: give me some values of type `a` in your foldable context -- again, for us, arrays
-- `-> b`: I'll give you a `b` back
+```purescript
+forall f a b. Foldable f => (b -> a -> b) -> b -> f a -> b
+```
 
-What are the roles here:
+With roles of variables, we could annotate it as:
 
-- `(b -> a -> b)` -- this does our gathering or searching or whatever. It depends on the shape of the function. For `bestNum`, searching for
-  the best one.
-- `b` -- this is the thing that values get gathered into. We start with an initial value because we can't promise that the function will ever
-  be called, for example, if we have an empty array. This value is, for each function call, the "most recent best"
-- `f a`: saying that `f` is `Foldable` effectively means `f` can be stepped over, so this is our stepper
-- `-> b`: this is just a promise about what comes out
+```purescript
+--                     🔳=>      🧺      ->  💎/📆 -> 🔳 -> 💎
+forall f a b. Foldable f => (b -> a -> b) ->   b    -> f a -> b
+```
 
+Or, it's a function from some stuff in a container, with a gathering function, that eventually finds a most wanted value.
 
-What other kinds of programs? Depend on type of `b`.
+Let's actually find the tallest building now:
 
-- With `b` as some kind of container type (array, `Maybe`, etc.), we have searches, but also different kinds of searches. Arrays indicate we can find all the values, while `Maybe` says we're going to find 0 or 1 values
-- With `b` as some kind of `gatherer` type, we can get a generic notion of sums, e.g., whatever `b` is, we can keep smashing more `a` values into it somehow, e.g., in a simple wordcount example
+```purescript
+type Building = { name: String, height: Int }
+
+compareBuilding :: Building -> Building -> Building
+compareBuilding b1 b2 = if (b1.height > b2.height) then b1 else b2
+
+--                    💎
+tallestBuilding :: Building
+tallestBuilding = foldl
+  compareBuilding -- 🧺
+  { name: "impossible building", height: 0 } -- 💎/📆
+  buildings -- 🔳
+```
+
+The only weird part here is the 💎/📆 value -- since we're traversing the whole list, and comparing with the best value we know
+at each point, our initial value starts as the "most recent best" value.
+
+This function may look like a search, and starting with a bogus value for our most recent best building guarantees that we can
+find a tallest building even in empty lists.
+
+#### Type hints for variables roles
+
+The function above finds exactly one value, but there are different kinds of things. One way our search might be different is if
+instead of the tallest building, we want to find the first building with a specific name. We can also write this search with `foldl`, but
+the gathering function and initialization will be different:
+
+```purescript
+isItMedium :: Maybe Building -> Building -> Maybe Building
+isItMedium (Just building) _ = Just building
+isItMedium _ building = if (building.name == "Medium building") then Just building else Nothing
+
+--                 🔳      💎
+mediumBuilding :: Maybe Building
+mediumBuilding = foldl
+  isItMedium -- 🧺
+  Nothing -- 🔳💎
+  buildings -- 🔳
+```
+
+In this case, we're searching for something in the list that might not be there. As a result, our most wanted value
+starts out with an empty container, in this case, an empty [`Maybe`] value. `Maybes` can hold _zero or one_ values.
+Once `isItMedium` finds a building that matches, it puts that building into the `Maybe` container with the `Just`
+constructor. Functions such as this one, where we model the possibility of not finding what we're looking for,
+are also searches.
+
+Finally, let's assume the buildings are sorted by year of construction. We could search for buildings that were the tallest
+building in the world when they were constructed:
+
+```purescript
+tallestBuildings :: Array Building -> Building -> Array Building
+tallestBuildings buildings building =
+  case last buildings of
+    Just b -> if (b.height < building.height) then buildings `append` [building] else buildings
+    Nothing -> [building]
+
+--                 🔳     💎
+recordSetters :: Array Building
+recordSetters = foldl
+  tallestBuildings -- 🧺
+  [] -- 🔳💎
+  buildings -- 🔳
+```
+
+This example is similar to the preveious one. However, the container for our most wanted value is an array, which holds
+zero or any number of values, instead of zero or one like `Maybe`. All functions such as this one, where the best values
+are gathered into a container, are filters.
+
+### The end
+
+These three examples showed how the roles of variables framework, in conjunction with information represented in types,
+can give you a lot of clues about how a function or program works without having to dig into the implementation. While some
+of the syntax might be strange if you're not familiar with PureScript, I hope the emojification of the variable roles
+helps make it clear what's going on.
+
+Also, if you're also interested in turning the roles of variables annotations into a VSCode extension, please tweet at me
+`@james_santucci` -- I don't know anything about VSCode extensions at this point, but it sounds fun to me.
+
+[*The Programmer's Brain*]: https://www.manning.com/books/the-programmers-brain
+[_roles of variables_]: https://www.tandfonline.com/doi/full/10.1080/08993400500056563
+[`prelewd`]: https://pursuit.purescript.org/packages/purescript-prelewd/0.1.0
+[`maximumBy`]: https://pursuit.purescript.org/packages/purescript-foldable-traversable/5.0.1/docs/Data.Semigroup.Foldable#v:maximumBy
+[`Maybe`]: https://pursuit.purescript.org/packages/purescript-maybe/5.0.0/docs/Data.Maybe#t:Maybe
