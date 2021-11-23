@@ -1,7 +1,11 @@
 ---
 title: cliffs, a small CLI for remembering what your scripts to rule them all are for
-date: 2021-11-16T04:11:52+00:00
-description: cliffs, a small CLI for remembering what your scripts to rule them all are for
+date: 2021-11-23T04:11:52+00:00
+description: |
+  Scripts to rule them all is a nice pattern that was cool and fresh and on
+  everyone's mind several years ago. However, now time has passed, and it can
+  be hard to remember what all the scripts are for. `cliffs` is a small terminal
+  UI that helps with that.
 ---
 
 Project I've worked on at Azavea really frequently use the [Scripts to Rule Them
@@ -21,10 +25,11 @@ being a lot of typing to do every time.
 
 Also, over time, the list of available scripts tends to grow much more often
 than it shrinks. That's how in Raster Foundry we wound up with [sixteen
-scripts], most of them non-standard, and commonly only call a few.
+scripts], most of them non-standard. Some of them aren't even useful / don't
+even work anymore!
 
-Something I noticed a bit ago is that some of our projects, like [Raster
-Foundry], also have nice tables describing the scripts. I thought: can you use
+Something I noticed a bit ago is that some of our projects
+also have nice tables describing the scripts. I thought: can you use
 semi-structured READMEs (a bunch of markdown text with a table with special
 column names) and semi-structured scripts (executable text files that 🤞🏻 print
 helpful information when called with `--help`) to show information about what
@@ -46,8 +51,7 @@ pretty useful. If you have a README with specially named columns and a scripts
 directory named `scripts`, running `cliffs` will get you a nice little
 interactive session for exploring what each thing does:
 
-<!-- TODO: video embedding not working, try out more plugins while less sleepy -->
-VIDEO GOES HERE
+`video: https://youtu.be/8DwItA-1YnU`
 
 In short:
 
@@ -67,6 +71,9 @@ You can install cliffs with [`nix`] as:
 ```bash
 nix-env -i -f https://github.com/jisantuc/cliffs/archive/refs/tags/v0.0.1.zip
 ```
+
+Someday there will be a container image, but I don't actually know how to turn
+my `default.nix` into a container yet 🤷🏻‍♂️.
 
 `cliffs` is built on...
 
