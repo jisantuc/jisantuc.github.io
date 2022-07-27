@@ -18,16 +18,16 @@ an alternate Java runtime environment
 
 Each of those is developed enough
 to have its own sbt plugin. Partly because I wanted the tool, and partly because I wanted to play
-around with new application bundling formats, I used GraalVM and Scala.js to bundle up a CLI
+around with new application bundling options, I used GraalVM and Scala.js to bundle up a CLI
 app for adding rainbow brackets to streaming input.
 
 ## Rainbow brackets
 
 Rainbow brackets are great. No one has ever looked at an editor with a rainbow bracket plugin enabled and said
-"you know what, too much syntactical info in the bracket colors." However! Not everyone has access to rainbow
-brackets everywhere they could. You while Looking at Source Code has rainbow brackets on often enough
-that you probably feel an ineffable unease when looking at monochrome source code. You while Looking at Logs
-and Waxing Inexplicably French is probably like "ehhhh it's an inscrutable mass, que sera sera."
+"you know what, too much syntactical info in the bracket colors for me." However! Not everyone has access to rainbow
+brackets everywhere they could. You while Looking at Source Code probably feels an ineffable unease when looking
+at monochrome source code. You while Looking at Logs and Waxing Inexplicably French is probably like
+"ehhhh it's an inscrutable mass, que sera sera."
 
 ![what is this garbage](./log-output.png)
 
@@ -52,9 +52,8 @@ using a very unsafe, privately immutable [`Ring`](https://github.com/jisantuc/rb
 With the `Ring` in hand, it was pretty straightforward to handle the rest. [`decline`](https://github.com/bkirwi/decline) is wonderful
 for config / command line argument parsing, [`fs2`](https://github.com/typelevel/fs2) is the GOAT for constant memory IO,
 and [`cats-parse`](https://github.com/typelevel/cats-parse) is simple and nice for defining shapes of custom string formats
-on the fly. `decline` says "expect inputs of these types," `fs2` says "if we're reading from `stdin`, you know, don't
-try to read it all at once," and `cats-parse` says "if you see a string on the command line, these are the rules for
-whether it's a good string." Note that once we're in application logic, everything is purely in domain types --
+on the fly. The `decline` + `cats-parse` combo was great for defining the shapes of my color arguments. Since CLIs have to deal with horrible string formats all the time, it was great to be able to concissely represent the rules for _good_ strings and hook that into argument parsing.
+Note that once we're in application logic, everything is purely in domain types --
 the function responsible for transforming input is [`colorize`](https://github.com/jisantuc/rb-paren-cli/blob/v0.0.1/src/main/scala/io/github/jisantuc/rbparencli/Main.scala#L21-L39), and it knows nothing of effects or streaming or arguments, just "if you can give me a palette
 and a character, I can color that character."
 
@@ -72,7 +71,7 @@ possible.
 
 I used [`sbt-native-packager`](https://github.com/sbt/sbt-native-packager) as the packaging plugin, but instead
 of following the GraalVM JVM setup guides, I fired up a `nix repl`, loaded up `nixpkgs`, crossed my fingers,
-and pressed `<TAB>` a few times after `graal`. There was a package available (`graalvm-11-ce`) so I added it to `flake.nix`,
+and pressed `<TAB>` a few times after typing `graal`. There was a package available (`graalvm-11-ce`) so I added it to `flake.nix`,
 , and gave packaging the app up a try.
 
 Cross-project configuration for packaging the app was embarrassingly easy:
@@ -129,14 +128,13 @@ but [not much more work](https://github.com/jisantuc/rb-paren-cli#nodejs-script)
 ## Release and publication
 
 Because Node.js is basically universal, I didn't have to split the release workflow. Also,
-because I have a `nix` shell available, I don't have to do much in terms of dependency setup --
-instead I can set up `nix` in CI and let it handle making sure I have everything I need.
+because I have a `nix` shell available, I don't have to do much in terms of dependency setup in CI --
+instead I can set up `nix` and let it handle making sure I have everything I need.
 The bundling step [invokes `sbt` commands in a `nix` shell](https://github.com/jisantuc/rb-paren-cli/blob/main/.github/workflows/release.yml#L18-L25)
 then points a [release action](https://github.com/ncipollo/release-action) at the artifacts.
 And we're done!
 
 This experiment was also a bit inspired by @hillelogram's [mise en place](https://twitter.com/hillelogram/status/1514352882807721984) --
-the application here is _really simple_, so it was fine to spend a bit extra on the release
+the application here is _really simple_, so it was fine to take a little more technical risk with the release
 tooling. And it worked really well! "Always mise en place" is a good kitchen rule, and it
 turns out to work well for taking risk out of future technical choices too.
-g
