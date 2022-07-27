@@ -1,4 +1,166 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[James Santucci's development blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://jisantuc.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 23 Nov 2021 04:26:25 GMT</lastBuildDate><item><title><![CDATA[cliffs, a small CLI for remembering what your scripts to rule them all are for]]></title><description><![CDATA[Project I’ve worked on at Azavea really frequently use the Scripts to Rule Them
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[James Santucci's development blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://jisantuc.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 27 Jul 2022 03:46:14 GMT</lastBuildDate><item><title><![CDATA[Packaging a Scala CLI app in 2022]]></title><description><![CDATA[In past work projects, when I’ve been on a team needing a way to package a Scala application,
+I’ve relied on .  is great
+for what it’s for…]]></description><link>https://jisantuc.github.io/Packaging-a-Scala-CLI-app-in-2022/Packaging-a-Scala-CLI-app-in-2022/</link><guid isPermaLink="false">https://jisantuc.github.io/Packaging-a-Scala-CLI-app-in-2022/Packaging-a-Scala-CLI-app-in-2022/</guid><pubDate>Sun, 17 Jul 2022 23:37:50 GMT</pubDate><content:encoded>&lt;p&gt;In past work projects, when I’ve been on a team needing a way to package a Scala application,
+I’ve relied on &lt;a href=&quot;https://github.com/sbt/sbt-assembly&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sbt-assembly&lt;/code&gt;&lt;/a&gt;. &lt;code class=&quot;language-text&quot;&gt;sbt-assembly&lt;/code&gt; is great
+for what it’s for — it bundles up dependencies and application code in a single fat
+&lt;code class=&quot;language-text&quot;&gt;jar&lt;/code&gt; file, and you can run it anywhere with a Java runtime (subject to all the normal caveats
+about Java versions).&lt;/p&gt;
+&lt;p&gt;That’s great, but more recently, support for bundling Scala apps in other ways has flourished.
+&lt;a href=&quot;https://scala-native.readthedocs.io/en/latest/#&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;scala-native&lt;/code&gt;&lt;/a&gt; targets generic POSIX environments,
+&lt;a href=&quot;https://www.scala-js.org/&quot;&gt;Scala.js&lt;/a&gt; targets the browser and hit 1.0 in 2020, and GraalVM provides
+an alternate Java runtime environment
+&lt;a href=&quot;https://www.graalvm.org/22.1/docs/getting-started/&quot;&gt;“designed to accelerate the execution of applications written in […] JVM languages.”&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Each of those is developed enough
+to have its own sbt plugin. Partly because I wanted the tool, and partly because I wanted to play
+around with new application bundling options, I used GraalVM and Scala.js to bundle up a CLI
+app for adding rainbow brackets to streaming input.&lt;/p&gt;
+&lt;h2&gt;Rainbow brackets&lt;/h2&gt;
+&lt;p&gt;Rainbow brackets are great. No one has ever looked at an editor with a rainbow bracket plugin enabled and said
+“you know what, too much syntactical info in the bracket colors for me.” However! Not everyone has access to rainbow
+brackets everywhere they could. You while Looking at Source Code probably feels an ineffable unease when looking
+at monochrome source code. You while Looking at Logs and Waxing Inexplicably French is probably like
+“ehhhh it’s an inscrutable mass, que sera sera.”&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a9ce71d604b203db765cbbf16c6d6eea/8bf8a/log-output.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 48.734177215189874%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACbUlEQVQozwFiAp39APv6+f78/Pv8/f39/f7+/vz8/P7//vv7+/v7+/////7+/v////7+/v39/f////////7+/v7+///9+9Lk+wDh4uLr7OvJzdDm6OnZ2dj6+vrf3tn8/Pzg2t7i4eHf39/o6Onj4+Py8vLg39/g4OD9/fzl5ufr6+ze3NsAgXB7a1Rkc1xsmJidfH6CgYGFkZKUkJCWdXV7hoiLpaWpnZ6hlpaVn5+fiYqKUlNTh4eHfn19YWFeWlpaAFg+TioEHkYjPWNgZj8+RCwrMVlaX0JETxkeKDxBSWNja0tMUkREQ0BAQENDRAAAADM0NT09PB0ZEBwbGwDBvL+8tLrFv8TU1NXKysrNzc7Y2NnKzM26u7zFxcfe3t7T09HR0tHp6enNzMq3trTNzcy7u7yurq2tra0ANTc3ISIhISIhXF1dNzcyGxoZOjo6TExNICAgIyMjUFBOHRwXBgUDYGBgWFVQUU1Hbm1sWlxeMjM0MTExAH19fWNjZFxcXYOFhHFwaFxbWm9vb4GChGJjZG9wcYSEgkpJRTk4N4eHh3d3dWtra46Mimxta7Ozs+Dg4AC/wMC6u7u9vr/Ozc65vb2tsrLBwcG+vr6xrqq1s7DNzs3V2NXS1dLS0tLe3d3n5+bq6unW19igoaWipKgAOzs2Hh4eFxYWU1hYDT09AA8PJyYnW1hQRjkdRzwoWFtXIS4hICsfEA8Qc3N05OPk2tvbwsLEHhgfDg4WALKyr6ioqK2srLm8vJurrJ2mprKzs7y8u7Cwrbm3tMjHx7i4ucHBwcHAwNPT09/f4O7u7+bm6J+eo6KhplbwYHA6y8fhAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;what is this garbage&quot;
+        title=&quot;what is this garbage&quot;
+        src=&quot;/static/a9ce71d604b203db765cbbf16c6d6eea/f058b/log-output.png&quot;
+        srcset=&quot;/static/a9ce71d604b203db765cbbf16c6d6eea/c26ae/log-output.png 158w,
+/static/a9ce71d604b203db765cbbf16c6d6eea/6bdcf/log-output.png 315w,
+/static/a9ce71d604b203db765cbbf16c6d6eea/f058b/log-output.png 630w,
+/static/a9ce71d604b203db765cbbf16c6d6eea/40601/log-output.png 945w,
+/static/a9ce71d604b203db765cbbf16c6d6eea/78612/log-output.png 1260w,
+/static/a9ce71d604b203db765cbbf16c6d6eea/8bf8a/log-output.png 1901w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;But there’s another way! It turns out matching parentheses problems are not very difficult puzzles.
+If you desire in your heart of hearts to have special colors for brackets, parentheses, and braces that
+happen to complete each other… you don’t need to suffer in vain, or something.&lt;/p&gt;
+&lt;h2&gt;The code&lt;/h2&gt;
+&lt;p&gt;Algorithmically, the CLI is &lt;em&gt;really simple&lt;/em&gt;. For some streaming input, if you see a character that opens a
+pair like &lt;code class=&quot;language-text&quot;&gt;[&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;(&lt;/code&gt;, or &lt;code class=&quot;language-text&quot;&gt;{&lt;/code&gt;, rewrite it to a special colorized version of that same character and push to a stack.
+If you see a character that closes a pair like &lt;code class=&quot;language-text&quot;&gt;]&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;)&lt;/code&gt;, or &lt;code class=&quot;language-text&quot;&gt;}&lt;/code&gt;, rewrite it to a special colorized version of that
+same character and pop off a stack.&lt;/p&gt;
+&lt;p&gt;We have a few fancy options here. I was inspired by Michael Pilquist’s &lt;a href=&quot;https://github.com/scodec/hexdump4s&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;hexdump4s&lt;/code&gt;&lt;/a&gt;
+and got excited about functional abstractions and &lt;em&gt;doing the right thing&lt;/em&gt;™️. I wanted to model the state of the parentheses
+counter using either a &lt;code class=&quot;language-text&quot;&gt;Ref&lt;/code&gt; or a &lt;code class=&quot;language-text&quot;&gt;StateT[Stream[F, *], Color, *]&lt;/code&gt;. Fancy values! It turns out I didn’t need fancy values.
+I enthusiastically stole the &lt;a href=&quot;https://github.com/scodec/hexdump4s/blob/89271648d5d3d325557562df15c32ad6609a8f2b/hexdump4s.scala#L20-L43&quot;&gt;“file path or stdin” handling from &lt;code class=&quot;language-text&quot;&gt;hexdump4s&lt;/code&gt;&lt;/a&gt;, then tracked the state of the color wheel
+using a very unsafe, privately immutable &lt;a href=&quot;https://github.com/jisantuc/rb-paren-cli/blob/v0.0.1/src/main/scala/io/github/jisantuc/rbparencli/Ring.scala&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Ring&lt;/code&gt;&lt;/a&gt;
+&lt;code class=&quot;language-text&quot;&gt;trait&lt;/code&gt;. It tracks a collection of values with size &lt;code class=&quot;language-text&quot;&gt;n&lt;/code&gt; against an index modulo an internal counter.&lt;/p&gt;
+&lt;p&gt;With the &lt;code class=&quot;language-text&quot;&gt;Ring&lt;/code&gt; in hand, it was pretty straightforward to handle the rest. &lt;a href=&quot;https://github.com/bkirwi/decline&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;decline&lt;/code&gt;&lt;/a&gt; is wonderful
+for config / command line argument parsing, &lt;a href=&quot;https://github.com/typelevel/fs2&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;fs2&lt;/code&gt;&lt;/a&gt; is the GOAT for constant memory IO,
+and &lt;a href=&quot;https://github.com/typelevel/cats-parse&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;cats-parse&lt;/code&gt;&lt;/a&gt; is simple and nice for defining shapes of custom string formats
+on the fly. The &lt;code class=&quot;language-text&quot;&gt;decline&lt;/code&gt; + &lt;code class=&quot;language-text&quot;&gt;cats-parse&lt;/code&gt; combo was great for defining the shapes of my color arguments. Since CLIs have to deal with horrible string formats all the time, it was great to be able to concissely represent the rules for &lt;em&gt;good&lt;/em&gt; strings and hook that into argument parsing.
+Note that once we’re in application logic, everything is purely in domain types —
+the function responsible for transforming input is &lt;a href=&quot;https://github.com/jisantuc/rb-paren-cli/blob/v0.0.1/src/main/scala/io/github/jisantuc/rbparencli/Main.scala#L21-L39&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;colorize&lt;/code&gt;&lt;/a&gt;, and it knows nothing of effects or streaming or arguments, just “if you can give me a palette
+and a character, I can color that character.”&lt;/p&gt;
+&lt;p&gt;The end result looks like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 472px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f6f6352f508b161f5c610424aede82c1/3c5de/rainbow-parens.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 11.39240506329114%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAA7CAAAOwgEVKEqAAAAAcklEQVQI102I7QqCMAAAff+HG0opOQ2d23St/IBmP1pw0SDwx3HHZbrPaRrBtRUYlbN6yeJrRlPibMVzbrmNVXqLl7y2jvUumUxJ3xVodcIO5+SHu5BtXmC9YnI1YS6Iu+azD7yDSv4RgyKGIfF/R+Khv15MlGpdZ+DKAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Colored log output, with matching parentheses, brackets, and braces colored&quot;
+        title=&quot;Colored log output, with matching parentheses, brackets, and braces colored&quot;
+        src=&quot;/static/f6f6352f508b161f5c610424aede82c1/3c5de/rainbow-parens.png&quot;
+        srcset=&quot;/static/f6f6352f508b161f5c610424aede82c1/c26ae/rainbow-parens.png 158w,
+/static/f6f6352f508b161f5c610424aede82c1/6bdcf/rainbow-parens.png 315w,
+/static/f6f6352f508b161f5c610424aede82c1/3c5de/rainbow-parens.png 472w&quot;
+        sizes=&quot;(max-width: 472px) 100vw, 472px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;So that’s the pinnacle of side project completion — &lt;em&gt;it runs on my machine for toy inputs&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Bundling for linux&lt;/h2&gt;
+&lt;p&gt;But there are &lt;em&gt;other&lt;/em&gt; machines [citation needed], and it’s possible that someone who doesn’t want to learn
+how to use &lt;code class=&quot;language-text&quot;&gt;sbt&lt;/code&gt; might want rainbow brackets for their log output. No one has asked me for this, but it’s technically
+possible.&lt;/p&gt;
+&lt;p&gt;I used &lt;a href=&quot;https://github.com/sbt/sbt-native-packager&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sbt-native-packager&lt;/code&gt;&lt;/a&gt; as the packaging plugin, but instead
+of following the GraalVM JVM setup guides, I fired up a &lt;code class=&quot;language-text&quot;&gt;nix repl&lt;/code&gt;, loaded up &lt;code class=&quot;language-text&quot;&gt;nixpkgs&lt;/code&gt;, crossed my fingers,
+and pressed &lt;code class=&quot;language-text&quot;&gt;&amp;lt;TAB&gt;&lt;/code&gt; a few times after typing &lt;code class=&quot;language-text&quot;&gt;graal&lt;/code&gt;. There was a package available (&lt;code class=&quot;language-text&quot;&gt;graalvm-11-ce&lt;/code&gt;) so I added it to &lt;code class=&quot;language-text&quot;&gt;flake.nix&lt;/code&gt;,
+, and gave packaging the app up a try.&lt;/p&gt;
+&lt;p&gt;Cross-project configuration for packaging the app was embarrassingly easy:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;scala&quot;&gt;&lt;pre class=&quot;language-scala&quot;&gt;&lt;code class=&quot;language-scala&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;lazy&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; rootJVM &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; root&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;jvm
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;settings&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    graalVMNativeImageOptions &lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Seq&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;// prevents image creation and prints more output when bundling&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;// is *waves hands* incomplete&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;--no-fallback&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;// creates basically a fat jar instead of a binary that requires&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;// path / classpath information to execute&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;--static&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;// provides nicer logging output when exceptions are encountered&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;-H:+ReportExceptionStackTraces&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    GraalVMNativeImage &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; name &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;rainbow-parens&quot;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;enablePlugins&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;GraalVMNativeImagePlugin&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code class=&quot;language-text&quot;&gt;--static&lt;/code&gt; option was really important; it was the difference between being able to run the
+CLI if I copied it somewhere else on my machine and not being able to run it. However, that’s…
+not very many options to specify. If I compare it to common &lt;code class=&quot;language-text&quot;&gt;sbt-assembly&lt;/code&gt; options at least,
+it’s &lt;a href=&quot;https://github.com/raster-foundry/raster-foundry/blob/1.70.1/build.sbt#L126-L136&quot;&gt;fewer lines and less cryptic&lt;/a&gt;
+than what I’ve wound up with working on other projects.&lt;/p&gt;
+&lt;h2&gt;Bundling for MacOS&lt;/h2&gt;
+&lt;p&gt;MacOS is very special and required special handling. &lt;a href=&quot;https://www.graalvm.org/22.1/docs/getting-started/macos/&quot;&gt;In principle&lt;/a&gt;
+it should be possible to set up GraalVM packaging on MacOS, but I don’t really know anything
+about GraalVM or MacOS, so…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/xDQ3Oql1BN54c/giphy.gif&quot; alt=&quot;A very good dog floating around a space station&quot;&gt;&lt;/p&gt;
+&lt;p&gt;But there’s another option! &lt;code class=&quot;language-text&quot;&gt;Scala.js&lt;/code&gt; cross-project setups are pretty well ironed out, and all of my dependencies
+are cross-published for &lt;code class=&quot;language-text&quot;&gt;Scala.js&lt;/code&gt;, so here’s all I had to do to bundle up a nice &lt;code class=&quot;language-text&quot;&gt;node.js&lt;/code&gt; script:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;scala&quot;&gt;&lt;pre class=&quot;language-scala&quot;&gt;&lt;code class=&quot;language-scala&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;lazy&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; root &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;crossProject&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;JSPlatform&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; JVMPlatform&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;crossType&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;CrossType&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Pure&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; in file&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;settings&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;settings&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; _&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;jsSettings&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      scalaJSUseMainModuleInitializer &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      scalaJSLinkerConfig &lt;span class=&quot;token operator&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;withModuleKind&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ModuleKind&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CommonJSModule&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      Compile &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; fullOptJS &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; artifactPath &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; baseDirectory&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;rainbow-parens.js&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;MacOS users have a little more work to do to make sure they can use &lt;code class=&quot;language-text&quot;&gt;rainbow-parens&lt;/code&gt; as a CLI,
+but &lt;a href=&quot;https://github.com/jisantuc/rb-paren-cli#nodejs-script&quot;&gt;not much more work&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Release and publication&lt;/h2&gt;
+&lt;p&gt;Because Node.js is basically universal, I didn’t have to split the release workflow. Also,
+because I have a &lt;code class=&quot;language-text&quot;&gt;nix&lt;/code&gt; shell available, I don’t have to do much in terms of dependency setup in CI —
+instead I can set up &lt;code class=&quot;language-text&quot;&gt;nix&lt;/code&gt; and let it handle making sure I have everything I need.
+The bundling step &lt;a href=&quot;https://github.com/jisantuc/rb-paren-cli/blob/main/.github/workflows/release.yml#L18-L25&quot;&gt;invokes &lt;code class=&quot;language-text&quot;&gt;sbt&lt;/code&gt; commands in a &lt;code class=&quot;language-text&quot;&gt;nix&lt;/code&gt; shell&lt;/a&gt;
+then points a &lt;a href=&quot;https://github.com/ncipollo/release-action&quot;&gt;release action&lt;/a&gt; at the artifacts.
+And we’re done!&lt;/p&gt;
+&lt;p&gt;This experiment was also a bit inspired by @hillelogram’s &lt;a href=&quot;https://twitter.com/hillelogram/status/1514352882807721984&quot;&gt;mise en place&lt;/a&gt; —
+the application here is &lt;em&gt;really simple&lt;/em&gt;, so it was fine to take a little more technical risk with the release
+tooling. And it worked really well! “Always mise en place” is a good kitchen rule, and it
+turns out to work well for taking risk out of future technical choices too.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[cliffs, a small CLI for remembering what your scripts to rule them all are for]]></title><description><![CDATA[Project I’ve worked on at Azavea really frequently use the Scripts to Rule Them
 All (STRTA) pattern. Using STRTA is great once everyone is…]]></description><link>https://jisantuc.github.io/cliffs,-a-small-CLI-for-remembering-what-your-scripts-to-rule-them-all-are-for/cliffs,-a-small-CLI-for-remembering-what-your-scripts-to-rule-them-all-are-for/</link><guid isPermaLink="false">https://jisantuc.github.io/cliffs,-a-small-CLI-for-remembering-what-your-scripts-to-rule-them-all-are-for/cliffs,-a-small-CLI-for-remembering-what-your-scripts-to-rule-them-all-are-for/</guid><pubDate>Tue, 23 Nov 2021 04:11:52 GMT</pubDate><content:encoded>&lt;p&gt;Project I’ve worked on at Azavea really frequently use the &lt;a href=&quot;https://github.blog/2015-06-30-scripts-to-rule-them-all/&quot;&gt;Scripts to Rule Them
 All&lt;/a&gt; (STRTA) pattern. Using STRTA is great once everyone is really used to what
 all of the scripts are for — provided no one has done anything weird, it’s much
