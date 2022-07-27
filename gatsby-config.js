@@ -3,7 +3,7 @@ module.exports = {
     title: `James Santucci's development blog`,
     author: {
       name: `James Santucci`,
-      summary: `who lives in Denver and works at Azavea with open source geospatial technology for good.`,
+      summary: `who lives in Denver and works at 47 Degrees helping companies be excellent to each other (at writing Scala).`
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://jisantuc.github.io/`,
