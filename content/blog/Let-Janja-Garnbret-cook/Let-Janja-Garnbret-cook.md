@@ -114,7 +114,7 @@ are a different population from the climbers attempting the boulders in the fina
 results directly. Instead, we can filter to only those climbers who climbed in all three rounds and see how frequently they
 reached the tops of boulders. Looking at each year, rounds seem to get progressively harder.
 
-This plot shows, for each boulder event since 2008, the percentage of boulders that were topped in the final, semifinal, and
+This plot[^5] shows, for each boulder event since 2008, the percentage of boulders that were topped in the final, semifinal, and
 qualification rounds:
 
 <div class="image-container">
@@ -153,7 +153,7 @@ you before you saw someone try a boulder was which round it was from and that th
 attempt it made the finals, you might guess that it's about a coin flip whether they'd top it if it's a
 finals boulder, a little better than a coin flip if it's a semis boulder, and pretty likely they'd top it
 if it's a qualification boulder. The distributions for each round look challenging but not impossible.
-There are outliers, but mostly, the top percentages are in a range I'd consider "reasonable."[^5]
+There are outliers, but mostly, the top percentages are in a range I'd consider "reasonable."[^6]
 
 ### Route-setting goals: separation
 
@@ -920,9 +920,10 @@ that topping a few hard boulders is likely to be enough to win.
 On the women's side, competitors have to prioritize extreme economy in their number of attempts,
 expecting that the other competitors will top several of the boulders as well.
 
-Nowhere was this difference more evident than at Meiringen 2018.
-On the women's side, topping all four boulders in 9 attempts was only good for third place,
-while on the men's side, three tops was enough to be alone in first.[^6]
+Nowhere was this difference more evident than at Moscow 2019.
+The men had a relatively easy final round, with 14 total tops in the final, four tops for the winner,
+and three tops for third place. On the women's side, an efficient three tops and three zones 
+in six attempts was good for... last place.
 
 When route setters have pushed the athletes, they've produced some incredible climbing moments.
 For [Adam Ondra's hand jam], Ai Mori's high foot in Koper last year,
@@ -934,7 +935,7 @@ and Yoshiyuki Ogata's feet first method at Adidas Rockstars in 2019 (admittedly 
 `video: https://www.youtube.com/watch?v=5qIPZrwnQak`
 
 a part of what made the climbs so spectacular is how hard they were for everyone else in the round.
-For someone to stand out that way, the boulders have to be hard enough to stop most of the field.
+For someone to stand out that way, the boulders have to be hard enough to stop a lot of the field.
 
 So here's my plea to routesetters. You're weirdly good at assessing the relative difficulty of
 different boulders, and I think if you wanted to you could produce women's finals with scores like the men's.
@@ -966,10 +967,11 @@ see them climb their best.
 [^4]:
   For everything in the program's repo, you'll be best off getting set up with `nix` to make sure you have identical versions to what I have.
 [^5]:
+  I think some of the off-alignment dots are for competitions that had the same name in the same year. For example, Salt Lake City had two
+  competitions in 2022, and they have the same name in the dataset. I may go back and fix this.
+[^6]:
   Don't ask me what the endpoints are for "reasonable." I have no idea. The Meiringen 2018 Women's final, where the finalists
   reached the top in 20 of their 24 opportunities, was too easy. The Vienna 2011 men's final and Munich 2010 women's final,
   where finalists reached the top in 2 of their 24 opportunities, were too hard. I don't know where I'd draw the line for the transition
   from "too easy" to "acceptably easy" or "too hard" to "acceptably hard."
-[^6]:
-  See the video at https://youtu.be/fBS0v29rACQ, with scoring at 1:40:18 and 3:26:14.
 [^7]: and the rest of the _really deep_ women's field right now
