@@ -3,7 +3,7 @@ module.exports = {
     title: `James Santucci's development blog`,
     author: {
       name: `James Santucci`,
-      summary: `who lives in Denver and works at 47 Degrees helping companies be excellent to each other (at writing Scala).`
+      summary: `who lives in Denver and works at Flock Freight pooling shipments into shared truckloads to save the planet, hopefully.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://jisantuc.github.io/`,
@@ -20,17 +20,17 @@ module.exports = {
         height: 400, // Optional: Overrides optional.ratio
         related: false, //Optional: Will remove related videos from the end of an embedded YouTube video.
         noIframeBorder: true, //Optional: Disable insertion of <style> border: 0
-        loadingStrategy: 'lazy', //Optional: Enable support for lazy-load offscreen iframes. Default is disabled.
+        loadingStrategy: "lazy", //Optional: Enable support for lazy-load offscreen iframes. Default is disabled.
         urlOverrides: [
           {
             id: "youtube",
-            embedURL: videoId =>
+            embedURL: (videoId) =>
               `https://www.youtube-nocookie.com/embed/${videoId}`,
           },
         ], //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
         containerClass: "embedVideo-container", //Optional: Custom CSS class for iframe container, for multiple classes separate them by space
         iframeId: false, //Optional: if true, iframe's id will be set to what is provided after 'video:' (YouTube IFrame player API requires iframe id)
-      }
+      },
     },
     `gatsby-plugin-image`,
     {
@@ -72,12 +72,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: `ADD YOUR TRACKING ID HERE`,
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -96,15 +90,15 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
+              return allMarkdownRemark.nodes.map((node) => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
+                });
+              });
             },
             query: `
               {
@@ -139,7 +133,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,
@@ -148,4 +142,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
