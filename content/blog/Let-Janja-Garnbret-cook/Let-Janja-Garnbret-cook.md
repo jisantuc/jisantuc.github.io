@@ -967,7 +967,7 @@ see them climb their best.
   For everything in the program's repo, you'll be best off getting set up with `nix` to make sure you have identical versions to what I have.
 [^5]:
   Don't ask me what the endpoints are for "reasonable." I have no idea. The Meiringen 2018 Women's final, where the finalists
-  reached the top in 20 of their 24 opportunities, was too easy. The Log-Dragomer 2011 men's final and Eindhoven 2010 women's final,
+  reached the top in 20 of their 24 opportunities, was too easy. The Vienna 2011 men's final and Munich 2010 women's final,
   where finalists reached the top in 2 of their 24 opportunities, were too hard. I don't know where I'd draw the line for the transition
   from "too easy" to "acceptably easy" or "too hard" to "acceptably hard."
 [^6]:
