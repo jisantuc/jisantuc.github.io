@@ -1,0 +1,951 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.8ff3ab33eef33b8515d9.css" data-identity="gatsby-global-css">@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-8d7d79679b70dbe27172b6460e7a7910.woff2) format("woff2"),url(/static/montserrat-latin-100-ec38980a9e0119a379e2a9b3dbb1901a.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-e279051046ba1286706adc886cf1c96b.woff2) format("woff2"),url(/static/montserrat-latin-100italic-3b325a3173c8207435cd1b76e19bf501.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-9d266fbbfa6cab7009bd56003b1eeb67.woff2) format("woff2"),url(/static/montserrat-latin-200-2d8ba08717110d27122e54c34b8a5798.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-6e5b3756583bb2263eb062eae992735e.woff2) format("woff2"),url(/static/montserrat-latin-200italic-a0d6f343e4b536c582926255367a57da.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-00b3e893aab5a8fd632d6342eb72551a.woff2) format("woff2"),url(/static/montserrat-latin-300-ea303695ceab35f17e7d062f30e0173b.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-56f34ea368f6aedf89583d444bbcb227.woff2) format("woff2"),url(/static/montserrat-latin-300italic-54b0bf2c8c4c12ffafd803be2466a790.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-b71748ae4f80ec8c014def4c5fa8688b.woff2) format("woff2"),url(/static/montserrat-latin-400-0659a9f4e90db5cf51b50d005bff1e41.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-6eed6b4cbb809c6efc7aa7ddad6dbe3e.woff2) format("woff2"),url(/static/montserrat-latin-400italic-7583622cfde30ae49086d18447ab28e7.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-091b209546e16313fd4f4fc36090c757.woff2) format("woff2"),url(/static/montserrat-latin-500-edd311588712a96bbf435fad264fff62.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-c90ced68b46050061d1a41842d6dfb43.woff2) format("woff2"),url(/static/montserrat-latin-500italic-5146cbfe02b1deea5dffea27a5f2f998.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-0480d2f8a71f38db8633b84d8722e0c2.woff2) format("woff2"),url(/static/montserrat-latin-600-b77863a375260a05dd13f86a1cee598f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-cf46ffb11f3a60d7df0567f8851a1d00.woff2) format("woff2"),url(/static/montserrat-latin-600italic-c4fcfeeb057724724097167e57bd7801.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-7dbcc8a5ea2289d83f657c25b4be6193.woff2) format("woff2"),url(/static/montserrat-latin-700-99271a835e1cae8c76ef8bba99a8cc4e.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-c41ad6bdb4bd504a843d546d0a47958d.woff2) format("woff2"),url(/static/montserrat-latin-700italic-6779372f04095051c62ed36bc1dcc142.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-db9a3e0ba7eaea32e5f55328ace6cf23.woff2) format("woff2"),url(/static/montserrat-latin-800-4e3c615967a2360f5db87d2f0fd2456f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-bf45bfa14805969eda318973947bc42b.woff2) format("woff2"),url(/static/montserrat-latin-800italic-fe82abb0bcede51bf724254878e0c374.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-e66c7edc609e24bacbb705175669d814.woff2) format("woff2"),url(/static/montserrat-latin-900-8211f418baeb8ec880b80ba3c682f957.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-4454c775e48152c1a72510ceed3603e2.woff2) format("woff2"),url(/static/montserrat-latin-900italic-efcaa0f6a82ee0640b83a0916e6e8d68.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-fc117160c69a8ea0851b26dd14748ee4.woff2) format("woff2"),url(/static/merriweather-latin-300-58b18067ebbd21fda77b67e73c241d3b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-fe29961474f8dbf77c0aa7b9a629e4bc.woff2) format("woff2"),url(/static/merriweather-latin-300italic-23c3f1f88683618a4fb8d265d33d383a.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-d9479e8023bef9cbd9bf8d6eabd6bf36.woff2) format("woff2"),url(/static/merriweather-latin-400-040426f99ff6e00b86506452e0d1f10b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-2de7bfeaf08fb03d4315d49947f062f7.woff2) format("woff2"),url(/static/merriweather-latin-400italic-79db67aca65f5285964ab332bd65f451.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-4b08e01d805fa35d7bf777f1b24314ae.woff2) format("woff2"),url(/static/merriweather-latin-700-22fb8afba4ab1f093b6ef9e28a9b6e92.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-cd92541b177652fffb6e3b952f1c33f1.woff2) format("woff2"),url(/static/merriweather-latin-700italic-f87f3d87cea0dd0979bfc8ac9ea90243.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-f813fc6a4bee46eda5224ac7ebf1b7be.woff2) format("woff2"),url(/static/merriweather-latin-900-5d4e42cb44410674acd99153d57df032.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-b7901d85486871c1779c0e93ddd85656.woff2) format("woff2"),url(/static/merriweather-latin-900italic-9647f9fdab98756989a8a5550eb205c3.woff) format("woff")}
+
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden]{display:none}:root{--maxWidth-none:"none";--maxWidth-xs:20rem;--maxWidth-sm:24rem;--maxWidth-md:28rem;--maxWidth-lg:32rem;--maxWidth-xl:36rem;--maxWidth-2xl:42rem;--maxWidth-3xl:48rem;--maxWidth-4xl:56rem;--maxWidth-full:"100%";--maxWidth-wrapper:var(--maxWidth-2xl);--spacing-px:"1px";--spacing-0:0;--spacing-1:0.25rem;--spacing-2:0.5rem;--spacing-3:0.75rem;--spacing-4:1rem;--spacing-5:1.25rem;--spacing-6:1.5rem;--spacing-8:2rem;--spacing-10:2.5rem;--spacing-12:3rem;--spacing-16:4rem;--spacing-20:5rem;--spacing-24:6rem;--spacing-32:8rem;--fontFamily-sans:Montserrat,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--fontFamily-serif:"Merriweather","Georgia",Cambria,"Times New Roman",Times,serif;--font-body:var(--fontFamily-serif);--font-heading:var(--fontFamily-sans);--fontWeight-normal:400;--fontWeight-medium:500;--fontWeight-semibold:600;--fontWeight-bold:700;--fontWeight-extrabold:800;--fontWeight-black:900;--fontSize-root:16px;--lineHeight-none:1;--lineHeight-tight:1.1;--lineHeight-normal:1.5;--lineHeight-relaxed:1.625;--fontSize-0:0.833rem;--fontSize-1:1rem;--fontSize-2:1.2rem;--fontSize-3:1.44rem;--fontSize-4:1.728rem;--fontSize-5:2.074rem;--fontSize-6:2.488rem;--fontSize-7:2.986rem;--color-primary:#005b99;--color-text:#2e353f;--color-text-light:#4f5969;--color-heading:#1a202c;--color-heading-black:#000;--color-accent:#d1dce5}*,:after,:before{box-sizing:border-box}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:var(--fontSize-root);line-height:var(--lineHeight-normal)}body{color:var(--color-text);font-family:var(--font-body);font-size:var(--fontSize-1)}footer{padding:var(--spacing-6) var(--spacing-0)}hr{background:var(--color-accent);border:0;height:1px}h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);letter-spacing:-.025em;line-height:var(--lineHeight-tight);margin-bottom:var(--spacing-6);margin-top:var(--spacing-12)}h2,h3,h4,h5,h6{color:var(--color-heading);font-weight:var(--fontWeight-bold)}h1{color:var(--color-heading-black);font-size:var(--fontSize-6);font-weight:var(--fontWeight-black)}h2{font-size:var(--fontSize-5)}h3{font-size:var(--fontSize-4)}h4{font-size:var(--fontSize-3)}h5{font-size:var(--fontSize-2)}h6{font-size:var(--fontSize-1)}h1>a,h2>a,h3>a,h4>a,h5>a,h6>a{color:inherit;text-decoration:none}p{--baseline-multiplier:0.179;--x-height-multiplier:0.35;line-height:var(--lineHeight-relaxed);margin:var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0)}ol,p,ul{padding:var(--spacing-0)}ol,ul{list-style-image:none;list-style-position:outside;margin-bottom:var(--spacing-8);margin-left:var(--spacing-0);margin-right:var(--spacing-0)}ol li,ul li{padding-left:var(--spacing-0)}li>p,ol li,ul li{margin-bottom:calc(var(--spacing-8)/2)}li :last-child{margin-bottom:var(--spacing-0)}li>ul{margin-left:var(--spacing-8);margin-top:calc(var(--spacing-8)/2)}blockquote{border-left:var(--spacing-1) solid var(--color-primary);color:var(--color-text-light);font-size:var(--fontSize-2);font-style:italic;margin-bottom:var(--spacing-8);margin-left:calc(var(--spacing-6)*-1);margin-right:var(--spacing-8);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6)}blockquote>:last-child{margin-bottom:var(--spacing-0)}blockquote>ol,blockquote>ul{list-style-position:inside}table{border-collapse:collapse;border-spacing:.25rem;margin-bottom:var(--spacing-8);width:100%}table thead tr th{border-bottom:1px solid var(--color-accent)}a{color:var(--color-primary)}a:focus,a:hover{text-decoration:none}.global-wrapper{margin:var(--spacing-0) auto;max-width:var(--maxWidth-wrapper);padding:var(--spacing-10) var(--spacing-5)}.global-wrapper[data-is-root-path=true] .bio{margin-bottom:var(--spacing-20)}.global-header{margin-bottom:var(--spacing-12)}.main-heading{font-size:var(--fontSize-7);margin:0}.post-list-item{margin-bottom:var(--spacing-8);margin-top:var(--spacing-8)}.post-list-item p{margin-bottom:var(--spacing-0)}.post-list-item h2{color:var(--color-primary);font-size:var(--fontSize-4);margin-bottom:var(--spacing-2);margin-top:var(--spacing-0)}.post-list-item header{margin-bottom:var(--spacing-4)}.header-link-home{font-family:var(--font-heading);font-size:var(--fontSize-2);font-weight:var(--fontWeight-bold);text-decoration:none}.bio{display:flex;margin-bottom:var(--spacing-16)}.bio-avatar,.bio p{margin-bottom:var(--spacing-0)}.bio-avatar{border-radius:100%;margin-right:var(--spacing-4);min-width:50px}.blog-post header h1{margin:var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0)}.blog-post header p{font-family:var(--font-heading);font-size:var(--fontSize-2)}.blog-post-nav ul{margin:var(--spacing-0)}.gatsby-highlight{margin-bottom:var(--spacing-8)}@media (max-width:42rem){blockquote{margin-left:var(--spacing-0);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4)}ol,ul{list-style-position:inside}}.image-container{display:flex;justify-content:center}code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#000;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;text-align:left;text-shadow:0 1px #fff;white-space:pre;word-break:normal;word-spacing:normal}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{background:#b3d4fc;text-shadow:none}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{background:hsla(0,0%,100%,.5);color:#9a6e3a}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 3.14.6"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){if(void 0===e.target.dataset.mainImage)return;if(void 0===e.target.dataset.gatsbyImageSsr)return;const t=e.target;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=cca28189378354b8d55b64c8e55585f6" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=cca28189378354b8d55b64c8e55585f6"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=cca28189378354b8d55b64c8e55585f6"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=cca28189378354b8d55b64c8e55585f6"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=cca28189378354b8d55b64c8e55585f6"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=cca28189378354b8d55b64c8e55585f6"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=cca28189378354b8d55b64c8e55585f6"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=cca28189378354b8d55b64c8e55585f6"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=cca28189378354b8d55b64c8e55585f6"/><title data-react-helmet="true">Let Janja cook | James Santucci&#x27;s development blog</title><meta data-react-helmet="true" name="description" content="Let Janja Garnbret cook"/><meta data-react-helmet="true" property="og:title" content="Let Janja cook"/><meta data-react-helmet="true" property="og:description" content="Let Janja Garnbret cook"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="james_santucci"/><meta data-react-helmet="true" name="twitter:title" content="Let Janja cook"/><meta data-react-helmet="true" name="twitter:description" content="Let Janja Garnbret cook"/><link as="script" rel="preload" href="/webpack-runtime-19a50038384237546ac3.js"/><link as="script" rel="preload" href="/framework-e413e527015be9a1bdfd.js"/><link as="script" rel="preload" href="/app-a9e27704c381083ee903.js"/><link as="script" rel="preload" href="/commons-ab2410dfbec4227df496.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-04cf94ac1e1bc43d9bc7.js"/><link as="fetch" rel="preload" href="/page-data/Let-Janja-Garnbret-cook/Let-Janja-Garnbret-cook/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/2841359383.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/3257411868.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="global-wrapper" data-is-root-path="false"><header class="global-header"><a class="header-link-home" href="/">James Santucci&#x27;s development blog</a></header><main><article class="blog-post" itemscope="" itemType="http://schema.org/Article"><header><h1 itemProp="headline">Let Janja cook</h1><p>January 16, 2023</p></header><section itemProp="articleBody"><p>My partner and I watch a lot of competitive climbing. I think I’ve seen
+every <a href="https://www.ifsc-climbing.org/">IFSC</a> boulder competition since 2017 or so and most lead climbing
+competitions since 2020. It’s fun to see people who share your hobbies
+but are a million times better at them than you could ever realistically
+hope to be! Mostly fun at least.</p>
+<p>One thing we’ve noticed, or think we’ve noticed, is that, across the
+men’s and women’s rounds, the boulder problems for the women climbers
+look easier for them than the men’s problems look for the men. <a href="https://www.instagram.com/mattgroom1/?hl=en">Matt Groom</a>
+has also pointed out in broadcasts moves that the route setters assure
+him are impossible, rests that route setters have assured him don’t exist,
+and heel hooks that route setters have told him are supposed to be worthless.
+I think this happens most often on women’s climbs.
+Janja Garnbret (the presumptive competitive climbing GOAT) has
+<a href="https://www.instagram.com/div/CgCrq1gDV3F/">called for harder routesetting</a> for the women on several occasions,
+and Staja Gejo <a href="https://gripped.com/indoor-climbing/ondra-gold-overshadowed-by-contentious-separation-in-womens-final/">attributed a bad finals outcome</a> in Chamonix this year
+to all of the IFSC’s routtesetters’ being men.</p>
+<p><a href="https://www.youtube.com/watch?v=_wIP_73GTYQ">Chamonix 2022</a> was a rare mess — four women topped the final wall,
+so a performance that’s normally good for first or second, for one of
+the competitors, wasn’t even enough to make the podium. </p>
+<p>But how often do the route setters miss that badly? Do they disproportionately
+set easier rounds for the women’s category? Have there been recent changes
+to relative difficulty? I wanted to know how well routesetters have done
+working towards what I think their goals are
+and whether there were differences in how successful they are setting boulders
+for men and women.</p>
+<h2>The rules</h2>
+<h3>IFSC scorekeeping</h3>
+<p>If you already watch a lot of IFSC competitions, you can skip this section. It exists to introduce
+IFSC scoring to someone who ends up on this blog post without a deep climbing background.</p>
+<p>The winner of an IFSC bouldering contest is determined, in order, by:</p>
+<ol>
+<li>how many boulder problems each competitor reaches the top of (“tops,” for short)</li>
+<li>how many boulder problems each competitor reaches a specially marked “zone” hold of (“zones,” for short)</li>
+<li>how many attempts it took them in total for boulders they reached the top of (“topped”)</li>
+<li>how many attempts it took them in total to reach the zone for boulders they reached the zone hold of (“zoned”)</li>
+</ol>
+<p>tl;dr for scorekeeping in general: there rae two special holds per climb, you get points for reaching each of them,
+and it’s better to reach things in fewer attempts than more attempts.</p>
+<p>If two climbers finish tied across the values above, then the ranking is determined by “count-back”, which means
+use the ranking from the previous round. If two climbers are tied in the previous round as well, e.g. in a final
+where the two climbers also tied in the semi-final, then the ranking is determined by count-back all the way back
+to the qualification round.<sup id="fnref-1"><a href="#fn-1" class="footnote-ref">1</a></sup></p>
+<h3>Pre-registration</h3>
+<p>With those rules in mind, there are a few things that commentators talk about the route setters trying to accomplish.
+We can use those goals to come up with some definitions for more and less successful boulder rounds.</p>
+<ol>
+<li>Boulders should <em>separate</em> the climbers. Most specifically, this means “count-back is a bad outcome.” More generally,
+it means that it’s best if rankings are determined by tops, next best if they’re determined by number of zones, next
+best if they’re determined by attempts, and worst if they’re determined by count-back.</li>
+<li>The boulders shouldn’t be impossible. The field of climbers should be able to make progress in the four minutes
+that climbers get for each boulder. There should be few boulders that no one tops, and fewer still boulders where no
+one achieves the zone.</li>
+<li>The boulders shouldn’t be “too easy.” It’s hard to say what “too easy” means in general, but it’s easy to illustrate
+in extremes. A boulder that everyone in the field tops on their first try (“flashes”) is too easy. A boulder that half
+of the field flashes is probably also too easy. A boulder that one or two people flash is probably ok.</li>
+<li>Rounds should get progressively harder. In broad strokes this means top scores should be lower in semi-finals than
+qualification and lower in finals than semi-finals. Also, given that a boulder was topped or zoned, it should take
+more attempts to get the top or zone in later rounds than earlier rounds.</li>
+</ol>
+<p>So in the interest of statistical integrity, here are the questions I’d like to answer about men’s and women’s boulder
+rounds and whether the women regularly get different sorts of rounds from the men:</p>
+<ol>
+<li>Do the rounds tend to get harder? I don’t normally watch qualification and only sometimes watch semis.
+Six climbers make finals, so there are six climbers who have data for all three rounds. For those six climbers,
+if the rounds get harder, the overall top percentage should decrease, the overall zone percentage should decrease,
+attempts per top should increase, and attempts per zone should increase over the three rounds.<sup id="fnref-2"><a href="#fn-2" class="footnote-ref">2</a></sup></li>
+<li>How often is making a semi-final or final determined by attempts? How often is making a semi-final or final
+determined by exactly one attempt? How often is count-back necessary, and for what ranks?<sup id="fnref-3"><a href="#fn-3" class="footnote-ref">3</a></sup></li>
+<li>Do the answers to the previous two questions vary for the men’s and women’s events?</li>
+</ol>
+<p>The point of choosing my questions in advance is that I don’t know the answers to any of these questions right now,
+so the questions can’t be cherry-picked to make a point. I’ll know soon though! Let’s begin.</p>
+<h2>Analysis</h2>
+<p>I downloaded IFSC results for every season from 2008 to 2022 (except 2021, which was mostly cancelled). I wrote a little <a href="https://github.com/jisantuc/ifsc-client/">CLI program</a> to I download
+individual seasons. For each season, I have a CSV with:</p>
+<ul>
+<li><code class="language-text">year</code></li>
+<li><code class="language-text">eventName</code></li>
+<li><code class="language-text">competitorName</code></li>
+<li><code class="language-text">rank</code></li>
+<li><code class="language-text">round</code></li>
+<li><code class="language-text">top</code></li>
+<li><code class="language-text">topTries</code></li>
+<li><code class="language-text">zone</code></li>
+<li><code class="language-text">zoneTries</code></li>
+<li><code class="language-text">competitionCategory</code></li>
+</ul>
+<p>Scripts for analyzing the questions above can be found in that program’s [analysis directory][^4].</p>
+<h3>Route-setting goals: progression and difficulty</h3>
+<p>As a first check, it’s worth seeing whether rounds tend to get harder. There are a few ways to do this. The most obvious way
+is to check on top percentages. Intuitively, if a round has harder boulders, fewer climbers will reach the top of each boulder.
+But we can’t <em>just</em> look at top percentages in each round — the climbers attempting the boulders in the qualification round
+are a different population from the climbers attempting the boulders in the final round, so it’s incorrect to compare the
+results directly. Instead, we can filter to only those climbers who climbed in all three rounds and see how frequently they
+reached the tops of boulders. Looking at each year, rounds seem to get progressively harder.</p>
+<p>This plot<sup id="fnref-5"><a href="#fn-5" class="footnote-ref">5</a></sup> shows, for each boulder event since 2008, the percentage of boulders that were topped in the final, semifinal, and
+qualification rounds:</p>
+<div class="image-container">
+<img src="/d6a04b78c6e3a9820f86642195357b67/difficulty-top-percentage-round-event.svg">
+</div>
+<p>If you squint a little, you can sort of see that finals are on average a bit harder than semis,
+and semis are a bit harder than qualification rounds.</p>
+<p>The trend is a more obvious if you look at the top percentage in each round by year, instead of
+for individual events:</p>
+<div class="image-container">
+<img src="/ee1fc083f75d8d5c929bb9f102669346/difficulty-top-percentage-round-year.svg">
+</div>
+<p>There are other ways to measure difficulty. Instead of just focusing on tops,
+we could look at the zone percentage, which should also decrease between
+rounds if boulders are getting harder. Or we could look at attempts for each
+successful top or zone, which should <em>increase</em> across rounds if the boulders
+are getting harder. I checked those as well.</p>
+<div class="image-container">
+<img src="/6ca403fa25e5f267856a65c5bf01a332/difficulty-alt-measures-round-year.svg">
+</div>
+<p>On the left is zone percentage, which, like the top percentage, moves left as the rounds
+advance. In the middle and on the right are attempts to reach each scoring opportunity,
+which moves right a bit as the rounds advance.</p>
+<p>These measures tell the same story as the top percentage. Overall, the
+routesetters do a pretty good job of setting progressively more difficult rounds.</p>
+<p>Additionally, the general difficulty of the boulders looks pretty well calibrated! If all I told
+you before you saw someone try a boulder was which round it was from and that the climber who would
+attempt it made the finals, you might guess that it’s about a coin flip whether they’d top it if it’s a
+finals boulder, a little better than a coin flip if it’s a semis boulder, and pretty likely they’d top it
+if it’s a qualification boulder. The distributions for each round look challenging but not impossible.
+There are outliers, but mostly, the top percentages are in a range I’d consider “reasonable.”<sup id="fnref-6"><a href="#fn-6" class="footnote-ref">6</a></sup></p>
+<h3>Route-setting goals: separation</h3>
+<p>The other goal to check on is separation. There’s no such thing as “good” or “bad” separation in general,
+just better and worse. The importance of separation also isn’t constant over the course of a competition. If the difference
+between ranks 38 and 39 is one attempt to the zone hold, that’s not a big deal, since neither of those climbers is
+all that close to making the semi-final. If the difference between first and second in the final is one
+attempt to zone in the <em>semifinal</em>, that’s really bad! For each rank, I calculated how often each type of separation splits it from
+the next rank.</p>
+<p>Over all of the finals in the dataset, that ends up looking like this:</p>
+<style type="text/css">
+#T_ec99c th {
+  font-weight: normal;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+#T_ec99c_row0_col0, #T_ec99c_row1_col0, #T_ec99c_row2_col0, #T_ec99c_row3_col0, #T_ec99c_row4_col0 {
+  background-color: #00441b;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_ec99c_row0_col1 {
+  background-color: #def2d9;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row0_col2 {
+  background-color: #1a843f;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_ec99c_row0_col3 {
+  background-color: #e5f5e1;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row0_col4 {
+  background-color: #eff9ec;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row1_col1 {
+  background-color: #b2e0ac;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row1_col2 {
+  background-color: #309950;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_ec99c_row1_col3, #T_ec99c_row4_col3 {
+  background-color: #e1f3dc;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row1_col4, #T_ec99c_row2_col4 {
+  background-color: #ebf7e7;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row2_col1 {
+  background-color: #90d18d;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row2_col2 {
+  background-color: #278f48;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_ec99c_row2_col3 {
+  background-color: #d5efcf;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row3_col1 {
+  background-color: #5db96b;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_ec99c_row3_col2 {
+  background-color: #62bb6d;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_ec99c_row3_col3 {
+  background-color: #bee5b8;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row3_col4 {
+  background-color: #f4fbf1;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row4_col1 {
+  background-color: #1c8540;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_ec99c_row4_col2 {
+  background-color: #b8e3b2;
+  color: #000000;
+  text-align: center;
+}
+#T_ec99c_row4_col4 {
+  background-color: #f0f9ed;
+  color: #000000;
+  text-align: center;
+}
+</style>
+<table id="T_ec99c">
+  <thead>
+    <tr>
+      <th class="index_name level0" >separatedBy</th>
+      <th id="T_ec99c_level0_col0" class="col_heading level0 col0" >top</th>
+      <th id="T_ec99c_level0_col1" class="col_heading level0 col1" >zone</th>
+      <th id="T_ec99c_level0_col2" class="col_heading level0 col2" >top tries</th>
+      <th id="T_ec99c_level0_col3" class="col_heading level0 col3" >zone tries</th>
+      <th id="T_ec99c_level0_col4" class="col_heading level0 col4" >countback</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >withinRoundRank</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_ec99c_level0_row0" class="row_heading level0 row0" >1</th>
+      <td id="T_ec99c_row0_col0" class="data row0 col0" >90</td>
+      <td id="T_ec99c_row0_col1" class="data row0 col1" >14</td>
+      <td id="T_ec99c_row0_col2" class="data row0 col2" >70</td>
+      <td id="T_ec99c_row0_col3" class="data row0 col3" >11</td>
+      <td id="T_ec99c_row0_col4" class="data row0 col4" >5</td>
+    </tr>
+    <tr>
+      <th id="T_ec99c_level0_row1" class="row_heading level0 row1" >2</th>
+      <td id="T_ec99c_row1_col0" class="data row1 col0" >85</td>
+      <td id="T_ec99c_row1_col1" class="data row1 col1" >27</td>
+      <td id="T_ec99c_row1_col2" class="data row1 col2" >59</td>
+      <td id="T_ec99c_row1_col3" class="data row1 col3" >12</td>
+      <td id="T_ec99c_row1_col4" class="data row1 col4" >7</td>
+    </tr>
+    <tr>
+      <th id="T_ec99c_level0_row2" class="row_heading level0 row2" >3</th>
+      <td id="T_ec99c_row2_col0" class="data row2 col0" >78</td>
+      <td id="T_ec99c_row2_col1" class="data row2 col1" >33</td>
+      <td id="T_ec99c_row2_col2" class="data row2 col2" >57</td>
+      <td id="T_ec99c_row2_col3" class="data row2 col3" >15</td>
+      <td id="T_ec99c_row2_col4" class="data row2 col4" >7</td>
+    </tr>
+    <tr>
+      <th id="T_ec99c_level0_row3" class="row_heading level0 row3" >4</th>
+      <td id="T_ec99c_row3_col0" class="data row3 col0" >79</td>
+      <td id="T_ec99c_row3_col1" class="data row3 col1" >44</td>
+      <td id="T_ec99c_row3_col2" class="data row3 col2" >43</td>
+      <td id="T_ec99c_row3_col3" class="data row3 col3" >22</td>
+      <td id="T_ec99c_row3_col4" class="data row3 col4" >2</td>
+    </tr>
+    <tr>
+      <th id="T_ec99c_level0_row4" class="row_heading level0 row4" >5</th>
+      <td id="T_ec99c_row4_col0" class="data row4 col0" >84</td>
+      <td id="T_ec99c_row4_col1" class="data row4 col1" >65</td>
+      <td id="T_ec99c_row4_col2" class="data row4 col2" >25</td>
+      <td id="T_ec99c_row4_col3" class="data row4 col3" >12</td>
+      <td id="T_ec99c_row4_col4" class="data row4 col4" >4</td>
+    </tr>
+  </tbody>
+</table>
+<p>Each cell shows how often each rank is decided by a kind of separation. The first row is for rank 1.
+Going across, it shows that, at 90 events, the winner won because they had more tops than the second place
+climber, at 14 events, they won because they had more zones than the second place climber despite being tied
+on tops, at 70 events they won because they had fewer attempts to top than the second place climber while
+tied on tops and zones, etc. The cells are also colored for their relative frequencies, with darker greens
+showing a higher relative frequency.</p>
+<p>And overall this looks… pretty successful? I’m not 100% sure what I thought I’d see here, but the most
+valuable places are all decided by tops a plurality of the time, top tries separate much more often than
+zone tries, count-back is really rare… this looks pretty good!</p>
+<p>Semis looks mostly similar:</p>
+<style type="text/css">
+#T_122a2 th {
+  font-weight: normal;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+#T_122a2_row0_col0 {
+  background-color: #03702e;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_122a2_row0_col1 {
+  background-color: #dcf2d7;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row0_col2, #T_122a2_row1_col2, #T_122a2_row2_col2, #T_122a2_row3_col2, #T_122a2_row4_col2, #T_122a2_row5_col2 {
+  background-color: #00441b;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_122a2_row0_col3 {
+  background-color: #d3eecd;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row0_col4 {
+  background-color: #e2f4dd;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row1_col0 {
+  background-color: #228a44;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_122a2_row1_col1, #T_122a2_row1_col3, #T_122a2_row1_col4 {
+  background-color: #bbe4b4;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row2_col0, #T_122a2_row4_col0 {
+  background-color: #83cb82;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row2_col1 {
+  background-color: #b7e2b1;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row2_col3 {
+  background-color: #cbeac4;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row2_col4 {
+  background-color: #e5f5e1;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row3_col0 {
+  background-color: #72c375;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row3_col1 {
+  background-color: #80ca80;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row3_col3 {
+  background-color: #b8e3b2;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row3_col4 {
+  background-color: #d8f0d2;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row4_col1 {
+  background-color: #95d391;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row4_col3 {
+  background-color: #a3da9d;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row4_col4 {
+  background-color: #c7e9c0;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row5_col0 {
+  background-color: #92d28f;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row5_col1, #T_122a2_row5_col3 {
+  background-color: #abdda5;
+  color: #000000;
+  text-align: center;
+}
+#T_122a2_row5_col4 {
+  background-color: #d1edcb;
+  color: #000000;
+  text-align: center;
+}
+</style>
+<table id="T_122a2">
+  <thead>
+    <tr>
+      <th class="index_name level0" >separatedBy</th>
+      <th id="T_122a2_level0_col0" class="col_heading level0 col0" >top</th>
+      <th id="T_122a2_level0_col1" class="col_heading level0 col1" >zone</th>
+      <th id="T_122a2_level0_col2" class="col_heading level0 col2" >top tries</th>
+      <th id="T_122a2_level0_col3" class="col_heading level0 col3" >zone tries</th>
+      <th id="T_122a2_level0_col4" class="col_heading level0 col4" >countback</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >withinRoundRank</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_122a2_level0_row0" class="row_heading level0 row0" >1</th>
+      <td id="T_122a2_row0_col0" class="data row0 col0" >69</td>
+      <td id="T_122a2_row0_col1" class="data row0 col1" >13</td>
+      <td id="T_122a2_row0_col2" class="data row0 col2" >80</td>
+      <td id="T_122a2_row0_col3" class="data row0 col3" >16</td>
+      <td id="T_122a2_row0_col4" class="data row0 col4" >11</td>
+    </tr>
+    <tr>
+      <th id="T_122a2_level0_row1" class="row_heading level0 row1" >2</th>
+      <td id="T_122a2_row1_col0" class="data row1 col0" >54</td>
+      <td id="T_122a2_row1_col1" class="data row1 col1" >21</td>
+      <td id="T_122a2_row1_col2" class="data row1 col2" >72</td>
+      <td id="T_122a2_row1_col3" class="data row1 col3" >21</td>
+      <td id="T_122a2_row1_col4" class="data row1 col4" >21</td>
+    </tr>
+    <tr>
+      <th id="T_122a2_level0_row2" class="row_heading level0 row2" >3</th>
+      <td id="T_122a2_row2_col0" class="data row2 col0" >41</td>
+      <td id="T_122a2_row2_col1" class="data row2 col1" >27</td>
+      <td id="T_122a2_row2_col2" class="data row2 col2" >89</td>
+      <td id="T_122a2_row2_col3" class="data row2 col3" >21</td>
+      <td id="T_122a2_row2_col4" class="data row2 col4" >11</td>
+    </tr>
+    <tr>
+      <th id="T_122a2_level0_row3" class="row_heading level0 row3" >4</th>
+      <td id="T_122a2_row3_col0" class="data row3 col0" >39</td>
+      <td id="T_122a2_row3_col1" class="data row3 col1" >36</td>
+      <td id="T_122a2_row3_col2" class="data row3 col2" >77</td>
+      <td id="T_122a2_row3_col3" class="data row3 col3" >23</td>
+      <td id="T_122a2_row3_col4" class="data row3 col4" >14</td>
+    </tr>
+    <tr>
+      <th id="T_122a2_level0_row4" class="row_heading level0 row4" >5</th>
+      <td id="T_122a2_row4_col0" class="data row4 col0" >35</td>
+      <td id="T_122a2_row4_col1" class="data row4 col1" >31</td>
+      <td id="T_122a2_row4_col2" class="data row4 col2" >76</td>
+      <td id="T_122a2_row4_col3" class="data row4 col3" >28</td>
+      <td id="T_122a2_row4_col4" class="data row4 col4" >19</td>
+    </tr>
+    <tr>
+      <th id="T_122a2_level0_row5" class="row_heading level0 row5" >6</th>
+      <td id="T_122a2_row5_col0" class="data row5 col0" >34</td>
+      <td id="T_122a2_row5_col1" class="data row5 col1" >28</td>
+      <td id="T_122a2_row5_col2" class="data row5 col2" >82</td>
+      <td id="T_122a2_row5_col3" class="data row5 col3" >28</td>
+      <td id="T_122a2_row5_col4" class="data row5 col4" >17</td>
+    </tr>
+  </tbody>
+</table>
+<p>In both semis and finals, count-back is <em>really rare</em>, zone tries are a less common separator than
+top tries, and tops are a more common separator than zones.
+This looks like the route setters are pretty successful at setting boulders that separate the climbers
+based on how they climbed in the round.</p>
+<p>How ranks are separated is also reasonably consistent over time.</p>
+<p>This plot shows for the top five ranks in finals and top six ranks in semis, how often they’re separated from
+the next rank over all of the semis and finals within each year.
+While the proportion of each type of separation varies, the order of how often each occurs stays mostly the same.</p>
+<div class="image-container">
+<img src="/7642639a8a92639ed004805f242b123b/separation-type-over-time.svg" width="100%">
+</div>
+<p>I think this all points to the route setters being consistent in how they approach separation.</p>
+<h3>But what about differences between the men’s and women’s rounds?</h3>
+<p>Yeah… about that. Staja Gejo, Janja Garnbret, and others who’ve pointed out
+rounds where the boulders or routes don’t quite work for the women’s field have a point.</p>
+<p>Rounds are progressive in difficulty for both the men and women, but the level
+of difficulty is noticeably different.</p>
+<div class="image-container">
+<img src="/b3225b4e4b1fc406cffe51a9231f80e1/difficulty-top-percentage-round-year-category.svg" width="100%">
+</div>
+<p>Here, the orange dots are top percentages in women’s rounds, and the blue dots are top percentages in men’s rounds.
+The hardest rounds tend to be men’s rounds, and the easiest rounds tend to be women’s rounds.</p>
+<p>The alternative measures of difficulty are similar, if relatively muddled:</p>
+<div class="image-container">
+<img src="/b2bcc580aab811a48bfe79f4ee25abc1/difficulty-alt-measures-round-year-competitionCategory.svg" width="100%">
+</div>
+<p>Progression is present for both men’s and women’s rounds, but less pronounced for the women’s rounds — the peak of
+difficulty routesetters achieve for the women’s field is
+mostly lower than the peak for the men’s field, and the
+easiest rounds in the alternative measures also tend to be women’s
+rounds.</p>
+<p>Separation is also less successful for women’s rounds than men’s.
+For men’s finals, separation is largely like the table we saw before:</p>
+<style type="text/css">
+#T_133e7 th {
+  font-weight: normal;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+#T_133e7_row0_col0, #T_133e7_row1_col0, #T_133e7_row2_col0, #T_133e7_row3_col0, #T_133e7_row4_col1 {
+  background-color: #00441b;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_133e7_row0_col1 {
+  background-color: #d9f0d3;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row0_col2 {
+  background-color: #60ba6c;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_133e7_row0_col3 {
+  background-color: #e6f5e1;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row0_col4 {
+  background-color: #f4fbf2;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row1_col1, #T_133e7_row2_col1 {
+  background-color: #83cb82;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row1_col2 {
+  background-color: #026f2e;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_133e7_row1_col3 {
+  background-color: #d6efd0;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row1_col4 {
+  background-color: #f0f9ec;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row2_col2 {
+  background-color: #005f26;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_133e7_row2_col3 {
+  background-color: #d3eecd;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row2_col4 {
+  background-color: #e1f3dc;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row3_col1 {
+  background-color: #6abf71;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row3_col2 {
+  background-color: #53b466;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_133e7_row3_col3 {
+  background-color: #a3da9d;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row3_col4 {
+  background-color: #f4fbf1;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row4_col0 {
+  background-color: #117b38;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_133e7_row4_col2 {
+  background-color: #99d595;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row4_col3 {
+  background-color: #d7efd1;
+  color: #000000;
+  text-align: center;
+}
+#T_133e7_row4_col4 {
+  background-color: #e8f6e4;
+  color: #000000;
+  text-align: center;
+}
+</style>
+<table id="T_133e7">
+  <thead>
+    <tr>
+      <th class="index_name level0" >separatedBy</th>
+      <th id="T_133e7_level0_col0" class="col_heading level0 col0" >top</th>
+      <th id="T_133e7_level0_col1" class="col_heading level0 col1" >zone</th>
+      <th id="T_133e7_level0_col2" class="col_heading level0 col2" >top tries</th>
+      <th id="T_133e7_level0_col3" class="col_heading level0 col3" >zone tries</th>
+      <th id="T_133e7_level0_col4" class="col_heading level0 col4" >countback</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >withinRoundRank</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_133e7_level0_row0" class="row_heading level0 row0" >1</th>
+      <td id="T_133e7_row0_col0" class="data row0 col0" >51</td>
+      <td id="T_133e7_row0_col1" class="data row0 col1" >9</td>
+      <td id="T_133e7_row0_col2" class="data row0 col2" >28</td>
+      <td id="T_133e7_row0_col3" class="data row0 col3" >6</td>
+      <td id="T_133e7_row0_col4" class="data row0 col4" >1</td>
+    </tr>
+    <tr>
+      <th id="T_133e7_level0_row1" class="row_heading level0 row1" >2</th>
+      <td id="T_133e7_row1_col0" class="data row1 col0" >37</td>
+      <td id="T_133e7_row1_col1" class="data row1 col1" >17</td>
+      <td id="T_133e7_row1_col2" class="data row1 col2" >32</td>
+      <td id="T_133e7_row1_col3" class="data row1 col3" >7</td>
+      <td id="T_133e7_row1_col4" class="data row1 col4" >2</td>
+    </tr>
+    <tr>
+      <th id="T_133e7_level0_row2" class="row_heading level0 row2" >3</th>
+      <td id="T_133e7_row2_col0" class="data row2 col0" >35</td>
+      <td id="T_133e7_row2_col1" class="data row2 col1" >16</td>
+      <td id="T_133e7_row2_col2" class="data row2 col2" >32</td>
+      <td id="T_133e7_row2_col3" class="data row2 col3" >7</td>
+      <td id="T_133e7_row2_col4" class="data row2 col4" >5</td>
+    </tr>
+    <tr>
+      <th id="T_133e7_level0_row3" class="row_heading level0 row3" >4</th>
+      <td id="T_133e7_row3_col0" class="data row3 col0" >38</td>
+      <td id="T_133e7_row3_col1" class="data row3 col1" >20</td>
+      <td id="T_133e7_row3_col2" class="data row3 col2" >22</td>
+      <td id="T_133e7_row3_col3" class="data row3 col3" >14</td>
+      <td id="T_133e7_row3_col4" class="data row3 col4" >1</td>
+    </tr>
+    <tr>
+      <th id="T_133e7_level0_row4" class="row_heading level0 row4" >5</th>
+      <td id="T_133e7_row4_col0" class="data row4 col0" >31</td>
+      <td id="T_133e7_row4_col1" class="data row4 col1" >38</td>
+      <td id="T_133e7_row4_col2" class="data row4 col2" >15</td>
+      <td id="T_133e7_row4_col3" class="data row4 col3" >7</td>
+      <td id="T_133e7_row4_col4" class="data row4 col4" >4</td>
+    </tr>
+  </tbody>
+</table>
+<p>Tops are the most common separation, and they separate the winner from second
+place about half the time.</p>
+<p>That’s not the case on the women’s side:</p>
+<style type="text/css">
+#T_220dd th {
+  font-weight: normal;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+#T_220dd_row0_col0 {
+  background-color: #005b25;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_220dd_row0_col1, #T_220dd_row0_col3 {
+  background-color: #e6f5e1;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row0_col2, #T_220dd_row1_col0, #T_220dd_row2_col0, #T_220dd_row3_col0, #T_220dd_row4_col0 {
+  background-color: #00441b;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_220dd_row0_col4, #T_220dd_row4_col3 {
+  background-color: #e9f7e5;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row1_col1 {
+  background-color: #d1edcb;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row1_col2 {
+  background-color: #5ab769;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_220dd_row1_col3, #T_220dd_row1_col4 {
+  background-color: #e8f6e4;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row2_col1 {
+  background-color: #99d595;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row2_col2 {
+  background-color: #53b466;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_220dd_row2_col3 {
+  background-color: #d7efd1;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row2_col4 {
+  background-color: #f1faee;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row3_col1 {
+  background-color: #52b365;
+  color: #f1f1f1;
+  text-align: center;
+}
+#T_220dd_row3_col2 {
+  background-color: #6ec173;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row3_col3 {
+  background-color: #d5efcf;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row3_col4 {
+  background-color: #f4fbf1;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row4_col1 {
+  background-color: #70c274;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row4_col2 {
+  background-color: #d6efd0;
+  color: #000000;
+  text-align: center;
+}
+#T_220dd_row4_col4 {
+  background-color: #f7fcf5;
+  color: #000000;
+  text-align: center;
+}
+</style>
+<table id="T_220dd">
+  <thead>
+    <tr>
+      <th class="index_name level0" >separatedBy</th>
+      <th id="T_220dd_level0_col0" class="col_heading level0 col0" >top</th>
+      <th id="T_220dd_level0_col1" class="col_heading level0 col1" >zone</th>
+      <th id="T_220dd_level0_col2" class="col_heading level0 col2" >top tries</th>
+      <th id="T_220dd_level0_col3" class="col_heading level0 col3" >zone tries</th>
+      <th id="T_220dd_level0_col4" class="col_heading level0 col4" >countback</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >withinRoundRank</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_220dd_level0_row0" class="row_heading level0 row0" >1</th>
+      <td id="T_220dd_row0_col0" class="data row0 col0" >39</td>
+      <td id="T_220dd_row0_col1" class="data row0 col1" >5</td>
+      <td id="T_220dd_row0_col2" class="data row0 col2" >42</td>
+      <td id="T_220dd_row0_col3" class="data row0 col3" >5</td>
+      <td id="T_220dd_row0_col4" class="data row0 col4" >4</td>
+    </tr>
+    <tr>
+      <th id="T_220dd_level0_row1" class="row_heading level0 row1" >2</th>
+      <td id="T_220dd_row1_col0" class="data row1 col0" >48</td>
+      <td id="T_220dd_row1_col1" class="data row1 col1" >10</td>
+      <td id="T_220dd_row1_col2" class="data row1 col2" >27</td>
+      <td id="T_220dd_row1_col3" class="data row1 col3" >5</td>
+      <td id="T_220dd_row1_col4" class="data row1 col4" >5</td>
+    </tr>
+    <tr>
+      <th id="T_220dd_level0_row2" class="row_heading level0 row2" >3</th>
+      <td id="T_220dd_row2_col0" class="data row2 col0" >43</td>
+      <td id="T_220dd_row2_col1" class="data row2 col1" >17</td>
+      <td id="T_220dd_row2_col2" class="data row2 col2" >25</td>
+      <td id="T_220dd_row2_col3" class="data row2 col3" >8</td>
+      <td id="T_220dd_row2_col4" class="data row2 col4" >2</td>
+    </tr>
+    <tr>
+      <th id="T_220dd_level0_row3" class="row_heading level0 row3" >4</th>
+      <td id="T_220dd_row3_col0" class="data row3 col0" >41</td>
+      <td id="T_220dd_row3_col1" class="data row3 col1" >24</td>
+      <td id="T_220dd_row3_col2" class="data row3 col2" >21</td>
+      <td id="T_220dd_row3_col3" class="data row3 col3" >8</td>
+      <td id="T_220dd_row3_col4" class="data row3 col4" >1</td>
+    </tr>
+    <tr>
+      <th id="T_220dd_level0_row4" class="row_heading level0 row4" >5</th>
+      <td id="T_220dd_row4_col0" class="data row4 col0" >53</td>
+      <td id="T_220dd_row4_col1" class="data row4 col1" >27</td>
+      <td id="T_220dd_row4_col2" class="data row4 col2" >10</td>
+      <td id="T_220dd_row4_col3" class="data row4 col3" >5</td>
+      <td id="T_220dd_row4_col4" class="data row4 col4" >0</td>
+    </tr>
+  </tbody>
+</table>
+<p>On the women’s side, the most important separation — first vs. second —
+is most commonly top tries. That’s a drag! Separation on tops is at least the second
+most common occurrence, but still.</p>
+<p>Given the differences in boulder difficulty, men’s and women’s finals
+are not the same kind of competition.
+On the men’s side, competitors can focus only on climbing what they can, knowing
+that topping a few hard boulders is likely to be enough to win.
+On the women’s side, competitors have to prioritize extreme economy in their number of attempts,
+expecting that the other competitors will top several of the boulders as well.</p>
+<p>Nowhere was this difference more evident than at Moscow 2019.
+The men had a relatively easy final round, with 14 total tops in the final, four tops for the winner,
+and three tops for third place. On the women’s side, an efficient three tops and three zones
+in six attempts was good for… last place.</p>
+<p>When route setters have pushed the athletes, they’ve produced some incredible climbing moments.
+For [Adam Ondra’s hand jam], Ai Mori’s high foot in Koper last year,</p>
+<p>
+        <div class="embedVideo-container">
+            <iframe
+              title=""
+              width="560"
+              height="316"
+              src="https://www.youtube.com/embed/cugt-GBT9xg?rel=0"
+              class="embedVideo-iframe"
+              style="border:0"
+              
+              loading="eager"
+              allowfullscreen
+	      sandbox="allow-same-origin allow-scripts allow-popups"
+            ></iframe>
+        </div></p>
+<p>and Yoshiyuki Ogata’s feet first method at Adidas Rockstars in 2019 (admittedly not an IFSC event),</p>
+<p>
+        <div class="embedVideo-container">
+            <iframe
+              title=""
+              width="560"
+              height="316"
+              src="https://www.youtube.com/embed/5qIPZrwnQak?rel=0"
+              class="embedVideo-iframe"
+              style="border:0"
+              
+              loading="eager"
+              allowfullscreen
+	      sandbox="allow-same-origin allow-scripts allow-popups"
+            ></iframe>
+        </div></p>
+<p>a part of what made the climbs so spectacular is how hard they were for everyone else in the round.
+For someone to stand out that way, the boulders have to be hard enough to stop a lot of the field.</p>
+<p>So here’s my plea to routesetters. You’re weirdly good at assessing the relative difficulty of
+different boulders, and I think if you wanted to you could produce women’s finals with scores like the men’s.
+So don’t hold back! Let Janja<sup id="fnref-7"><a href="#fn-7" class="footnote-ref">7</a></sup> cook! She and the rest of the top of the women’s field
+will climb the boulders spectacularly, they’ll look really cool, you’ll look really cool by extension,
+and everyone else will get an amazing boulder season for both the men and women.</p>
+<p>Finals boulders have been relatively easy for the top women climbers for too long. Easier boulders and worse separation at the
+top of the women’s field have required the top women to climb nearly perfectly to win. With harder boulders, we could
+see them climb their best.</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn-1">
+<p>  This actually happened in the Chamonix lead final mentioned above — several of the women climbers topped both the final lead route
+and the semi-final route. It’s very rare and a very bad outcome.</p>
+<a href="#fnref-1" class="footnote-backref">↩</a>
+</li>
+<li id="fn-2">
+<p>  There’s likely to be some noise in the attempt data. With four minutes, climbers will have time for fewer attempts on a long, powerful boulder with the hard moves at the top than on a dynamic boulder with a low-percentage move right at the bottom. Rolling up to whole rounds mitigates that noise to an extent, because routesetters don’t set whole rounds of long powerful boulders or boulders with low percentage starting moves.</p>
+<a href="#fnref-2" class="footnote-backref">↩</a>
+</li>
+<li id="fn-3">
+<p>  It’s subjectively less bad if count-back is necessary to separate fifth and sixth than it is if count-back determines third and fourth or first and second.</p>
+<a href="#fnref-3" class="footnote-backref">↩</a>
+</li>
+<li id="fn-4">
+<p>  For everything in the program’s repo, you’ll be best off getting set up with <code class="language-text">nix</code> to make sure you have identical versions to what I have.</p>
+<a href="#fnref-4" class="footnote-backref">↩</a>
+</li>
+<li id="fn-5">
+<p>  I think some of the off-alignment dots are for competitions that had the same name in the same year. For example, Salt Lake City had two
+competitions in 2022, and they have the same name in the dataset. I may go back and fix this.</p>
+<a href="#fnref-5" class="footnote-backref">↩</a>
+</li>
+<li id="fn-6">
+<p>  Don’t ask me what the endpoints are for “reasonable.” I have no idea. The Meiringen 2018 Women’s final, where the finalists
+reached the top in 20 of their 24 opportunities, was too easy. The Vienna 2011 men’s final and Munich 2010 women’s final,
+where finalists reached the top in 2 of their 24 opportunities, were too hard. I don’t know where I’d draw the line for the transition
+from “too easy” to “acceptably easy” or “too hard” to “acceptably hard.”</p>
+<a href="#fnref-6" class="footnote-backref">↩</a>
+</li>
+<li id="fn-7">
+<p>and the rest of the <em>really deep</em> women’s field right now</p>
+<a href="#fnref-7" class="footnote-backref">↩</a>
+</li>
+</ol>
+</div></section><hr/><footer><div class="bio"><div data-gatsby-image-wrapper="" style="width:50px;height:50px" class="gatsby-image-wrapper bio-avatar"><div aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear;background-color:#282828;width:50px;height:50px;position:relative"></div><picture><source type="image/avif" data-srcset="/static/7b5d665746a4df38fcb90999d7de43bb/d4bf4/profile-pic.avif 50w,/static/7b5d665746a4df38fcb90999d7de43bb/ee81f/profile-pic.avif 100w" sizes="50px"/><source type="image/webp" data-srcset="/static/7b5d665746a4df38fcb90999d7de43bb/3faea/profile-pic.webp 50w,/static/7b5d665746a4df38fcb90999d7de43bb/6a679/profile-pic.webp 100w" sizes="50px"/><img data-gatsby-image-ssr="" layout="fixed" data-main-image="" style="opacity:0" sizes="50px" decoding="async" loading="lazy" data-src="/static/7b5d665746a4df38fcb90999d7de43bb/d24ee/profile-pic.jpg" data-srcset="/static/7b5d665746a4df38fcb90999d7de43bb/d24ee/profile-pic.jpg 50w,/static/7b5d665746a4df38fcb90999d7de43bb/64618/profile-pic.jpg 100w" alt="Profile picture"/></picture><noscript><picture><source type="image/avif" srcSet="/static/7b5d665746a4df38fcb90999d7de43bb/d4bf4/profile-pic.avif 50w,/static/7b5d665746a4df38fcb90999d7de43bb/ee81f/profile-pic.avif 100w" sizes="50px"/><source type="image/webp" srcSet="/static/7b5d665746a4df38fcb90999d7de43bb/3faea/profile-pic.webp 50w,/static/7b5d665746a4df38fcb90999d7de43bb/6a679/profile-pic.webp 100w" sizes="50px"/><img data-gatsby-image-ssr="" layout="fixed" data-main-image="" style="opacity:0" sizes="50px" decoding="async" loading="lazy" src="/static/7b5d665746a4df38fcb90999d7de43bb/d24ee/profile-pic.jpg" srcSet="/static/7b5d665746a4df38fcb90999d7de43bb/d24ee/profile-pic.jpg 50w,/static/7b5d665746a4df38fcb90999d7de43bb/64618/profile-pic.jpg 100w" alt="Profile picture"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1)}}</script></div><p>Written by <strong>James Santucci</strong> <!-- -->who lives in Denver and works at Flock Freight pooling shipments into shared truckloads to save the planet, hopefully.<!-- --> <a href="https://twitter.com/james_santucci">You can follow him on Twitter</a></p></div></footer></article><nav class="blog-post-nav"><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/Packaging-a-Scala-CLI-app-in-2022/Packaging-a-Scala-CLI-app-in-2022/">← <!-- -->Packaging a Scala CLI app in 2022</a></li><li></li></ul></nav></main><footer>© <!-- -->2023<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.com">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/Let-Janja-Garnbret-cook/Let-Janja-Garnbret-cook/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-958b67dc2797f3960250.js"],"app":["/app-a9e27704c381083ee903.js"],"component---src-pages-404-js":["/component---src-pages-404-js-bb1698d01a7f9dde5caa.js"],"component---src-pages-index-js":["/component---src-pages-index-js-6ba9a255614174fb4bf1.js"],"component---src-pages-using-typescript-tsx":["/component---src-pages-using-typescript-tsx-56df352fdd68d3ab6a5a.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-04cf94ac1e1bc43d9bc7.js"]};/*]]>*/</script><script src="/polyfill-958b67dc2797f3960250.js" nomodule=""></script><script src="/component---src-templates-blog-post-js-04cf94ac1e1bc43d9bc7.js" async=""></script><script src="/commons-ab2410dfbec4227df496.js" async=""></script><script src="/app-a9e27704c381083ee903.js" async=""></script><script src="/framework-e413e527015be9a1bdfd.js" async=""></script><script src="/webpack-runtime-19a50038384237546ac3.js" async=""></script></body></html>
