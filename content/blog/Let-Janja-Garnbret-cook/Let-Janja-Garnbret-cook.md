@@ -15,28 +15,30 @@ men's and women's rounds, the boulder problems for the women climbers
 look easier for them than the men's problems look for the men. [Matt Groom]
 has also pointed out in broadcasts moves that the route setters assure
 him are impossible, rests that route setters have assured him don't exist,
-and heel hooks that route setters have told him are supposed to be worthless,
-I think most often on women's climbs.
+and heel hooks that route setters have told him are supposed to be worthless.
+I think this happens most often on women's climbs.
 Janja Garnbret (the presumptive competitive climbing GOAT) has
 [called for harder routesetting] for the women on several occasions,
 and Staja Gejo [attributed a bad finals outcome] in Chamonix this year
-to route setters' being men and all of the IFSC's routtesetters'
-being men.
+to all of the IFSC's routtesetters' being men.
 
 [Chamonix 2022] was a rare mess -- four women topped the final wall,
 so a performance that's normally good for first or second, for one of
-the competitors, wasn't even enough for a podium. 
+the competitors, wasn't even enough to make the podium. 
 
 But how often do the route setters miss that badly? Do they disproportionately
 set easier rounds for the women's category? Have there been recent changes
 to relative difficulty? I wanted to know how well routesetters have done
-working towards what I think their goals are (separate the climbers, have
-"some but not too many" tops of the boulders) and whether there were differences
-in how their boulder problems perform for the men's and women's events.
+working towards what I think their goals are
+and whether there were differences in how successful they are setting boulders
+for men and women.
 
 ## The rules
 
 ### IFSC scorekeeping
+
+If you already watch a lot of IFSC competitions, you can skip this section. It exists to introduce
+IFSC scoring to someone who ends up on this blog post without a deep climbing background.
 
 The winner of an IFSC bouldering contest is determined, in order, by:
 
@@ -55,28 +57,35 @@ to the qualification round.[^1]
 
 ### Pre-registration
 
-With those rules in mind, there are a few things that commentators talk about the route setters trying to accomplish,
-and we can use those goals to come up with some definitions for good and bad boulder rounds.
+With those rules in mind, there are a few things that commentators talk about the route setters trying to accomplish.
+We can use those goals to come up with some definitions for more and less successful boulder rounds.
 
 1. Boulders should _separate_ the climbers. Most specifically, this means "count-back is a bad outcome." More generally,
    it means that it's best if rankings are determined by tops, next best if they're determined by number of zones, next
    best if they're determined by attempts, and worst if they're determined by count-back.
-2. The boulders shouldn't be impossible. The field of climbers should be able to make progress in the four minutes each
+2. The boulders shouldn't be impossible. The field of climbers should be able to make progress in the four minutes
    that climbers get for each boulder. There should be few boulders that no one tops, and fewer still boulders where no
    one achieves the zone.
 3. The boulders shouldn't be "too easy." It's hard to say what "too easy" means in general, but it's easy to illustrate
    in extremes. A boulder that everyone in the field tops on their first try ("flashes") is too easy. A boulder that half
    of the field flashes is probably also too easy. A boulder that one or two people flash is probably ok.
-4. Rounds should get progressively harder. In broad strokes this means top scores should be lower in semi-finals than qualification and lower in finals than semi-finals. Also, given that a boulder was topped or zoned, it should take more attempts to get the top or zone in later rounds than earlier rounds.
+4. Rounds should get progressively harder. In broad strokes this means top scores should be lower in semi-finals than
+  qualification and lower in finals than semi-finals. Also, given that a boulder was topped or zoned, it should take
+  more attempts to get the top or zone in later rounds than earlier rounds.
 
 So in the interest of statistical integrity, here are the questions I'd like to answer about men's and women's boulder
-finals and whether the women regularly get different sorts of rounds from the men:
+rounds and whether the women regularly get different sorts of rounds from the men:
 
-1. Do the rounds tend to get harder? I've heard this as a route setting goal from commentary, but I don't normally watch qualification and only sometimes watch semis. Six climbers make finals, so there are six climbers who have data for all three rounds. For those six climbers, if the rounds get harder, the overall top percentage should decrease, the overall zone percentage should decrease, attempts per top should increase, and attempts per zone should increase over the three rounds.[^2]
-2. How often is making a semi-final or final determined by attempts? How often is making a semi-final or final determined by exactly one attempt? How often is count-back necessary, and for what ranks?[^3]
+1. Do the rounds tend to get harder? I don't normally watch qualification and only sometimes watch semis.
+  Six climbers make finals, so there are six climbers who have data for all three rounds. For those six climbers,
+  if the rounds get harder, the overall top percentage should decrease, the overall zone percentage should decrease,
+  attempts per top should increase, and attempts per zone should increase over the three rounds.[^2]
+2. How often is making a semi-final or final determined by attempts? How often is making a semi-final or final
+  determined by exactly one attempt? How often is count-back necessary, and for what ranks?[^3]
 3. Do the answers to the previous two questions vary for the men's and women's events?
 
-The point of choosing my questions in advance is that I don't know the answers to any of these questions right now, so the questions can't be cherry-picked to make a point. I'll know soon though! Let's begin.
+The point of choosing my questions in advance is that I don't know the answers to any of these questions right now,
+so the questions can't be cherry-picked to make a point. I'll know soon though! Let's begin.
 
 ## Analysis
 
@@ -100,12 +109,13 @@ Scripts for analyzing the questions above can be found in that program's [analys
 
 As a first check, it's worth seeing whether rounds tend to get harder. There are a few ways to do this. The most obvious way
 is to check on top percentages. Intuitively, if a round has harder boulders, fewer climbers will reach the top of each boulder.
-But we can't _just_ look at top percentages -- the climbers attempting the boulders in the qualification round
+But we can't _just_ look at top percentages in each round -- the climbers attempting the boulders in the qualification round
 are a different population from the climbers attempting the boulders in the final round, so it's incorrect to compare the
 results directly. Instead, we can filter to only those climbers who climbed in all three rounds and see how frequently they
 reached the tops of boulders. Looking at each year, rounds seem to get progressively harder.
 
-This plot shows, for each boulder event since 2008, the percentage of boulders that were topped in the final:
+This plot shows, for each boulder event since 2008, the percentage of boulders that were topped in the final, semifinal, and
+qualification rounds:
 
 <div class="image-container">
 <img src="./img/difficulty-top-percentage-round-event.svg" />
@@ -148,14 +158,13 @@ There are outliers, but mostly, the top percentages are in a range I'd consider 
 ### Route-setting goals: separation
 
 The other goal to check on is separation. There's no such thing as "good" or "bad" separation in general,
-just better The importance of separation isn't constant over the course of a competition. If the difference
+just better and worse. The importance of separation also isn't constant over the course of a competition. If the difference
 between ranks 38 and 39 is one attempt to the zone hold, that's not a big deal, since neither of those climbers is
-all that close to making the semi-final. If the difference between sixth and seventh in the semi-final is one
-attempt to zone in the previous round, that's really bad, since sixth vs. seventh is the line for who does and
-doesn't make the final. For each rank, we can calculate how often each type of separation splits it from 
+all that close to making the semi-final. If the difference between first and second in the final is one
+attempt to zone in the _semifinal_, that's really bad! For each rank, I calculated how often each type of separation splits it from 
 the next rank.
 
-Over all of the finals in the dataset, that ends up looking like this, for finals:
+Over all of the finals in the dataset, that ends up looking like this:
 
 <style type="text/css">
 #T_ec99c th {
@@ -322,16 +331,16 @@ Over all of the finals in the dataset, that ends up looking like this, for final
   </tbody>
 </table>
 
-Each cell shows how often each rank is decided by each kind of separation. The first row is for rank 1.
-Going across, it shows that, at 79 events, the winner won because they had more tops than the second place
-climber, at 15 events, they won because they had more zones than the second place climber despite being tied
-on tops, at 48 events they won because they had fewer attempts to top than the second place climber while tied on tops and zones, etc.
-The cells are also colored for their relative frequencies, with darker greens showing a higher relative
-frequency.
+Each cell shows how often each rank is decided by a kind of separation. The first row is for rank 1.
+Going across, it shows that, at 90 events, the winner won because they had more tops than the second place
+climber, at 14 events, they won because they had more zones than the second place climber despite being tied
+on tops, at 70 events they won because they had fewer attempts to top than the second place climber while
+tied on tops and zones, etc. The cells are also colored for their relative frequencies, with darker greens
+showing a higher relative frequency.
 
 And overall this looks... pretty successful? I'm not 100% sure what I thought I'd see here, but the most
 valuable places are all decided by tops a plurality of the time, top tries separate much more often than
-zone tries, countback is really rare... this looks pretty good!
+zone tries, count-back is really rare... this looks pretty good!
 
 Semis looks mostly similar:
 
@@ -518,20 +527,22 @@ Semis looks mostly similar:
   </tbody>
 </table>
 
-In both semis and finals, countback is _really rare_, zone tries are a less common separator than
+In both semis and finals, count-back is _really rare_, zone tries are a less common separator than
 top tries, and tops are a more common separator than zones.
-I'm not sure what I expected to see in these tables, but they look like the route setters are pretty
-successful at setting boulders that separate the climbers on how they climb in the round.
+This looks like the route setters are pretty successful at setting boulders that separate the climbers
+based on how they climbed in the round.
 
 How ranks are separated is also reasonably consistent over time.
 
-While the proportions of each type of separation vary, the order of how often each occurs stays mostly the same.
+This plot shows for the top five ranks in finals and top six ranks in semis, how often they're separated from
+the next rank over all of the semis and finals within each year.
+While the proportion of each type of separation varies, the order of how often each occurs stays mostly the same.
 
 <div class="image-container">
 <img src="./img/separation-type-over-time.svg" width="100%"/>
 </div>
 
-I think this all points to the route setters being pretty good at pursuing their goals.
+I think this all points to the route setters being consistent in how they approach separation.
 
 ### But what about differences between the men's and women's rounds?
 
@@ -548,7 +559,7 @@ of difficulty is noticeably different.
 Here, the orange dots are top percentages in women's rounds, and the blue dots are top percentages in men's rounds.
 The hardest rounds tend to be men's rounds, and the easiest rounds tend to be women's rounds.
 
-The alternative measures of difficulty are similar, if a bit muddled:
+The alternative measures of difficulty are similar, if relatively muddled:
 
 <div class="image-container">
 <img src="./img/difficulty-alt-measures-round-year-competitionCategory.svg" width="100%" />
@@ -557,7 +568,7 @@ The alternative measures of difficulty are similar, if a bit muddled:
 Progression is present for both men's and women's rounds, but less pronounced for the women's rounds -- the peak of
 difficulty routesetters achieve for the women's field is 
 mostly lower than the peak for the men's field, and the
-easiest rounds in these measures as well tend to be women's
+easiest rounds in the alternative measures also tend to be women's
 rounds.
 
 Separation is also less successful for women's rounds than men's.
@@ -898,42 +909,43 @@ That's not the case on the women's side:
   </tbody>
 </table>
 
-On the women's side, tops don't even separate the winner from second place a plurality of the time. That honor goes
-to top tries.
+On the women's side, the most important separation -- first vs. second --
+is most commonly top tries. That's a drag! Separation on tops is at least the second
+most common occurrence, but still.
 
 Given the differences in boulder difficulty, men's and women's finals
 are not the same kind of competition.
-On the men's side, competitors can focus only on climbing
-what their rivals can't, while the women's side requires
-extreme economy in number of attempts. Nowhere was this difference more evident than at Meiringen 2018.
+On the men's side, competitors can focus only on climbing what they can, knowing
+that topping a few hard boulders is likely to be enough to win.
+On the women's side, competitors have to prioritize extreme economy in their number of attempts,
+expecting that the other competitors will top several of the boulders as well.
+
+Nowhere was this difference more evident than at Meiringen 2018.
 On the women's side, topping all four boulders in 9 attempts was only good for third place,
 while on the men's side, three tops was enough to be alone in first.[^6]
 
 When route setters have pushed the athletes, they've produced some incredible climbing moments.
-For [Adam Ondra's hand jam], Ai Mori's unique final lead climb in Koper last year,
+For [Adam Ondra's hand jam], Ai Mori's high foot in Koper last year,
 
 `video: https://www.youtube.com/watch?v=cugt-GBT9xg`
 
-and Yoshiyuki Ogata's feet first method,
+and Yoshiyuki Ogata's feet first method at Adidas Rockstars in 2019 (admittedly not an IFSC event),
 
 `video: https://www.youtube.com/watch?v=5qIPZrwnQak`
 
 a part of what made the climbs so spectacular is how hard they were for everyone else in the round.
-For someone stand out that way, the boulders have to be hard enough to stump the field!
+For someone to stand out that way, the boulders have to be hard enough to stop most of the field.
 
 So here's my plea to routesetters. You're weirdly good at assessing the relative difficulty of
 different boulders, and I think if you wanted to you could produce women's finals with scores like the men's.
 So don't hold back! Let Janja[^7] cook! She and the rest of the top of the women's field
 will climb the boulders spectacularly, they'll look really cool, you'll look really cool by extension,
-and everyone else will get an amazing boulder season for both the men and women. Since the progression is there,
-maybe spend the boulders you were saving for the superfinal, or make each jump and reach two bolt holes further
-away, or something, I don't know, that's really more your area.
+and everyone else will get an amazing boulder season for both the men and women.
 
 Finals boulders have been relatively easy for the top women climbers for too long. Easier boulders and worse separation at the
 top of the women's field have required the top women to climb nearly perfectly to win. With harder boulders, we could
 see them climb their best.
 
-[incredible climb in Koper last year]: https://www.youtube.com/watch?v=cugt-GBT9xg
 [Ondra hand jam]: https://www.rockandice.com/climbing-news/ondra-hand-jams-his-way-to-gold-garnbret-tops-three-in-meiringen/
 [attributed a bad finals outcome]: https://gripped.com/indoor-climbing/ondra-gold-overshadowed-by-contentious-separation-in-womens-final/
 [called for harder routesetting]: https://www.instagram.com/div/CgCrq1gDV3F/
