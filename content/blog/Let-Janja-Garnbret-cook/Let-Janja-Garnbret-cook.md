@@ -103,7 +103,7 @@ individual seasons. For each season, I have a CSV with:
 - `zoneTries`
 - `competitionCategory`
 
-Scripts for analyzing the questions above can be found in that program's [analysis directory][^4].
+Scripts for analyzing the questions above can be found in that program's [analysis directory].[^4]
 
 ### Route-setting goals: progression and difficulty
 
