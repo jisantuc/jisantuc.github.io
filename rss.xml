@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[James Santucci's development blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://jisantuc.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 09 Feb 2023 20:05:17 GMT</lastBuildDate><item><title><![CDATA[Let Janja cook]]></title><description><![CDATA[My partner and I watch a lot of competitive climbing. I think I’ve seen
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[James Santucci's development blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://jisantuc.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 10 Feb 2023 15:12:58 GMT</lastBuildDate><item><title><![CDATA[Let Janja cook]]></title><description><![CDATA[My partner and I watch a lot of competitive climbing. I think I’ve seen
 every IFSC boulder competition since 2017 or so and most lead…]]></description><link>https://jisantuc.github.io/Let-Janja-Garnbret-cook/Let-Janja-Garnbret-cook/</link><guid isPermaLink="false">https://jisantuc.github.io/Let-Janja-Garnbret-cook/Let-Janja-Garnbret-cook/</guid><pubDate>Mon, 16 Jan 2023 02:32:09 GMT</pubDate><content:encoded>&lt;p&gt;My partner and I watch a lot of competitive climbing. I think I’ve seen
 every &lt;a href=&quot;https://www.ifsc-climbing.org/&quot;&gt;IFSC&lt;/a&gt; boulder competition since 2017 or so and most lead climbing
 competitions since 2020. It’s fun to see people who share your hobbies
@@ -86,7 +86,7 @@ individual seasons. For each season, I have a CSV with:&lt;/p&gt;
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;zoneTries&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;competitionCategory&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Scripts for analyzing the questions above can be found in that program’s [analysis directory][^4].&lt;/p&gt;
+&lt;p&gt;Scripts for analyzing the questions above can be found in that program’s &lt;a href=&quot;https://github.com/jisantuc/ifsc-client/tree/main/analysis&quot;&gt;analysis directory&lt;/a&gt;.&lt;sup id=&quot;fnref-4&quot;&gt;&lt;a href=&quot;#fn-4&quot; class=&quot;footnote-ref&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;h3&gt;Route-setting goals: progression and difficulty&lt;/h3&gt;
 &lt;p&gt;As a first check, it’s worth seeing whether rounds tend to get harder. There are a few ways to do this. The most obvious way
 is to check on top percentages. Intuitively, if a round has harder boulders, fewer climbers will reach the top of each boulder.
