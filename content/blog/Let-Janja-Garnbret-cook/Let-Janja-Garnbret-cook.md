@@ -947,7 +947,7 @@ Finals boulders have been relatively easy for the top women climbers for too lon
 top of the women's field have required the top women to climb nearly perfectly to win. With harder boulders, we could
 see them climb their best.
 
-[Ondra hand jam]: https://www.rockandice.com/climbing-news/ondra-hand-jams-his-way-to-gold-garnbret-tops-three-in-meiringen/
+[Adam Ondra's hand jam]: https://www.rockandice.com/climbing-news/ondra-hand-jams-his-way-to-gold-garnbret-tops-three-in-meiringen/
 [attributed a bad finals outcome]: https://gripped.com/indoor-climbing/ondra-gold-overshadowed-by-contentious-separation-in-womens-final/
 [called for harder routesetting]: https://www.instagram.com/div/CgCrq1gDV3F/
 [Chamonix 2022]: https://www.youtube.com/watch?v=_wIP_73GTYQ 
