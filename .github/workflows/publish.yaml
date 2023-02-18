@@ -24,6 +24,8 @@ jobs:
           key: ${{ hashFiles('package-lock.json') }}
           path: |
             ./node_modules
+      - run: git config --global user.email 'james.santucci@gmail.com'
+      - run: git config --global user.name 'James Santucci'
       - name: Publish blog
         run: nix-shell --run "npm install; npm run deploy"
 
