@@ -26,6 +26,7 @@ jobs:
             ./node_modules
       - run: git config --global user.email 'james.santucci@gmail.com'
       - run: git config --global user.name 'James Santucci'
+      - run: git remote set-url --push origin https://jisantuc:${{ secrets.GH_PAT }}@github.com/jisantuc/jisantuc.github.io
       - name: Publish blog
         run: nix-shell --run "npm install; npm run deploy"
         env:
