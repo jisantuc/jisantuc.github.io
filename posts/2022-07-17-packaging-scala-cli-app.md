@@ -29,7 +29,9 @@ brackets everywhere they could. You while Looking at Source Code probably feels 
 at monochrome source code. You while Looking at Logs and Waxing Inexplicably French is probably like
 "ehhhh it's an inscrutable mass, que sera sera."
 
-![what is this garbage](./log-output.png)
+<div class="image-container">
+<img src="../images/log-output.png"/ width="100%">
+</div>
 
 But there's another way! It turns out matching parentheses problems are not very difficult puzzles.
 If you desire in your heart of hearts to have special colors for brackets, parentheses, and braces that
@@ -52,14 +54,16 @@ using a very unsafe, privately immutable [`Ring`](https://github.com/jisantuc/rb
 With the `Ring` in hand, it was pretty straightforward to handle the rest. [`decline`](https://github.com/bkirwi/decline) is wonderful
 for config / command line argument parsing, [`fs2`](https://github.com/typelevel/fs2) is the GOAT for constant memory IO,
 and [`cats-parse`](https://github.com/typelevel/cats-parse) is simple and nice for defining shapes of custom string formats
-on the fly. The `decline` + `cats-parse` combo was great for defining the shapes of my color arguments. Since CLIs have to deal with horrible string formats all the time, it was great to be able to concissely represent the rules for _good_ strings and hook that into argument parsing.
+on the fly. The `decline` + `cats-parse` combo was great for defining the shapes of my color arguments. Since CLIs have to deal with horrible string formats all the time, it was great to be able to concisely represent the rules for _good_ strings and hook that into argument parsing.
 Note that once we're in application logic, everything is purely in domain types --
 the function responsible for transforming input is [`colorize`](https://github.com/jisantuc/rb-paren-cli/blob/v0.0.1/src/main/scala/io/github/jisantuc/rbparencli/Main.scala#L21-L39), and it knows nothing of effects or streaming or arguments, just "if you can give me a palette
 and a character, I can color that character."
 
 The end result looks like this:
 
-![Colored log output, with matching parentheses, brackets, and braces colored](./rainbow-parens.png)
+<div class="image-container">
+<img src="../images/rainbow-parens.png"/>
+</div>
 
 So that's the pinnacle of side project completion -- _it runs on my machine for toy inputs_.
 
@@ -106,7 +110,9 @@ MacOS is very special and required special handling. [In principle](https://www.
 it should be possible to set up GraalVM packaging on MacOS, but I don't really know anything
 about GraalVM or MacOS, so...
 
-![A very good dog floating around a space station](https://media.giphy.com/media/xDQ3Oql1BN54c/giphy.gif)
+<div class="image-container">
+<img src="https://media.giphy.com/media/xDQ3Oql1BN54c/giphy.gif"/>
+</div>
 
 But there's another option! `Scala.js` cross-project setups are pretty well ironed out, and all of my dependencies
 are cross-published for `Scala.js`, so here's all I had to do to bundle up a nice `node.js` script:

@@ -139,3 +139,13 @@ article .header {
     font-size: 1.8rem;
   }
 }
+
+.image-container {
+        display: flex;
+        justify-content: center;
+}
+
+.post-description {
+        /* margin-top: 0rem; */
+        padding-bottom:1rem;
+}
