@@ -1,99 +1,108 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's blog starter
-</h1>
+# hakyll-nix-template
 
-Kick off your project with this blog boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+[Hakyll](https://jaspervdj.be/hakyll/) + [Nix](https://nixos.org) template
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+## Quick tips
 
-## 🚀 Quick start
+* Read the tutorial to get started! https://robertwpearce.com/the-hakyll-nix-template-tutorial.html
+* If you make changes to anything inside of `ssg/`, you'll need to clean the
+  hakyll cache and rebuild. This is the preferred series of commands for
+  rebuilding (with logs), cleaning the cache, and re-running the dev server:
+  
+  ```default
+  nix build --print-build-logs && \
+    nix run . clean && \
+    nix run . watch
+  ```
 
-1.  **Create a Gatsby site.**
+## Features
 
-    Use the Gatsby CLI to create a new site, specifying the blog starter.
+* Build your site into the `./result/dist` folder:
+  ```
+  λ nix build
+  ```
+* Start hakyll's dev server that reloads when changes are made:
+  ```
+  λ nix run . watch
+  Listening on http://127.0.0.1:8000
+  ...more logs
+  ```
+* Run any hakyll command through `nix run .`!
+  ```
+  λ nix run . clean
+  Removing dist...
+  Removing ssg/_cache...
+  Removing ssg/_tmp...
+  ```
+* Start a development environment that
+  * has your shell environment
+  * has `hakyll-site` (for building/watching/cleaning hakyll projects)
+  * has `hakyll-init` (for generating new projects)
+  * can have anything else you put in the `shell.buildInputs` of the
+    `hakyllProject` in `flake.nix`
+  * is set up to run `ghci` with some defaults and the modules loaded so you can
+    make your own changes and test them out in the ghci REPL
 
-    ```shell
-    # create a new Gatsby site using the blog starter
-    gatsby new my-blog-starter https://github.com/gatsbyjs/gatsby-starter-blog
-    ```
+  ```
+  λ nix develop
 
-1.  **Start developing.**
+  [hakyll-nix]λ hakyll-site build
+  ...
+  Success
 
-    Navigate into your new site’s directory and start it up.
+  [hakyll-nix]λ ghci
+  ...
+  [1 of 1] Compiling Main    ( ssg/src/Main.hs, interpreted )
+  ...
 
-    ```shell
-    cd my-blog-starter/
-    gatsby develop
-    ```
+  λ >
+  ```
 
-1.  **Open the source code and start editing!**
+### hakyll
 
-    Your site is now running at `http://localhost:8000`!
+All of this is custmomizable, and here are some things that are already done for
+you:
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql)._
+* [pandoc](https://github.com/jgm/pandoc/) markdown customization to make it as
+  close to GitHub's markdown style as possible
+* [`slugger`](https://hackage.haskell.org/package/slugger) module is included that makes nice link URIs based on post titles
+* RSS & Atom XML feed generation
+* Sitemap generation
+* Code syntax highlighting customization
+* ...other reasonable defaults
 
-    Open the `my-blog-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+Configure the dev server, cache & tmp directories, and more in
+`./ssg/src/Main.hs`.
 
-## 🧐 What's inside?
+### Deployment
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+Deployment is set up through a [GitHub
+Action](https://github.com/features/actions) with [cachix](https://cachix.org),
+and it deploys to a [GitHub Pages](https://pages.github.com/) branch,
+`gh-pages`, when you merge code into your main branch.
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+Setup information can be found below in the "Cachix" section.
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+Note: If your main branch's name isn't `main`, ensure `'refs/heads/main'` gets
+updated to `'refs/heads/my-main-branch'` in `./github/workflows/main.yml`.
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+## Setup
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+### Nix & Flakes
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+If you don't have [nix](https://nixos.org), follow [the nix installation
+instructions](https://nixos.org/download.html).
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.com/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+Once you have nix installed, follow the instructions here to get access to
+flakes: https://nixos.wiki/wiki/Flakes.
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.com/docs/gatsby-config/) for more detail).
+### Cachix
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+The `./.github/workflows/main.yml` file builds with help from
+[cachix](https://app.cachix.org), so you'll need to generate a signing key to be
+able to do this.
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-9.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
-
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[Build, Deploy, and Host On The Only Cloud Built For Gatsby](https://www.gatsbyjs.com/cloud/)
-
-Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby framework that combines a modern developer experience with an optimized, global edge network.
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+1. Create a cache on cachix for your project
+1. Follow cachix's instructions to generate a signing keypair
+1. Copy the signing keypair value to a new `CACHIX_SIGNING_KEY` secret on
+   https://github.com/settings/secrets
