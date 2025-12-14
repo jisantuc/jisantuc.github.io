@@ -2,16 +2,16 @@
 
 title=$1
 titleSlug=$(echo "${title}" | sed 's/ /-/g')
+dt=$(date -u -I)
 
 header=$(cat <<- EOF 
 ---
 title: $title
-date: $(date -u -Iseconds)
+date: $dt
 description: $title
 ---
 EOF
 )
 
-mkdir "content/blog/${titleSlug}"
-echo "$header" > "content/blog/${titleSlug}/${titleSlug}.md"
-git add "content/blog/${titleSlug}"
+echo "$header" > "posts/${dt}-${titleSlug}.md"
+git add "posts/${dt}-${titleSlug}.md"

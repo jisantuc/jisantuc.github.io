@@ -19,6 +19,7 @@
             hakyll
             hlint
             ormolu
+            (pkgs.python3.withPackages (p: [p.pygments]))
           ];
           packages = ps: [ (ps.callCabal2nix "site" ./. { }) ];
         in
