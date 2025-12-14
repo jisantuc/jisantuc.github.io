@@ -1,7 +1,11 @@
 ---
 title: Let Janja cook
 date: 2023-01-16T02:32:09+00:00
-description: Let Janja Garnbret cook
+description: |
+  In top-level climbing competitions, women's climbs have often been
+  easier for the women finalists than the men's climbs have been for the men finalists.
+  That's a drag as a spectator, since it means I don't get to see what the competition
+  climbing GOAT is actually capable of.
 ---
 
 My partner and I watch a lot of competitive climbing. I think I've seen
