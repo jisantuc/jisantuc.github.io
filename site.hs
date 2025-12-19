@@ -2,7 +2,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Blog.Pandoc (pygmentizingPandocCompiler)
-import Data.Monoid (mappend)
 import Hakyll
 
 --------------------------------------------------------------------------------
@@ -31,6 +30,10 @@ main = hakyll $ do
         >>= loadAndApplyTemplate "templates/default.html" postCtx
         >>= relativizeUrls
 
+  create ["resume/resume.pdf"] $ do
+    route idRoute
+    compile getResourceLBS
+
   create ["archive.html"] $ do
     route idRoute
     compile $ do
@@ -48,7 +51,7 @@ main = hakyll $ do
   match "index.html" $ do
     route idRoute
     compile $ do
-      posts <- recentFirst =<< loadAll "posts/*"
+      posts <- take 3 <$> (recentFirst =<< loadAll "posts/*")
       let indexCtx =
             listField "posts" postCtx (return posts)
               `mappend` defaultContext
