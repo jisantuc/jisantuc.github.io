@@ -14,4 +14,4 @@ and a [tiny library for explaining property-based testing](https://github.com/ji
 programs to make my life easier, like this little [tool](https://github.com/jisantuc/ynab-split) to split transactions
 in YNAB.
 
-For career inquiries, you can find my resume [here](/resume/resume.pdf).
+You can find my resume [here](/resume/resume.pdf).

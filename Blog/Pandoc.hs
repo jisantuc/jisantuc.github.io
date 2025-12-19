@@ -15,9 +15,9 @@ import qualified Data.Text.IO.Utf8 as T
 import GHC.IO.Handle (BufferMode (NoBuffering), hSetBuffering)
 import Hakyll
 import System.IO (hPrint)
-import System.Process (readProcess, runInteractiveCommand)
+import System.Process (runInteractiveCommand)
 import Text.Pandoc.Definition (Block (CodeBlock, RawBlock), Pandoc)
-import Text.Pandoc.Walk (Walkable, walk, walkM)
+import Text.Pandoc.Walk (walkM)
 
 tshow :: Int -> T.Text
 tshow = T.pack . show
