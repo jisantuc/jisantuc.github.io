@@ -146,7 +146,7 @@ article .header {
   }
 }
 
-.image-container {
+.flex-container {
         display: flex;
         justify-content: center;
 }

@@ -121,7 +121,7 @@ reached the tops of boulders. Looking at each year, rounds seem to get progressi
 This plot[^5] shows, for each boulder event since 2008, the percentage of boulders that were topped in the final, semifinal, and
 qualification rounds:
 
-<div class="image-container">
+<div class="flex-container">
 <img src="../images/difficulty-top-percentage-round-event.svg" />
 </div>
 
@@ -131,7 +131,7 @@ and semis are a bit harder than qualification rounds.
 The trend is a more obvious if you look at the top percentage in each round by year, instead of
 for individual events:
 
-<div class="image-container">
+<div class="flex-container">
 <img src="../images/difficulty-top-percentage-round-year.svg" />
 </div>
 
@@ -141,7 +141,7 @@ rounds if boulders are getting harder. Or we could look at attempts for each
 successful top or zone, which should _increase_ across rounds if the boulders
 are getting harder. I checked those as well.
 
-<div class="image-container">
+<div class="flex-container">
 <img src="../images/difficulty-alt-measures-round-year.svg" />
 </div>
 
@@ -272,6 +272,7 @@ Over all of the finals in the dataset, that ends up looking like this:
   text-align: center;
 }
 </style>
+<div class="flex-container">
 <table id="T_ec99c">
   <thead>
     <tr>
@@ -334,6 +335,7 @@ Over all of the finals in the dataset, that ends up looking like this:
     </tr>
   </tbody>
 </table>
+</div>
 
 Each cell shows how often each rank is decided by a kind of separation. The first row is for rank 1.
 Going across, it shows that, at 90 events, the winner won because they had more tops than the second place
@@ -460,6 +462,7 @@ Semis looks mostly similar:
   text-align: center;
 }
 </style>
+<div class="flex-container">
 <table id="T_122a2">
   <thead>
     <tr>
@@ -530,6 +533,7 @@ Semis looks mostly similar:
     </tr>
   </tbody>
 </table>
+</div>
 
 In both semis and finals, count-back is _really rare_, zone tries are a less common separator than
 top tries, and tops are a more common separator than zones.
@@ -542,7 +546,7 @@ This plot shows for the top five ranks in finals and top six ranks in semis, how
 the next rank over all of the semis and finals within each year.
 While the proportion of each type of separation varies, the order of how often each occurs stays mostly the same.
 
-<div class="image-container">
+<div class="flex-container">
 <img src="../images/separation-type-over-time.svg" width="100%"/>
 </div>
 
@@ -556,7 +560,7 @@ rounds where the boulders or routes don't quite work for the women's field have 
 Rounds are progressive in difficulty for both the men and women, but the level
 of difficulty is noticeably different.
 
-<div class="image-container">
+<div class="flex-container">
 <img src="../images/difficulty-top-percentage-round-year-category.svg" width="100%"/>
 </div>
 
@@ -565,7 +569,7 @@ The hardest rounds tend to be men's rounds, and the easiest rounds tend to be wo
 
 The alternative measures of difficulty are similar, if relatively muddled:
 
-<div class="image-container">
+<div class="flex-container">
 <img src="../images/difficulty-alt-measures-round-year-competitionCategory.svg" width="100%" />
 </div>
 
@@ -685,6 +689,7 @@ For men's finals, separation is largely like the table we saw before:
   text-align: center;
 }
 </style>
+<div class="flex-container">
 <table id="T_133e7">
   <thead>
     <tr>
@@ -747,6 +752,7 @@ For men's finals, separation is largely like the table we saw before:
     </tr>
   </tbody>
 </table>
+</div>
 
 Tops are the most common separation, and they separate the winner from second
 place about half the time.
@@ -850,6 +856,7 @@ That's not the case on the women's side:
   text-align: center;
 }
 </style>
+<div class="flex-container">
 <table id="T_220dd">
   <thead>
     <tr>
@@ -912,6 +919,7 @@ That's not the case on the women's side:
     </tr>
   </tbody>
 </table>
+</div>
 
 On the women's side, the most important separation -- first vs. second --
 is most commonly top tries. That's a drag! Separation on tops is at least the second
@@ -932,11 +940,15 @@ in six attempts was good for... last place.
 When route setters have pushed the athletes, they've produced some incredible climbing moments.
 For [Adam Ondra's hand jam], Ai Mori's high foot in Koper last year,
 
+<div class="flex-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3ZFu-PBn44Q?si=8-ZRXz19SIqc5fPB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
 and Yoshiyuki Ogata's feet first method at Adidas Rockstars in 2019 (admittedly not an IFSC event),
 
+<div class="flex-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5qIPZrwnQak?si=Bwd_YBW5Dkmu8WPt&amp;start=966" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
 a part of what made the climbs so spectacular is how hard they were for everyone else in the round.
 For someone to stand out that way, the boulders have to be hard enough to stop a lot of the field.

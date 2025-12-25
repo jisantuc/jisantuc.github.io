@@ -29,7 +29,7 @@ brackets everywhere they could. You while Looking at Source Code probably feels 
 at monochrome source code. You while Looking at Logs and Waxing Inexplicably French is probably like
 "ehhhh it's an inscrutable mass, que sera sera."
 
-<div class="image-container">
+<div class="flex-container">
 <img src="../images/log-output.png"/ width="100%">
 </div>
 
@@ -61,7 +61,7 @@ and a character, I can color that character."
 
 The end result looks like this:
 
-<div class="image-container">
+<div class="flex-container">
 <img src="../images/rainbow-parens.png"/>
 </div>
 
@@ -110,7 +110,7 @@ MacOS is very special and required special handling. [In principle](https://www.
 it should be possible to set up GraalVM packaging on MacOS, but I don't really know anything
 about GraalVM or MacOS, so...
 
-<div class="image-container">
+<div class="flex-container">
 <img src="https://media.giphy.com/media/xDQ3Oql1BN54c/giphy.gif"/>
 </div>
 
