@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+"""Borrowed from Tony Zorman's idential script at
+https://github.com/slotThe/slotThe.github.io/blob/528ba38fa00c8401a10b08ed491ed6282010dbd0/scripts/pygmentize.py
+
+Based on the blog post here: https://tony-zorman.com/posts/pygmentising-hakyll.html
+"""
+
+import sys
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
+
+while True:
+    fn, lang, code = (
+        sys.stdin.read(int(sys.stdin.readline().rstrip("\n")))
+        .rstrip("\n")
+        .split(sep="\n", maxsplit=2)
+    )
+    with open(fn, "w") as f:
+        f.write(
+            highlight(
+                code,
+                get_lexer_by_name(lang),
+                # No lang-specific class, just letting the highlighter
+                # do its thing for all languages
+                HtmlFormatter(
+                    cssclass=f"highlight", cssstyles="padding-left: 1em;"
+                ),
+            )
+        )
