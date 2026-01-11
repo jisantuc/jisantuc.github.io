@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+nix develop .#ci --command \
+  bash -c "cabal build && cabal exec site -- rebuild"

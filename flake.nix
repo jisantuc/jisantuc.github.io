@@ -11,6 +11,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
           compiler = "ghc910";
           haskellPackages = pkgs.haskell.packages.${compiler};
+          pythonWithPygments = (pkgs.python3.withPackages (p: [ p.pygments ]));
           devDependencies = with haskellPackages; [
             cabal-fmt
             cabal-gild
@@ -19,7 +20,7 @@
             hakyll
             hlint
             ormolu
-            (pkgs.python3.withPackages (p: [p.pygments]))
+            pythonWithPygments
           ];
           packages = ps: [ (ps.callCabal2nix "site" ./. { }) ];
         in
@@ -32,7 +33,10 @@
 
           devShells.ci = haskellPackages.shellFor {
             inherit packages;
-            nativeBuildInputs = with haskellPackages; [ cabal-install ];
+            nativeBuildInputs = with haskellPackages; [
+              cabal-install
+              pythonWithPygments
+            ];
           };
 
           packages.default = haskellPackages.callCabal2nix "site" ./. { };
