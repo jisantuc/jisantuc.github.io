@@ -18,6 +18,7 @@ import System.IO (hPrint)
 import System.Process (runInteractiveCommand)
 import Text.Pandoc.Definition (Block (CodeBlock, RawBlock), Pandoc)
 import Text.Pandoc.Walk (walkM)
+import Text.Pandoc (WriterOptions(..), HTMLMathMethod(..))
 
 tshow :: Int -> T.Text
 tshow = T.pack . show
@@ -48,7 +49,8 @@ pygmentsHighlight pandoc = unsafeCompiler do
 
 pygmentizingPandocCompiler :: Compiler (Item String)
 pygmentizingPandocCompiler =
-  pandocCompilerWithTransformM
+  let writerOptions = defaultHakyllWriterOptions { writerHTMLMathMethod = MathML }
+   in pandocCompilerWithTransformM
     defaultHakyllReaderOptions
-    defaultHakyllWriterOptions
+    writerOptions
     pygmentsHighlight
