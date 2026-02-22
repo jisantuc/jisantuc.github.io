@@ -77,7 +77,7 @@ Fargo ratings can be translated into win probabilities per rack.
 The Wikipedia [page on Elo rating systems] says that, for two players with ratings $R_A$ and $R_B$, the win
 probability for player $A$ is
 
-$$E_A = \frac{1}{1 + 10^\frac{(R_B - R_A)}{s}}$$
+$E_A = \frac{1}{1 + 10^\frac{(R_B - R_A)}{s}}$
 
 where $R_A$ is the rating for player $A$, $R_B$ is the rating for player $B$, $s$ is some "scaling factor," and $E_A$
 is the probability that player $A$ wins whatever thing the rating applies to. In pool, the rating applies to individual
