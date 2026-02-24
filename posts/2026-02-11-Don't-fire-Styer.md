@@ -11,18 +11,19 @@ Moritz Neuhausen, and Pijus Labutis.
 
 It went poorly for the United States, who lost 11-3. The worst moments of the poor result came in some 5-4 losses in
 individual matchups where Team USA really looked like they could have eked out a point. Reddit's solution is to
-[fire Styer], whose two misses on rack-winning balls at 4-4 could have kept the match closer early.
+[fire Tyler Styer], whose two misses on rack-winning balls at 4-4 could have
+kept the match closer early.[^1]
 
 These were the teams and each player's [Fargo rating]:
 
 
 | Europe | USA |
 | :----- | :-- |
-| Filler (859) | Gorst (847) |
-| Shaw (834) | van Boening (846) |
-| Neuhausen (819)| Woodward (812) |
-| Alcaide (817) | Styer (791) |
-| Labutis (812) | Thorpe (778) |
+| Josh Filler (859) | Fedor Gorst (847) |
+| Jayson Shaw (834) | Shane van Boening (846) |
+| Moritz Neuhausen (819)| Skyler Woodward (812) |
+| David Alcaide (817) | Tyler Styer (791) |
+| Pijus Labutis (812) | Billy Thorpe (778) |
 
 Europe brought a strong team. Josh Filler is the top-ranked player in the world by [Fargo rating] (which is like
 chess's [Elo rating system]). About two months before the Mosconi Cup, Neuhausen won the Peri 9 Ball Open a week before
@@ -38,15 +39,17 @@ tournaments I mentioned above:
 
 * Thorpe and Woodward both made the quarterfinals of the Peri 9 Ball Open, where Woodward lost 10-2 to Neuhausen.
 * Gorst, Woodward, and Thorpe all lost in the last 64 at the Hanoi Open.
-* None of those three advanced to stage 2 of the Philippines Open.
+* Neither of Gorst nor Thorpe advanced to stage 2 of the Philippines Open.
 
 In World Nineball Tour rankings, Shaw was the lowest ranked player on team Europe at 16th, while van Boening
 was the second highest ranked player on Team USA at 15th (Styer, Woodward, and Thorpe were ranked 26th, 27th,
-and 34th)[^1].
+and 34th)[^2].
 
 11-3 is a drubbing, but whether you look at ratings, recent tournament results, or tour rankings, Europe were clear
 favorites. Because of the obvious gap, I was curious just how bad an 11-3 result was relative to expectations,
-especially since, with three non-flubbed game endings, the score is 8-6 after 14 games, which is _pretty close_!
+since, with two non-flubbed game endings, the score is 9-5 after 14 games, which is... _closer_? I mean not _close_,
+but, you know, it's possible to imagine a comeback from there. So what would have been a reasonable expectation for
+how many matchups the US team should win?
 
 If you want to read how I tried to answer that question, check out [nerd stuff](#nerd-stuff). If you just want to see
 some plots, you can skip to [plots](#the-results).
@@ -69,7 +72,7 @@ There are way too many possible schedules to simulate all of them a bunch of tim
 line interface for running the simulation to control how many schedules to generate. For each day, I randomly picked
 the play order for each team subject to the [rules posted on the Matchroom website], i.e. respecting the constraints
 about sets of matches in which all five players on a team had to play at least once. I didn't bother requiring the
-team matchup lineups to vary.[^2]
+team matchup lineups to vary.[^3]
 
 ### Picking a winner for each matchup
 
@@ -77,7 +80,9 @@ Fargo ratings can be translated into win probabilities per rack.
 The Wikipedia [page on Elo rating systems] says that, for two players with ratings $R_A$ and $R_B$, the win
 probability for player $A$ is
 
+<div class="math-container">
 $E_A = \frac{1}{1 + 10^\frac{(R_B - R_A)}{s}}$
+</div>
 
 where $R_A$ is the rating for player $A$, $R_B$ is the rating for player $B$, $s$ is some "scaling factor," and $E_A$
 is the probability that player $A$ wins whatever thing the rating applies to. In pool, the rating applies to individual
@@ -133,7 +138,7 @@ orders determined by the teams' captains. In each rack, picking a winner is exac
 There's probably some mathematically correct way to combine ratings for pairs of players, but I don't know what it is.
 To pick probabilities for each team, I took the average of the win probabilities of each of the four possible matchups,
 e.g. if Woodward and Thorpe played Labutis and Alcaide, I calculated win probabilities for Woodward vs. Labutis,
-Woodward vs. Alcaide, Thorpe vs. Labutis, and Thorpe vs. Alcaide, then I averaged those four values.[^3]
+Woodward vs. Alcaide, Thorpe vs. Labutis, and Thorpe vs. Alcaide, then I averaged those four values.[^4]
 
 After I had a win probability, I picked a winner for the matchup the same way as in singles matchups.
 
@@ -142,11 +147,42 @@ After I had a win probability, I picked a winner for the matchup the same way as
 Being able to generate schedules and results is a good start, but I needed a way to validate that the results made
 sense. To test how whether the simulation results were reasonable, I matched up two fake teams against actual team
 Europe. One team was all Josh Fillers, i.e., in every matchup was favored or even. That team won the Mosconi Cup about
-85% of the time. The other team was all me, with my 553 rating. That team won 0% of the time.[^4] Those both seemed
+85% of the time. The other team was all me, with my 553 rating. That team won 0% of the time.[^5] Those both seemed
 reasonable to me. Here's the win percentage curve for homogeneous teams of players with a bunch of ratings between mine
-and Josh Filler's. I generated 1,000 schedules and simulated each one 100 times.
+and Turbo-Josh Filler's. I generated 1,000 schedules and simulated each one 50 times.
 
-tktktk plot 550 .. 860 win percentage for 1,000 schedules, each simulated 100 times.
+<canvas id="chart_monoteam" style="width:100%;max-width:600px;height:400px"></canvas>
+<script>
+setTimeout(function() { new Chart("chart_monoteam", {
+  type: "line",
+  data: {
+    labels: [700, 725, 750, 775, 800, 825, 850, 875, 900, 925, 950],
+    datasets: [
+    {
+      label: "Clone team win rate",
+      data: [0.006, 0.036, 0.544, 4.092, 17.888, 45.288, 76.142, 93.414, 99.050, 99.916, 99.986],
+      fill: false,
+      backgroundColor: "rgb(255, 99, 132)",
+      borderColor: "rgb(255, 99, 132)",
+      tension: 0.1
+    }
+    ]
+  },
+  options: {
+    title: { display: true, text: "Clone team win rates" },
+    scales: {
+      xAxes: [{ scaleLabel: { display: true, labelString: "Clone team Fargo rating" } }],
+      yAxes: [{ scaleLabel: {
+        display: true,
+        labelString: "Win percentage against actual Europe" }
+      }],
+      y: {
+        min: 0, max: 100
+      }
+    }
+  }
+})}, 100);
+</script>
 
 ## The results
 
@@ -154,7 +190,6 @@ I generated 10,000 schedules and simulated each one 100 times. This plot shows h
 racks:
 
 <canvas id="chart_DjUrNvW8lwntMx2b4QGbc1sTrCMLtiPSPfWoDkPcwA9Ps99n4w" style="width:100%;max-width:600px;height:400px"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script>
 setTimeout(function() { new Chart("chart_DjUrNvW8lwntMx2b4QGbc1sTrCMLtiPSPfWoDkPcwA9Ps99n4w", {
   type: "bar",
@@ -173,7 +208,10 @@ setTimeout(function() { new Chart("chart_DjUrNvW8lwntMx2b4QGbc1sTrCMLtiPSPfWoDkP
   options: {
     title: { display: true, text: "How often team USA won each number of racks" },
     scales: {
-      xAxes: [{ scaleLabel: { display: true, labelString: "Team USA Racks Won" } }]
+      xAxes: [{ scaleLabel: { display: true, labelString: "Team USA Racks Won" } }],
+      y: {
+        min: 0, max: 35000
+      }
     }
   }
 })}, 100);
@@ -200,16 +238,15 @@ Those teams would be:
 
 | Europe | USA |
 | :----- | :-- |
-| Filler (859) | Gorst (847) |
-| Sanchez Ruiz (846) | van Boening (846) |
-| Shaw (834) | Woodward (812) |
-| Szewczyk (832) | Dechaine[^5] (803) |
-| Ouschan (831) | Hohmann (793) |
+| Josh Filler (859) | Fedor Gorst (847) |
+| Francisco Sanchez Ruiz (846) | Shane van Boening (846) |
+| Jayson Shaw (834) | Skyler Woodward (812) |
+| Wojciech Szewczyk (832) | Mike Dechaine[^6] (803) |
+| Albin Ouschan (831) | Thorsten Hohmann (793) |
 
 In sims of these matchups, the US won about 26% of the time.
 
 <canvas id="chart_Rjey9ta8QWT98npfhTy9WLoDf84RcswizCKFgty69w9tQ" style="width:100%;max-width:600px;height:400px"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script>
 setTimeout(function() { new Chart("chart_Rjey9ta8QWT98npfhTy9WLoDf84RcswizCKFgty69w9tQ", {
   type: "bar",
@@ -229,14 +266,17 @@ setTimeout(function() { new Chart("chart_Rjey9ta8QWT98npfhTy9WLoDf84RcswizCKFgty
   options: {
     title: { display: true, text: "USA matchup win frequency with top Fargo rated teams" },
     scales: {
-      xAxes: [{ scaleLabel: { display: true, labelString: "Team USA Racks Won" } }]
+      xAxes: [{ scaleLabel: { display: true, labelString: "Team USA Racks Won" } }],
+      y: {
+        min: 0, max: 35000
+      }
     }
   }
 })}, 100);
 </script>
 
-The average racks won is lower, Team USA wins more than 3 matchups only about 92% of the time instead of about 95% of
-the time, and they win 8 percentage points fewer Mosconi Cups.
+The US on average wins fewer racks in this matchup, wins 3 or fewer racks about 8% of the time instead of 5% of the
+time, and wins overall 8 percentage points less often.
 
 If both countries instead brought their top teams by World Nineball Tour rankings, the US team doesn't change at all,
 and Team Europe is pretty similar. Shaw, Alcaide, and Neuhausen are gone, but Kaci, Sanchez Ruiz, and Krause bring
@@ -256,7 +296,6 @@ With similar teams to the actual matchups, it's not surprising that Team USA win
 in this simulation or that the shape of the curve looks about the same as the first plot:
 
 <canvas id="chart_SQGY413bNGisDqKiMhe79Qlw6SmKFK3cRTvWm5HH89d3NQKjLRwf" style="width:100%;max-width:600px;height:400px"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script>
 setTimeout(function() { new Chart("chart_SQGY413bNGisDqKiMhe79Qlw6SmKFK3cRTvWm5HH89d3NQKjLRwf", {
   type: "bar",
@@ -273,9 +312,12 @@ setTimeout(function() { new Chart("chart_SQGY413bNGisDqKiMhe79Qlw6SmKFK3cRTvWm5H
     ]
   },
   options: {
-    title: { display: true, text: "USA matchup win frequency with top Fargo rated teams" },
+    title: { display: true, text: "USA matchup win frequency with top WNT rated teams" },
     scales: {
-      xAxes: [{ scaleLabel: { display: true, labelString: "Team USA Racks Won" } }]
+      xAxes: [{ scaleLabel: { display: true, labelString: "Team USA Racks Won" } }],
+      y: {
+        min: 0, max: 35000
+      }
     }
   }
 })}, 100);
@@ -287,12 +329,19 @@ players from Europe that several ways to pick a top 5 produce very strong teams.
 this team was close to as good as it gets in terms of Fargo ratings and was the best team the US could assemble by
 World Nineball Tour rankings, but it's a significant underdog against any of the European teams.
 
-Sometimes one team is just worse than another team. When that's the case, on average, _things happen_ for the worse
-team to lose to the better team.
+Pool doesn't currently have a strong statistical backing. It's not like baseball, where there's a small number of
+outcomes for a plate appearance, or basketball, where it's easy to track how often an offense can generate open,
+valuable shots, or hockey / soccer, where you can tell whether a team is winning on average by whether they're keeping
+possession in attacking areas. Without a robust statistical explanation of how one player beats another, it's easy
+to fixate on specific high leverage events to explain a loss.
 
-%% TODO: tktktk so what
+I think focusing on Styer's misses is just tunnel vision. Overall, Team Europe won 63 of the 108 racks played. Hand the
+two flubbed 9 balls to Styer and that drops to 61 out of 108. This US team against that Europe team was always losing.
+It could have happened less dramatically, but a comeback was unlikely either way. Hypothetical other US teams against
+other European teams have the same disadvantage. Firing Styer is one thing you could do if you wanted to assemble a
+team with a better chance to win, but where are you going to find another player as good as Tyler Styer?
 
-[fire styer]: https://www.reddit.com/r/billiards/comments/1pdjqvx/fire_styer/
+[fire Tyler Styer]: https://www.reddit.com/r/billiards/comments/1pdjqvx/fire_styer/
 [Elo rating system]: https://en.wikipedia.org/wiki/Elo_rating_system
 [Fargo rating]: https://fargorate.com/
 [top 100]: https://fargorate.com/top-ten-lists
@@ -300,14 +349,18 @@ team to lose to the better team.
 [page on Elo rating systems]: https://en.wikipedia.org/wiki/Elo_rating_system#Mathematical_details
 [FAQ]: https://fargorate.com/#faq
 [inexplicable]: https://youtu.be/qbJI4W5SCbs?si=rDnovyzts3lAEvZN&t=747
-[^1]: All ratings and rankings quoted as of what I can see on 2025/02/10.
-[^2]: I decided that the probability of identical team matchups was low enough, and that the probability of those
+[^1]: Billy Thorpe and Skyler Woodward too, but when you lose 11-3, it's pretty obvious no one had a good time.
+[^2]: All ratings and rankings quoted as of what I can see on 2025/02/10.
+[^3]: I decided that the probability of identical team matchups was low enough, and that the probability of those
 identical team matchups affecting the results was low enough, that it wasn't important. There's a $\frac{1}{120}$
 chance that a team's lineup for the second team match matches the first one and a $\frac{1}{60}$ chance that the third
 team match lineup matches either of the first two, for a 2.5% chance total. Over a bunch of simulations, I'll get some
 repeats. Oh well.
-[^3]: I also ran the simulation with averaging the ratings and calculating the win probabilities with the average
+[^4]: I also ran the simulation with averaging the ratings and calculating the win probabilities with the average
 ratings. Results were broadly similar.
-[^4]: Not rounded -- literally zero of the 100,000 sims I ran.
-[^5]: Nevermind that Dechaine [played four tournaments](https://www.azbilliards.com/person/mike-dechaine/) in 2025,
+[^5]: Not rounded -- literally zero of the 100,000 sims I ran. One discouraging/funny thing I learned is that
+I could be 200 points higher rated -- or basically, get twice as good as I currently am _twice_ -- and a team made up
+entirely of that superhuman wins the Mosconi cup about a half a percent of the time. I'm pretty good! Pros are monsters
+though 😬.
+[^6]: Nevermind that Dechaine [played four tournaments](https://www.azbilliards.com/person/mike-dechaine/) in 2025,
 none of them at the level of the big international tournaments.

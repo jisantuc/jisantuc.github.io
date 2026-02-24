@@ -252,3 +252,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .vi { color: #F8F8F2 } /* Name.Variable.Instance */
 .highlight .vm { color: #F8F8F2 } /* Name.Variable.Magic */
 .highlight .il { color: #AE81FF } /* Literal.Number.Integer.Long */
+
+table {
+        border-collapse: collapse;
+        width: 100%;
+}
+
+td {
+        padding: 0.625rem;
+}
+
+th {
+        border: 1px solid;
+        padding: 0.625rem;
+        align: center;
+}
+
+.math-container {
+        display: flex;
+        justify-content: center;
+}
