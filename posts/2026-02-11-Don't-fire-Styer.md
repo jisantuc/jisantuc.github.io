@@ -2,6 +2,7 @@
 title: Don't fire Styer
 date: 2026-02-24
 description: Don't fire Styer
+readingTime: 12
 ---
 
 In early December last year, Team USA played Team Europe in the 31st Mosconi Cup, a pool tournament run by Matchroom
