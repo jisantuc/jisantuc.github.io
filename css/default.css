@@ -272,3 +272,8 @@ th {
         display: flex;
         justify-content: center;
 }
+
+pre {
+  max-width: 720px;
+  overflow-x: scroll;
+}
