@@ -2,6 +2,7 @@
 title: Packaging a Scala CLI app in 2022
 date: 2022-07-17T23:37:50+00:00
 description: Once upon a time sbt-assembly was the best game in town. Now GraalVM and Node.js are viable bundling alternatives.
+readingTime: 5
 ---
 
 In past work projects, when I've been on a team needing a way to package a Scala application,

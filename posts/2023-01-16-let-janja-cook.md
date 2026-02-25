@@ -6,6 +6,7 @@ description: |
   easier for the women finalists than the men's climbs have been for the men finalists.
   That's a drag as a spectator, since it means I don't get to see what the competition
   climbing GOAT is actually capable of.
+readingTime: 20
 ---
 
 My partner and I watch a lot of competitive climbing. I think I've seen

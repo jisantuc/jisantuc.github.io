@@ -4,7 +4,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ViewPatterns #-}
 
-module Blog.Pandoc (pygmentizingPandocCompiler) where
+module Blog.Pandoc (customPandocCompiler) where
 
 import Control.Concurrent (threadDelay)
 import Data.Functor (void)
@@ -18,6 +18,7 @@ import System.IO (hPrint)
 import System.Process (runInteractiveCommand)
 import Text.Pandoc.Definition (Block (CodeBlock, RawBlock), Pandoc)
 import Text.Pandoc.Walk (walkM)
+import Text.Pandoc (WriterOptions(..), HTMLMathMethod(..))
 
 tshow :: Int -> T.Text
 tshow = T.pack . show
@@ -46,9 +47,10 @@ pygmentsHighlight pandoc = unsafeCompiler do
       RawBlock "html" <$> T.readFile ("/tmp/" <> show (hash body))
     block -> pure block
 
-pygmentizingPandocCompiler :: Compiler (Item String)
-pygmentizingPandocCompiler =
-  pandocCompilerWithTransformM
+customPandocCompiler :: Compiler (Item String)
+customPandocCompiler =
+  let writerOptions = defaultHakyllWriterOptions { writerHTMLMathMethod = MathML }
+   in pandocCompilerWithTransformM
     defaultHakyllReaderOptions
-    defaultHakyllWriterOptions
+    writerOptions
     pygmentsHighlight
