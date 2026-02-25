@@ -4,7 +4,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ViewPatterns #-}
 
-module Blog.Pandoc (pygmentizingPandocCompiler) where
+module Blog.Pandoc (customPandocCompiler) where
 
 import Control.Concurrent (threadDelay)
 import Data.Functor (void)
@@ -47,8 +47,8 @@ pygmentsHighlight pandoc = unsafeCompiler do
       RawBlock "html" <$> T.readFile ("/tmp/" <> show (hash body))
     block -> pure block
 
-pygmentizingPandocCompiler :: Compiler (Item String)
-pygmentizingPandocCompiler =
+customPandocCompiler :: Compiler (Item String)
+customPandocCompiler =
   let writerOptions = defaultHakyllWriterOptions { writerHTMLMathMethod = MathML }
    in pandocCompilerWithTransformM
     defaultHakyllReaderOptions

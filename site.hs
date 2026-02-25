@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 
-import Blog.Pandoc (pygmentizingPandocCompiler)
+import Blog.Pandoc (customPandocCompiler)
 import Hakyll
 
 --------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ main = hakyll $ do
   match "posts/*" $ do
     route $ setExtension "html"
     compile $
-      pygmentizingPandocCompiler
+      customPandocCompiler
         >>= loadAndApplyTemplate "templates/post.html" postCtx
         >>= loadAndApplyTemplate "templates/default.html" postCtx
         >>= relativizeUrls
