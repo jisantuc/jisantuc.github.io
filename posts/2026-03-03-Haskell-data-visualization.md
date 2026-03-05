@@ -399,7 +399,7 @@ That doesn't count as not writing Python! That's just writing Python without any
 writing Python! I'm sure it's fine. It seems nice to be able to use all of Python's `matplotlib`, but writing Python
 in Haskell feels against the spirit of the exercise.
 
-[Don't fire Styer]: ./2026-02-11-Don't-fire-Styer.md
+[Don't fire Styer]: ./2026-02-11-Don't-fire-Styer.html
 [SPIDER]: https://spider.princeton.edu/
 [`kst`]: https://kst-plot.kde.org/
 [`pandas`]: https://pandas.pydata.org/
