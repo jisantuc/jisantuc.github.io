@@ -2,6 +2,7 @@
 title: "Haskell data visualization part 1: Hello, plots"
 date: 2026-03-05
 description: Haskell data visualization
+readingTime: 13
 ---
 
 I learned Python a decade ago because I visited my partner's lab when she was working on [SPIDER] and I saw plots in
