@@ -1,33 +1,31 @@
 ---
 title: "Haskell data visualization part 1: Hello, plots"
-date: 2026-03-03
+date: 2026-03-05
 description: Haskell data visualization
 ---
 
-<!-- TODO: fill in links at the bottom (goofing-off specific file, D3; do people even use D3 anymore?) -->
-
-I learned Python a decade ago because I visited my partner's lab when she was working on [SPIDER] and saw plots in
-[`kst`] that told her whether one of their machines would explode.[^1] I spent all of my
+I learned Python a decade ago because I visited my partner's lab when she was working on [SPIDER] and I saw plots in
+[`kst`] that told her whether one of the machines would explode.[^1] I spent all of my
 formative just-enough-Python-to-be-dangerous time at my first job with [`pandas`],
 [`matplotlib`], and an assortment of other Python plotting libraries. I hand-rolled
 tables with shaded cells and abused the annotations and shapes APIs while trying to
-convince any coworker of mine who hadn't yet lost patience for this discussion that
+convince any coworker of mine who hadn't yet lost patience for that discussion that
 we should get rid of all of our Stata and SAS and R and Excel[^2] and whatever else people were
-using and do everything in Python. When I want to plot something, I've often finished
+using and do everything in Python. When I want to plot something now, I've often finished
 typing `fix, ax = plt.subplots()` before I've even figured out what kind of plot I want.
 
-I'm explaining all this because a week ago I got around to posting [Don't fire Styer]. One of the challenges I set
+I'm explaining all this because a week ago I got around to posting [Don't fire Styer] with some plots showing
+distributions of simulated outcomes for an annual USA vs. Europe pool event. One of the challenges I set
 myself while working on that was that I wasn't allowed to use Python to produce the plots -- I had to produce them in
-Haskell, the same language I used for the [simulation code](https://github.com/jisantuc/goofing-off/blob/main/src/mosconi-sim/Sim.hs).
+Haskell, the same language I used for the [simulation code].
 
-I wound up using the built-in plotting utilities of the new-ish Haskell [`dataframe`] library, which went fine, but a
-lot of time has passed since the last time I went looking for Haskell visualization libraries, and I wanted to know
-what else is out there.
+I wound up using the built-in plotting utilities of the new-ish Haskell [`dataframe`] library, but there are
+options for Haskell visualization libraries now, and I wanted to know what else is out there.
 
 This post is the first of, I don't know, probably three or four posts on data visualization
 in Haskell in early 2026.
 
-## Libraries
+## Plotting with Haskell Libraries
 
 I found a few libraries, with some help from the [DataHaskell Discord].
 
@@ -38,21 +36,21 @@ I found a few libraries, with some help from the [DataHaskell Discord].
 * [`chart-svg`]
 
 I wanted to compare them on a few points, starting with what it looks like to take
-a dataframe and produce a scatter plot.
+a dataframe and produce a scatter plot. I think of scatter plots as "hello, world"
+for plotting things.
 
 Each library has its own idea of what kind of data is plottable. I'm starting with
 a dataframe in every case to hand-wave away some of that difference and to focus instead
 on getting from some kind of data to some kind of graphic.
 
 I'm not going to pick winners and losers, just comment on what's easy and difficult
-at each stage along the way, especially at this early stage -- "it's easy to do something easy" and "it's easy to do
-something hard" are basically uncorrelated.
+at each stage along the way. Especially at this early stage saying one library is better than another would
+be premature -- "it's easy to do something easy" and "it's easy to do something hard" are basically uncorrelated.
 
 For each plot, I used a dataframe full of random points in columns `x` and `y`. All examples are available in my
-[`goofing-off`] repository.
+[`goofing-off` repository].
 
-Anyway, without any further ado, here are five scatter plots with code samples,
-all produced in Haskell, all unmodified.
+Without any further ado, here are five scatter plots with code samples.
 
 ### `dataframe`
 
@@ -387,7 +385,7 @@ chartScatter df =
 
 ### `matplotlib` (Haskell)
 
-I didn't mention this one above. I decided not to include it here because of its API:
+I didn't mention this in the list above because I decided not to include it, but it is out there:
 
 ```haskell
 readData (x, y)
@@ -397,8 +395,17 @@ readData (x, y)
 
 That doesn't count as not writing Python! That's just writing Python without any of the development conveniences of
 writing Python! I'm sure it's fine. It seems nice to be able to use all of Python's `matplotlib`, but writing Python
-in Haskell feels against the spirit of the exercise.
+in Haskell felt against the spirit of the exercise.
 
+## Other posts in this series
+
+I'll update this list as I complete the other posts, but here's the basic outline:
+
+* Hello, plots (this post)
+* Plot configuration (titles, axes, axis labels, axis scaling)
+* Low-level plotting (annotating plots, drawing shapes wherever you want)
+
+[simulation code]: https://github.com/jisantuc/goofing-off/blob/main/src/mosconi-sim/Sim.hs
 [Don't fire Styer]: ./2026-02-11-Don't-fire-Styer.html
 [SPIDER]: https://spider.princeton.edu/
 [`kst`]: https://kst-plot.kde.org/
@@ -413,8 +420,8 @@ in Haskell feels against the spirit of the exercise.
 [typed module]: https://dataframe.readthedocs.io/en/latest/using_dataframe_in_a_standalone_script.html#the-dataframe-typed-module
 [`@mchav`]: https://github.com/mchav
 [Vega visualization grammar]: https://vega.github.io/vega/
-[D3]: tktktk
-[`goofing-off`]: https://github.com/jisantuc/goofing-off
+[D3]: https://d3js.org/
+[`goofing-off` repository]: https://github.com/jisantuc/goofing-off/blob/main/src/plotting-survey/PlotSurvey/Scatter.hs
 [^1]: I took a Java course in high school that was probably helpful to have kicking around in the back of my brain
 for being able to learn Python, but this was when I became Serious™️.
 [^2]: I was also on team "we should get really good at Excel," though I don't think I had
