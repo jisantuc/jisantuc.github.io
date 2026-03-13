@@ -338,7 +338,14 @@ font, and you can't change the axis labels.
 
 [`hvega` part 1]
 
-`hvega`'s part 1 code example was 
+`hvega`'s part 1 code example was more complicated than most of the other examples. Its part 2 example is also more
+complicated, but in part 2, part of the reason for that is clear. If you want, you can use `hvega` to take pretty
+fine-grained control over every aspect of your plot. If you need a long label for your `y` axis and want to make it
+bigger for some reason, you can! If you want different fonts for your title, axis labels, and legends, you can!
+If you want a monochrome/gradated purple scatter plot on a purple background, that's your prerogative!
+
+<!-- TODO: after finishing up todos in goofing-off, include plot -->
+<!-- TODO: after finishing up todos in goofing-off, include code -->
 
 [`dataframe`]: #dataframe
 [`granite`]: #granite
