@@ -33,8 +33,8 @@ I found a few libraries, with some help from the [DataHaskell Discord].
 * [`dataframe`]
 * [`granite`]
 * [`hvega`]
-* [`Chart`]
 * [`chart-svg`]
+* [`Chart`]
 
 I wanted to compare them on a few points, starting with what it looks like to take
 a dataframe and produce a scatter plot. I think of scatter plots as "hello, world"

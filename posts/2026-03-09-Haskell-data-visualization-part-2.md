@@ -15,8 +15,8 @@ In [part one], I made a few scatter plots with default settings (or examples fro
 * [`dataframe`]
 * [`granite`]
 * [`hvega`]
-* [`Chart`]
 * [`chart-svg`]
+* [`Chart`]
 
 I'm interested in a few kinds of plot configuration, specifically:
 
@@ -344,16 +344,102 @@ fine-grained control over every aspect of your plot. If you need a long label fo
 bigger for some reason, you can! If you want different fonts for your title, axis labels, and legends, you can!
 If you want a monochrome/gradated purple scatter plot on a purple background, that's your prerogative!
 
-<!-- TODO: after finishing up todos in goofing-off, include plot -->
-<!-- TODO: after finishing up todos in goofing-off, include code -->
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed"></script>
+<div class="flex-container">
+<div id="vis"></div>
+</div>
+<script type="text/javascript">
+  var spec = {"$schema":"https://vega.github.io/schema/vega-lite/v4.json","background":"rgba(20, 0, 50, 0.2)","data":{"values":[{"tag":"h","x":0.3534645438194275,"y":0.7646807432174683},{"tag":"c","x":0.32620739936828613,"y":0.24561679363250732},{"tag":"a","x":0.5295222997665405,"y":0.44256341457366943},{"tag":"h","x":0.3448813557624817,"y":0.42339348793029785},{"tag":"h","x":0.9110702276229858,"y":0.3404604196548462},{"tag":"f","x":0.46277785301208496,"y":0.31038039922714233},{"tag":"e","x":0.6625450849533081,"y":1.5111148357391357e-2},{"tag":"e","x":0.2622825503349304,"y":0.2885952591896057},{"tag":"e","x":0.22069913148880005,"y":0.9215577840805054},{"tag":"d","x":0.6760194301605225,"y":1.4743328094482422e-2},{"tag":"d","x":0.4490765333175659,"y":0.2123563289642334},{"tag":"i","x":0.6883180141448975,"y":0.7867722511291504},{"tag":"f","x":0.3093075156211853,"y":0.9398903846740723},{"tag":"f","x":0.4116531014442444,"y":0.2679063081741333},{"tag":"a","x":0.7071211338043213,"y":0.29371726512908936},{"tag":"c","x":0.16701936721801758,"y":0.28365814685821533},{"tag":"j","x":0.2286723256111145,"y":0.269214928150177},{"tag":"d","x":0.16634488105773926,"y":0.9851366877555847},{"tag":"c","x":0.1984427571296692,"y":0.9260008931159973},{"tag":"h","x":0.7724000811576843,"y":0.9107091426849365},{"tag":"j","x":0.7828733325004578,"y":0.2657080292701721},{"tag":"e","x":0.5319154262542725,"y":0.34964942932128906},{"tag":"c","x":4.3488502502441406e-2,"y":0.6190537214279175},{"tag":"f","x":0.44633740186691284,"y":0.25183558464050293},{"tag":"i","x":0.8433091640472412,"y":0.4271125793457031},{"tag":"e","x":0.967324435710907,"y":0.2033606767654419},{"tag":"d","x":0.671101987361908,"y":0.9590272307395935},{"tag":"g","x":0.5955027341842651,"y":0.4679107666015625},{"tag":"f","x":0.9207983016967773,"y":7.917124032974243e-2},{"tag":"e","x":0.25629138946533203,"y":2.0924031734466553e-2},{"tag":"h","x":0.5484182238578796,"y":0.89446622133255},{"tag":"g","x":0.5328551530838013,"y":0.4424973726272583},{"tag":"f","x":0.9732285737991333,"y":0.5688970685005188},{"tag":"i","x":0.9706964492797852,"y":0.9047513604164124},{"tag":"c","x":0.3938533663749695,"y":0.15677368640899658},{"tag":"d","x":0.748245120048523,"y":0.9869019985198975},{"tag":"h","x":0.631543755531311,"y":0.5476692914962769},{"tag":"g","x":0.9574474096298218,"y":0.7811559438705444},{"tag":"c","x":0.11577272415161133,"y":0.6882503032684326},{"tag":"e","x":0.3827521800994873,"y":0.46921753883361816},{"tag":"e","x":0.5296564698219299,"y":3.247523307800293e-2},{"tag":"e","x":0.8823338747024536,"y":0.9922868013381958},{"tag":"a","x":2.5850534439086914e-3,"y":0.7928040027618408},{"tag":"c","x":0.6248728036880493,"y":0.8084238767623901},{"tag":"e","x":0.4718790650367737,"y":0.2412390112876892},{"tag":"c","x":0.14767831563949585,"y":0.2762610912322998},{"tag":"i","x":0.330502450466156,"y":0.3041015863418579},{"tag":"j","x":0.5074955821037292,"y":0.8574939370155334},{"tag":"a","x":0.5957183837890625,"y":0.58250892162323},{"tag":"e","x":0.44432806968688965,"y":0.7042456865310669},{"tag":"f","x":6.755787134170532e-2,"y":0.9560316205024719},{"tag":"i","x":0.577117919921875,"y":0.5104788541793823},{"tag":"e","x":0.44349467754364014,"y":0.6241000890731812},{"tag":"j","x":0.36216408014297485,"y":5.0656795501708984e-2},{"tag":"c","x":0.9253231287002563,"y":0.4546962380409241},{"tag":"g","x":0.18175959587097168,"y":0.5639089345932007},{"tag":"j","x":4.538452625274658e-2,"y":0.667798638343811},{"tag":"g","x":0.4858781099319458,"y":0.654837965965271},{"tag":"a","x":0.1372065544128418,"y":0.9879699945449829},{"tag":"c","x":0.5128378868103027,"y":0.538031280040741},{"tag":"f","x":0.5423336029052734,"y":0.12009698152542114},{"tag":"c","x":0.3819701075553894,"y":0.3312155604362488},{"tag":"b","x":0.18407487869262695,"y":0.5023034811019897},{"tag":"j","x":0.3928583264350891,"y":0.4869365692138672},{"tag":"b","x":0.8531350493431091,"y":0.2430042028427124},{"tag":"g","x":0.4949987530708313,"y":3.5435259342193604e-2},{"tag":"f","x":0.9173020720481873,"y":0.45381754636764526},{"tag":"b","x":0.2909538745880127,"y":0.12964683771133423},{"tag":"f","x":0.9128061532974243,"y":4.847770929336548e-2},{"tag":"d","x":0.602918267250061,"y":0.2017972469329834},{"tag":"j","x":7.814359664916992e-2,"y":0.4179497957229614},{"tag":"j","x":0.5313090682029724,"y":0.385262131690979},{"tag":"g","x":0.5944989919662476,"y":0.3890954852104187},{"tag":"j","x":4.082685708999634e-2,"y":0.5151517987251282},{"tag":"g","x":0.1863141655921936,"y":0.172044038772583},{"tag":"h","x":0.26684606075286865,"y":4.2594075202941895e-3},{"tag":"a","x":0.5081974267959595,"y":0.7359441518783569},{"tag":"b","x":0.6942615509033203,"y":0.5047047138214111},{"tag":"a","x":0.8246698379516602,"y":0.8133428692817688},{"tag":"h","x":0.3627259135246277,"y":0.6756367087364197},{"tag":"h","x":4.698789119720459e-2,"y":0.12035775184631348},{"tag":"b","x":0.9903135895729065,"y":0.2509654760360718},{"tag":"c","x":0.9521323442459106,"y":6.321358680725098e-2},{"tag":"i","x":0.348103404045105,"y":0.17407846450805664},{"tag":"d","x":3.626072406768799e-2,"y":0.9394771456718445},{"tag":"e","x":0.9597281217575073,"y":0.5522154569625854},{"tag":"a","x":0.9070404171943665,"y":0.7608577609062195},{"tag":"f","x":0.5497339963912964,"y":8.383971452713013e-2},{"tag":"e","x":0.5110119581222534,"y":0.9187237024307251},{"tag":"d","x":8.078658580780029e-2,"y":8.87221097946167e-3},{"tag":"f","x":0.1304464340209961,"y":0.4757652282714844},{"tag":"f","x":0.14964228868484497,"y":3.9104342460632324e-2},{"tag":"c","x":0.8647952079772949,"y":0.43305128812789917},{"tag":"b","x":0.6753919124603271,"y":0.9627551436424255},{"tag":"h","x":0.22164326906204224,"y":0.9486547708511353},{"tag":"j","x":0.23742926120758057,"y":0.7539982795715332},{"tag":"i","x":0.9838802814483643,"y":0.7751061320304871},{"tag":"c","x":0.5770595073699951,"y":0.7527228593826294},{"tag":"j","x":0.5123244524002075,"y":0.19890618324279785},{"tag":"f","x":0.828194797039032,"y":0.6226693987846375}]},"encoding":{"color":{"field":"tag","scale":{"scheme":{"count":10,"name":"purples"}},"type":"nominal"},"x":{"axis":{"title":"The x values"},"field":"x","scale":{"domain":[0,1.2]},"type":"quantitative"},"y":{"axis":{"title":"The very important y values","titleFontSize":18},"field":"y","scale":{"type":"log"},"type":"quantitative"}},"height":200,"mark":"point","title":{"font":"Hasklug Nerd Font","fontStyle":"italic","text":"Wide purple plot >>="},"width":600};
+  vegaEmbed('#vis', spec).then(function(result) {
+  // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
+
+```haskell
+{-# LANGUAGE OverloadedStrings #-}
+
+import qualified DataFrame.Typed as DT
+import ExampleData (LabeledDfSchema)
+import qualified Graphics.Vega.VegaLite as V
+
+hvegaScatterConfig :: DT.TypedDataFrame LabeledDfSchema -> IO ()
+hvegaScatterConfig df =
+  let vegaColumns =
+        [ V.dataColumn "x" (V.Numbers (float2Double <$> DT.columnAsList @"x" df)),
+          V.dataColumn "y" (V.Numbers (float2Double <$> DT.columnAsList @"y" df)),
+          V.dataColumn "tag" (V.Strings ((Text.pack . pure <$> DT.columnAsList @"tag" df)))
+        ]
+      vegaData = foldl' (.) (V.dataFromColumns []) vegaColumns
+      enc =
+        V.encoding
+          . V.position
+            V.X
+            [ V.PName "x",
+              V.PmType V.Quantitative,
+              -- control axis extent
+              V.PScale [V.SDomain (V.DNumbers [0, 1.2])],
+              V.PAxis [V.AxTitle "The x values"]
+            ]
+          . V.position
+            V.Y
+            [ V.PName "y",
+              V.PmType V.Quantitative,
+              -- set a log scale on y
+              V.PScale [V.SType V.ScLog],
+              V.PAxis [V.AxTitle "The very important y values", V.AxTitleFontSize 18]
+            ]
+          -- color the points based on tag using the "purples" scale
+          . V.color [V.MName "tag", V.MmType V.Nominal, V.MScale [V.SScheme "purples" [10]]]
+      -- set a different title with a different font
+      title = V.title "Wide purple plot >>=" [V.TFont "Hasklug Nerd Font", V.TFontStyle "italic"]
+   in V.toHtmlFile "plots/vegaScatterConfig.html" $
+        V.toVegaLite
+          [ vegaData [],
+            V.mark V.Point [],
+            enc [],
+            title,
+            -- change the plot dimensions
+            V.width 600,
+            V.height 200,
+            -- set a background color even though that wasn't part of the challenge
+            V.background "rgba(20, 0, 50, 0.2)"
+          ]
+```
+
+If you also have the `Hasklug Nerd Font`, you'll see nice ligatures on the `>>=` in the plot title.
+
+As a Vega / Vega Lite novice, I didn't have the easiest time figuring out what values I needed to provide in order to
+configure the different aspects of the plot, and this example is about three times as many lines of code as the example
+in part 1. Still, the trade for this complexity is _power_.
+
+`hvega` [targets version 4] of the Vega specification. The current version of the Vega specification is version 6.
+One cost of targeting an older version of the specification is that if you click on the three dots next to the plot
+and choose "Open in Vega Editor," you'll get a warning about how the editor wants version 6, but if you want to edit
+the plot using Vega Editor, you can just lie and bump the `"$scheme"` property to `v6.json` instead.
+
+### `chart-svg`
+
+[`chart-svg` part 1]
+
+### `Chart`
+
+[`Chart` part 1]
 
 [`dataframe`]: #dataframe
 [`granite`]: #granite
-[`granite`]: #hvega
+[`hvega`]: #hvega
+[`chart-svg`]: #chart-svg
+[`Chart`]: #chart
 [`dataframe` part 1]: ./2026-03-05-Haskell-data-visualization.html#dataframe
 [`granite` part 1]: ./2026-03-05-Haskell-data-visualization.html#granite
 [`hvega` part 1]: ./2026-03-05-Haskell-data-visualization.html#hvega
+[`chart-svg` part 1]: ./2026-03-05-Haskell-data-visualization.html#chart-svg
+[`Chart` part 1]: ./2026-03-05-Haskell-data-visualization.html#chart
 [part one]: ./2026-03-05-Haskell-data-visualization.html
 [`plotScatter`]: https://hackage-content.haskell.org/package/dataframe-0.7.0.0/docs/DataFrame-Display-Web-Plot.html#v:plotScatter
 [`PlotConfig`]: https://hackage-content.haskell.org/package/dataframe-0.7.0.0/docs/DataFrame-Display-Web-Plot.html#t:PlotConfig
 [`defPlot`]: https://hackage-content.haskell.org/package/granite-0.4.0.0/docs/Granite.html#v:defPlot
+[targets version 4]: https://github.com/DougBurke/hvega/blob/903a146eb6e659267d1768f74d20247869785234/README.md#package-hvega
+[v5.0.0]: https://github.com/vega/vega/releases/tag/v5.0.0
