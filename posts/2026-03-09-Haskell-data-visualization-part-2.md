@@ -304,8 +304,8 @@ import qualified Granite.Svg as GSvg
 
 graniteSvgScatterConfig :: DT.TypedDataFrame LabeledDfSchema -> IO ()
 graniteSvgScatterConfig df =
-  let xs = float2Double <$> DT.columnAsList @"x" df
-      ys = float2Double <$> DT.columnAsList @"y" df
+  let xs = DT.columnAsList @"x" df
+      ys = DT.columnAsList @"y" df
       plotConfig =
         G.defPlot
           { G.widthChars = 30,
@@ -367,8 +367,8 @@ import qualified Graphics.Vega.VegaLite as V
 hvegaScatterConfig :: DT.TypedDataFrame LabeledDfSchema -> IO ()
 hvegaScatterConfig df =
   let vegaColumns =
-        [ V.dataColumn "x" (V.Numbers (float2Double <$> DT.columnAsList @"x" df)),
-          V.dataColumn "y" (V.Numbers (float2Double <$> DT.columnAsList @"y" df)),
+        [ V.dataColumn "x" (V.Numbers (DT.columnAsList @"x" df)),
+          V.dataColumn "y" (V.Numbers (DT.columnAsList @"y" df)),
           V.dataColumn "tag" (V.Strings ((Text.pack . pure <$> DT.columnAsList @"tag" df)))
         ]
       vegaData = foldl' (.) (V.dataFromColumns []) vegaColumns
@@ -412,7 +412,7 @@ If you also have the `Hasklug Nerd Font`, you'll see nice ligatures on the `>>=`
 
 As a Vega / Vega Lite novice, I didn't have the easiest time figuring out what values I needed to provide in order to
 configure the different aspects of the plot, and this example is about three times as many lines of code as the example
-in part 1. Still, the trade for this complexity is _power_.
+in part 1. The trade for this complexity is _power_.[^1]
 
 `hvega` [targets version 4] of the Vega specification. The current version of the Vega specification is version 6.
 One cost of targeting an older version of the specification is that if you click on the three dots next to the plot
@@ -443,3 +443,5 @@ the plot using Vega Editor, you can just lie and bump the `"$scheme"` property t
 [`defPlot`]: https://hackage-content.haskell.org/package/granite-0.4.0.0/docs/Granite.html#v:defPlot
 [targets version 4]: https://github.com/DougBurke/hvega/blob/903a146eb6e659267d1768f74d20247869785234/README.md#package-hvega
 [v5.0.0]: https://github.com/vega/vega/releases/tag/v5.0.0
+[^1]: Not that changing axis labels is the most power anyone can imagine in a charting library, but it's more power
+than _not_ changing axis labels.
