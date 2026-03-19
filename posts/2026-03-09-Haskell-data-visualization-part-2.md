@@ -423,6 +423,333 @@ the plot using Vega Editor, you can just lie and bump the `"$scheme"` property t
 
 [`chart-svg` part 1]
 
+<div class="flex-container">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="200" viewBox="-1.5 -0.5 3.0 1.0">
+        <style>
+                svg {color-scheme: light dark;} {.canvas g, .title g, .axisbar
+                g, .ticktext g, .tickglyph g, .ticklines g, .legendContent g
+                text {fill: rgb(5%, 5%, 5%);} .ticklines g, .tickglyph g,
+                .legendBorder g {stroke: rgb(5%, 5%, 5%);} .legendBorder g
+                {fill: rgb(94%, 94%, 94%);}} @media (prefers-color-scheme:dark)
+                {.canvas g, .title g, .axisbar g, .ticktext g, .tickglyph g,
+                .ticklines g, .legendContent g text {fill: rgb(94%, 94%, 94%);}
+                .ticklines g, .tickglyph g, .legendBorder g {stroke: rgb(94%,
+                94%, 94%);} .legendBorder g {fill: rgb(5%, 5%, 5%);}}svg {
+                font-family: "Hasklug Nerd Font"; }
+        </style>
+        <g class="chart">
+                <g class="titled-scatter">
+                        <g stroke-width="0.0030" stroke="rgb(2%, 29%, 48%)" stroke-opacity="1.0" fill="rgb(96%, 60%, 92%)" fill-opacity="1.0">
+                                <rect width="0.0150" height="0.0150" x="-0.4516" y="-0.2905"/>
+                                <rect width="0.0150" height="0.0150" x="1.3007" y="0.2825"/>
+                                <rect width="0.0150" height="0.0150" x="0.6275" y="-0.0270"/>
+                                <rect width="0.0150" height="0.0150" x="1.0984" y="-0.1041"/>
+                                <rect width="0.0150" height="0.0150" x="0.5489" y="0.1209"/>
+                                <rect width="0.0150" height="0.0150" x="-0.5807" y="-0.2152"/>
+                                <rect width="0.0150" height="0.0150" x="-0.0901" y="-0.4055"/>
+                                <rect width="0.0150" height="0.0150" x="1.1565" y="-0.1553"/>
+                                <rect width="0.0150" height="0.0150" x="0.7492" y="-0.0895"/>
+                                <rect width="0.0150" height="0.0150" x="-0.0791" y="0.2613"/>
+                                <rect width="0.0150" height="0.0150" x="0.6496" y="0.1597"/>
+                                <rect width="0.0150" height="0.0150" x="-0.3593" y="0.2558"/>
+                                <rect width="0.0150" height="0.0150" x="0.3978" y="-0.3511"/>
+                                <rect width="0.0150" height="0.0150" x="1.3749" y="0.1824"/>
+                                <rect width="0.0150" height="0.0150" x="0.3339" y="-0.1332"/>
+                                <rect width="0.0150" height="0.0150" x="0.9458" y="-0.0578"/>
+                                <rect width="0.0150" height="0.0150" x="-0.3216" y="-0.1276"/>
+                                <rect width="0.0150" height="0.0150" x="-0.1031" y="0.1486"/>
+                                <rect width="0.0150" height="0.0150" x="-0.4147" y="0.0873"/>
+                                <rect width="0.0150" height="0.0150" x="-0.3674" y="0.0936"/>
+                                <rect width="0.0150" height="0.0150" x="-0.9868" y="0.1108"/>
+                                <rect width="0.0150" height="0.0150" x="-0.3707" y="-0.2156"/>
+                                <rect width="0.0150" height="0.0150" x="1.3539" y="-0.3410"/>
+                                <rect width="0.0150" height="0.0150" x="-1.0505" y="-0.2919"/>
+                                <rect width="0.0150" height="0.0150" x="0.0017" y="0.0517"/>
+                                <rect width="0.0150" height="0.0150" x="-0.3801" y="-0.1526"/>
+                                <rect width="0.0150" height="0.0150" x="-0.0526" y="-0.2982"/>
+                                <rect width="0.0150" height="0.0150" x="0.3089" y="-0.2065"/>
+                                <rect width="0.0150" height="0.0150" x="-1.0514" y="0.2346"/>
+                                <rect width="0.0150" height="0.0150" x="-0.7235" y="-0.3110"/>
+                                <rect width="0.0150" height="0.0150" x="1.4133" y="-0.3436"/>
+                                <rect width="0.0150" height="0.0150" x="-0.9486" y="0.1274"/>
+                                <rect width="0.0150" height="0.0150" x="0.7736" y="-0.2738"/>
+                                <rect width="0.0150" height="0.0150" x="1.2207" y="-0.1758"/>
+                                <rect width="0.0150" height="0.0150" x="0.1509" y="0.0935"/>
+                                <rect width="0.0150" height="0.0150" x="0.1270" y="-0.3922"/>
+                                <rect width="0.0150" height="0.0150" x="0.5379" y="-0.0709"/>
+                                <rect width="0.0150" height="0.0150" x="-0.8900" y="-0.2870"/>
+                                <rect width="0.0150" height="0.0150" x="0.7295" y="-0.0584"/>
+                                <rect width="0.0150" height="0.0150" x="0.0366" y="-0.3371"/>
+                                <rect width="0.0150" height="0.0150" x="1.2961" y="-0.1638"/>
+                                <rect width="0.0150" height="0.0150" x="0.5369" y="0.0382"/>
+                                <rect width="0.0150" height="0.0150" x="-1.1378" y="0.0930"/>
+                                <rect width="0.0150" height="0.0150" x="-0.7716" y="-0.3700"/>
+                                <rect width="0.0150" height="0.0150" x="0.7358" y="0.0789"/>
+                                <rect width="0.0150" height="0.0150" x="0.4442" y="-0.2721"/>
+                                <rect width="0.0150" height="0.0150" x="-0.1756" y="-0.0474"/>
+                                <rect width="0.0150" height="0.0150" x="-0.7149" y="0.0063"/>
+                                <rect width="0.0150" height="0.0150" x="-0.0993" y="0.0637"/>
+                                <rect width="0.0150" height="0.0150" x="0.5462" y="0.1884"/>
+                                <rect width="0.0150" height="0.0150" x="-0.2619" y="-0.1577"/>
+                                <rect width="0.0150" height="0.0150" x="-0.2910" y="-0.1320"/>
+                                <rect width="0.0150" height="0.0150" x="-0.6835" y="0.1384"/>
+                                <rect width="0.0150" height="0.0150" x="0.5587" y="0.2898"/>
+                                <rect width="0.0150" height="0.0150" x="0.0356" y="0.0188"/>
+                                <rect width="0.0150" height="0.0150" x="0.2595" y="-0.2427"/>
+                                <rect width="0.0150" height="0.0150" x="0.3423" y="-0.0524"/>
+                                <rect width="0.0150" height="0.0150" x="1.0371" y="-0.3846"/>
+                                <rect width="0.0150" height="0.0150" x="0.8184" y="0.1063"/>
+                                <rect width="0.0150" height="0.0150" x="-1.1972" y="0.1469"/>
+                                <rect width="0.0150" height="0.0150" x="1.3645" y="0.2851"/>
+                                <rect width="0.0150" height="0.0150" x="-0.6515" y="-0.3517"/>
+                                <rect width="0.0150" height="0.0150" x="0.0575" y="-0.1836"/>
+                                <rect width="0.0150" height="0.0150" x="-0.7569" y="-0.0668"/>
+                                <rect width="0.0150" height="0.0150" x="0.4221" y="-0.2815"/>
+                                <rect width="0.0150" height="0.0150" x="0.4948" y="0.2671"/>
+                                <rect width="0.0150" height="0.0150" x="-0.2792" y="0.0120"/>
+                                <rect width="0.0150" height="0.0150" x="1.1261" y="-0.4041"/>
+                                <rect width="0.0150" height="0.0150" x="-0.2337" y="-0.3893"/>
+                                <rect width="0.0150" height="0.0150" x="1.1526" y="0.1029"/>
+                                <rect width="0.0150" height="0.0150" x="1.2041" y="-0.1516"/>
+                                <rect width="0.0150" height="0.0150" x="-0.8203" y="-0.1948"/>
+                                <rect width="0.0150" height="0.0150" x="-0.3841" y="-0.2139"/>
+                                <rect width="0.0150" height="0.0150" x="0.8738" y="-0.0775"/>
+                                <rect width="0.0150" height="0.0150" x="-0.2311" y="-0.3663"/>
+                                <rect width="0.0150" height="0.0150" x="-0.3889" y="-0.2139"/>
+                                <rect width="0.0150" height="0.0150" x="0.6564" y="0.1757"/>
+                                <rect width="0.0150" height="0.0150" x="0.0304" y="-0.2503"/>
+                                <rect width="0.0150" height="0.0150" x="0.8293" y="0.2510"/>
+                                <rect width="0.0150" height="0.0150" x="-0.6900" y="0.1359"/>
+                                <rect width="0.0150" height="0.0150" x="1.3539" y="-0.3232"/>
+                                <rect width="0.0150" height="0.0150" x="0.1831" y="-0.1504"/>
+                                <rect width="0.0150" height="0.0150" x="-1.0879" y="-0.2250"/>
+                                <rect width="0.0150" height="0.0150" x="-1.1932" y="0.0756"/>
+                                <rect width="0.0150" height="0.0150" x="0.7193" y="-0.3236"/>
+                                <rect width="0.0150" height="0.0150" x="1.0135" y="-0.2757"/>
+                                <rect width="0.0150" height="0.0150" x="1.3628" y="-0.0733"/>
+                                <rect width="0.0150" height="0.0150" x="-0.6028" y="0.1840"/>
+                                <rect width="0.0150" height="0.0150" x="-0.6708" y="-0.0725"/>
+                                <rect width="0.0150" height="0.0150" x="-0.0173" y="-0.1282"/>
+                                <rect width="0.0150" height="0.0150" x="-1.2270" y="-0.3498"/>
+                                <rect width="0.0150" height="0.0150" x="0.4452" y="-0.1233"/>
+                                <rect width="0.0150" height="0.0150" x="0.7288" y="-0.0329"/>
+                                <rect width="0.0150" height="0.0150" x="0.1125" y="0.2305"/>
+                                <rect width="0.0150" height="0.0150" x="-0.4432" y="-0.3266"/>
+                                <rect width="0.0150" height="0.0150" x="-0.3392" y="-0.2192"/>
+                                <rect width="0.0150" height="0.0150" x="-0.1832" y="-0.0615"/>
+                                <rect width="0.0150" height="0.0150" x="1.1444" y="-0.2296"/>
+                                <rect width="0.0150" height="0.0150" x="0.7076" y="-0.1043"/>
+                                <rect width="0.0150" height="0.0150" x="-0.7236" y="-0.2183"/>
+                        </g>
+                </g>
+                <g class="datapadding">
+        </g>
+</g>
+<g class="hud">
+        <g class="title">
+                <g stroke-width="0.0" stroke="none" fill="rgb(5%, 5%, 5%)" fill-opacity="1.0" font-size="0.0500" text-anchor="middle">
+                        <text x="0.1022" y="-0.4433">
+                                titled scatter
+                        </text>
+                </g>
+        </g>
+        <g class="frame">
+                <g stroke-width="0" stroke="rgb(0%, 0%, 0%)" stroke-opacity="0" fill="rgb(100%, 100%, 100%)" fill-opacity="0.02">
+                        <rect width="2.6595" height="0.7082" x="-1.2276" y="-0.4044"/>
+                </g>
+        </g>
+        <g class="title">
+                <g stroke-width="0.0" stroke="none" fill="rgb(5%, 5%, 5%)" fill-opacity="1.0" font-size="0.12" text-anchor="middle">
+                        <text x="0.1022" y="0.4001">
+                                x label
+                        </text>
+                </g>
+        </g>
+        <g class="title">
+                <g stroke-width="0.0" stroke="none" fill="rgb(5%, 5%, 5%)" fill-opacity="1.0" font-size="0.12" text-anchor="middle">
+                        <text x="-1.2957" y="-0.0230" transform="rotate(-90.0, -1.2957, -0.0230)">
+                                y label
+                        </text>
+                </g>
+        </g>
+        <g class="axis">
+                <g class="axisbar">
+                        <g stroke-width="0" stroke="rgb(0%, 0%, 0%)" stroke-opacity="0" fill="rgb(5%, 5%, 5%)" fill-opacity="0.4">
+                                <rect width="2.6631" height="0.0028" x="-1.2294" y="0.3109"/>
+                        </g>
+                </g>
+                <g class="ticks">
+                        <g class="ticklines">
+                                <g stroke-width="0.0050" stroke="rgb(5%, 5%, 5%)" stroke-opacity="0.05" fill="none">
+                                        <polyline points="-1.2276,0.3038 -1.2276,-0.3999"/>
+                                        <polyline points="-0.6957,0.3038 -0.6957,-0.3999"/>
+                                        <polyline points="-0.1638,0.3038 -0.1638,-0.3999"/>
+                                        <polyline points="0.3681,0.3038 0.3681,-0.3999"/>
+                                        <polyline points="0.9000,0.3038 0.9000,-0.3999"/>
+                                        <polyline points="1.4319,0.3038 1.4319,-0.3999"/>
+                                </g>
+                        </g>
+                        <g class="tickglyph">
+                                <g stroke-width="0.0028" stroke="rgb(5%, 5%, 5%)" stroke-opacity="0.4" fill="rgb(5%, 5%, 5%)" fill-opacity="0.4">
+                                        <polyline points="-1.2276,0.3336
+                                                -1.2276,0.3123"/>
+                                                <polyline points="-0.6957,0.3336 -0.6957,0.3123"/>
+                                                <polyline points="-0.1638,0.3336 -0.1638,0.3123"/>
+                                                <polyline points="0.3681,0.3336 0.3681,0.3123"/>
+                                                <polyline points="0.9000,0.3336 0.9000,0.3123"/>
+                                                <polyline points="1.4319,0.3336
+                                                        1.4319,0.3123"/>
+                                                </g>
+                                        </g>
+                                        <g class="ticktext">
+                                                <g stroke-width="0.0" stroke="none" fill="rgb(5%, 5%, 5%)" fill-opacity="1.0" font-size="0.0400" text-anchor="middle">
+                                                        <text x="-1.2276" y="0.4632">
+                                                                0.0
+                                                        </text>
+                                                        <text x="-0.6957" y="0.4632">
+                                                                0.2
+                                                        </text>
+                                                        <text x="-0.1638" y="0.4632">
+                                                                0.4
+                                                        </text>
+                                                        <text x="0.3681" y="0.4632">
+                                                                0.6
+                                                        </text>
+                                                        <text x="0.9000" y="0.4632">
+                                                                0.8
+                                                        </text>
+                                                        <text x="1.4319" y="0.4632">
+                                                                1.0
+                                                        </text>
+                                                </g>
+                                        </g>
+                                </g>
+                        </g>
+                        <g class="axis">
+                                <g class="axisbar">
+                                        <g stroke-width="0" stroke="rgb(0%, 0%, 0%)" stroke-opacity="0" fill="rgb(5%, 5%, 5%)" fill-opacity="0.4">
+                                                <rect width="0.0036" height="0.7066" x="-1.2401" y="-0.4014"/>
+                                        </g>
+                                </g>
+                                <g class="ticks">
+                                        <g class="ticklines">
+                                                <g stroke-width="0.0050" stroke="rgb(5%, 5%, 5%)" stroke-opacity="0.05" fill="none">
+                                                        <polyline points="-1.2276,0.3038 1.4319,0.3038"/>
+                                                        <polyline points="-1.2276,0.1631 1.4319,0.1631"/>
+                                                        <polyline points="-1.2276,0.0223 1.4319,0.0223"/>
+                                                        <polyline points="-1.2276,-0.1184 1.4319,-0.1184"/>
+                                                        <polyline points="-1.2276,-0.2592 1.4319,-0.2592"/>
+                                                        <polyline points="-1.2276,-0.3999 1.4319,-0.3999"/>
+                                                </g>
+                                        </g>
+                                        <g class="tickglyph">
+                                                <g stroke-width="0.0036" stroke="rgb(5%, 5%, 5%)" stroke-opacity="0.4" fill="rgb(5%, 5%, 5%)" fill-opacity="0.4">
+                                                        <polyline points="-1.2652,0.3038
+                                                                -1.2383,0.3038"/>
+                                                                <polyline points="-1.2652,0.1631 -1.2383,0.1631"/>
+                                                                <polyline points="-1.2652,0.0223 -1.2383,0.0223"/>
+                                                                <polyline points="-1.2652,-0.1184 -1.2383,-0.1184"/>
+                                                                <polyline points="-1.2652,-0.2592 -1.2383,-0.2592"/>
+                                                                <polyline points="-1.2652,-0.3999
+                                                                        -1.2383,-0.3999"/>
+                                                                </g>
+                                                        </g>
+                                                        <g class="ticktext">
+                                                                <g stroke-width="0.0" stroke="none" fill="rgb(5%, 5%, 5%)" fill-opacity="1.0" font-size="0.0400" text-anchor="end">
+                                                                        <text x="-1.3996" y="0.3116">
+                                                                                0.0
+                                                                        </text>
+                                                                        <text x="-1.3996" y="0.1709">
+                                                                                0.2
+                                                                        </text>
+                                                                        <text x="-1.3996" y="0.0301">
+                                                                                0.4
+                                                                        </text>
+                                                                        <text x="-1.3996" y="-0.1106">
+                                                                                0.6
+                                                                        </text>
+                                                                        <text x="-1.3996" y="-0.2514">
+                                                                                0.8
+                                                                        </text>
+                                                                        <text x="-1.3996" y="-0.3922">
+                                                                                1.0
+                                                                        </text>
+                                                                </g>
+                                                        </g>
+                                                </g>
+                                        </g>
+                                        <g class="frame">
+                                                <g stroke-width="0" stroke="rgb(0%, 0%, 0%)" stroke-opacity="0" fill="rgb(0%, 0%, 0%)" fill-opacity="0">
+                                                        <rect width="3.0" height="1.0" x="-1.5" y="-0.5"/>
+</g>
+</g>
+</g>
+</svg>
+</div>
+
+
+```haskell 
+chartSvgScatter :: DT.TypedDataFrame LabeledDfSchema -> IO ()
+chartSvgScatter df =
+  let xs = DT.columnAsList @"x" df
+      ys = DT.columnAsList @"y" df
+      points = zipWith ChartSVG.Point xs ys
+      -- change mark color
+      style = ChartSVG.defaultGlyphStyle & #color .~ ChartSVG.palette 123 & #size .~ 0.015
+      chart = ChartSVG.GlyphChart style points
+      scatterExample =
+        mempty
+          -- title a plot
+          & set #chartTree (ChartSVG.named "titled-scatter" [chart])
+          & #hudOptions
+            .~ ( ChartSVG.defaultHudOptions
+                   -- title a plot
+                   & #titles
+                     .~ [ ChartSVG.Priority 0 $
+                            ChartSVG.defaultTitleOptions "<$> titled scatter <$>"
+                              & #style % #size .~ 0.05,
+                          -- add specific labels for x and y
+                          ChartSVG.Priority 1 $
+                            ChartSVG.defaultTitleOptions "x label" & #place .~ PlaceBottom,
+                          ChartSVG.Priority 2 $
+                            ChartSVG.defaultTitleOptions "y label"
+                              & #place .~ PlaceLeft
+                        ]
+               )
+          -- change font
+          & #markupOptions % #cssOptions % #fontFamilies .~ "svg { font-family: \"Hasklug Nerd Font\"; }"
+          -- resize the plot
+          & #markupOptions % #markupHeight .~ Just 200
+          & #markupOptions % #chartAspect .~ ChartSVG.FixedAspect 3 ::
+          ChartSVG.ChartOptions
+   in ChartSVG.writeChartOptions "plots/chartSvgScatterConfig.svg" scatterExample
+```
+
+Configuring some parts of the `chart-svg` output were easier than others. The use of the 
+[`OverloadedLabels`] with `optics` in the examples really pays off when trying to configure any part of the chart.
+[`chart-svg` docs] note:
+
+> `Chart`, `HudOptions` and associated chart configuration types are big and sometimes deep syntax trees, and simple
+> optics; getting, setting and modding, makes manipulation more pleasant.
+
+I agree. Especially because I have a single module with a bunch of qualified imports, the alternative where I would
+have used record update syntax instead seemed really tedious.
+
+Even when they're easy to set though, some of the styles are just raw CSS strings, like many of the properties under
+`cssOptions`. To set font for a title, I used
+
+```haskell
+mempty
+  -- ...
+  & #markupOptions % #cssOptions % #fontFamilies .~ something
+```
+
+That `something` is a raw bytestring, which it's on you as the developer to ensure is valid CSS targeting the thing
+you care about. Some people spend a lot of time writing CSS and are good at it. I am not, so this was a rough API for
+me.
+
+I did not figure out how to log scale one of the axes or change the axis limits.[^2]
+
 ### `Chart`
 
 [`Chart` part 1]
@@ -443,5 +770,11 @@ the plot using Vega Editor, you can just lie and bump the `"$scheme"` property t
 [`defPlot`]: https://hackage-content.haskell.org/package/granite-0.4.0.0/docs/Granite.html#v:defPlot
 [targets version 4]: https://github.com/DougBurke/hvega/blob/903a146eb6e659267d1768f74d20247869785234/README.md#package-hvega
 [v5.0.0]: https://github.com/vega/vega/releases/tag/v5.0.0
+[`chart-svg` docs]: https://hackage-content.haskell.org/package/chart-svg-0.8.3.2/docs/Chart.html#g:7
+[`OverloadedLabels`]: https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/overloaded_labels.html
 [^1]: Not that changing axis labels is the most power anyone can imagine in a charting library, but it's more power
 than _not_ changing axis labels.
+[^2]:  I also somehow broke the exported `svg` by including `<$>` in the title text for the main plot, so I've edited
+it slightly here so it will embed in this page correctly. The export went fine when saving it off as its own file, so
+I'm guessing it's something to do with pandoc's render of the markdown containing the svg, but I don't really know.
+Anyway, I don't think it was `chart-svg`'s fault. Computers, man.
