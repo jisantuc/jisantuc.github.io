@@ -1,10 +1,11 @@
 ---
 title: "Haskell data visualization part 2: Hello, slightly different plots"
-date: 2026-03-09
+date: 2026-03-21
 description: |
   Part 2 of a short series on making plots in Haskell. Part 1 covered making some 
   simple scatter plots. This part focuses on changing attributes of your plots.
   Part 3 will cover more complex plotting.
+readingTime: 17
 ---
 
 ## Plotting with Haskell Libraries, Part 2
@@ -32,6 +33,8 @@ I'm interested in a few kinds of plot configuration, specifically:
 
 In general, these are the kinds of plot features that you want to change when you want to share a plot or collection
 of plots with someone else, whether that's through embedding them in a report of some kind or pasting into chats.
+
+All example are available in my [`goofing-off` repo].
 
 ### `dataframe`
 
@@ -152,8 +155,8 @@ There's not a ton else you can do -- you can't pick different axis limits switch
 labels, pick a different color cycle, or change the font.
 
 I also tried out using the `TypedDataFrame` API here. It didn't provide any additional safety in the plotting code in
-this case, since I could still pick columns that didn't exist in my declared dataframe schema without the compiler
-yelling at me, but I think that will provide some safety in later examples, and it's fun to imagine a `TypedDataFrame`
+this case, since the plotting API specifically expects an untyped dataframe,
+but it will provide some safety in later examples, and it's fun to imagine a `TypedDataFrame`
 plotting API that prevents you from trying to produce impossible plots _before_ you finish running some data pipeline.
 
 ### `granite`
@@ -318,9 +321,10 @@ the color is `BrightGreen` instead of `BrightBlue`, I changed the title, and I c
 size of the output.
 
 The width and height of the plot are specified in "chars", which get converted into a size for the plot
-based on constants annotated `Pixels per terminal character height.` and `Pixels per terminal character width.`
+based on constants annotated `Pixels per terminal character height` and `Pixels per terminal character width`.
 For SVG output, the terminal pixel sizes aren't relevant, and those two constants not being equal means that my plot
-that looks like it ought to be "30x30" in mystery units isn't square. That was surprising to me, but not a big deal.
+that looks like it ought to be "30x30" in mystery units isn't square. That was surprising to me, but not a big deal,
+and understandable for a plotting library that targeted terminals first.
 
 As with `dataframe`, there's no way to switch from a linear to a log scale for either axis, you can't change the
 font, and you can't change the axis labels.
@@ -403,12 +407,14 @@ If you also have the `Hasklug Nerd Font`, you'll see nice ligatures on the `>>=`
 
 As a Vega / Vega Lite novice, I didn't have the easiest time figuring out what values I needed to provide in order to
 configure the different aspects of the plot, and this example is about three times as many lines of code as the example
-in part 1. The trade for this complexity is _power_.[^1]
+in part 1. The trade for this complexity is _power_[^1] -- essentially every aspect of the plot can be configured
+in some way.
 
 `hvega` [targets version 4] of the Vega specification. The current version of the Vega specification is version 6.
 One cost of targeting an older version of the specification is that if you click on the three dots next to the plot
-and choose "Open in Vega Editor," you'll get a warning about how the editor wants version 6, but if you want to edit
-the plot using Vega Editor, you can just lie and bump the `"$scheme"` property to `v6.json` instead.
+and choose "Open in Vega Editor," you'll get a warning about how the editor wants version 6. If you want to edit
+the plot using Vega Editor, you can just lie and bump the `"$scheme"` property to `v6.json` instead. This might not
+work forever, but I didn't have any trouble with it.
 
 ### `chart-svg`
 
@@ -686,7 +692,8 @@ chartSvgScatter df =
       ys = DT.columnAsList @"y" df
       points = zipWith ChartSVG.Point xs ys
       -- change mark color
-      style = ChartSVG.defaultGlyphStyle & #color .~ ChartSVG.palette 123 & #size .~ 0.015
+      style = ChartSVG.defaultGlyphStyle & #color .~ ChartSVG.palette 123
+              & #size .~ 0.015
       chart = ChartSVG.GlyphChart style points
       scatterExample =
         mempty
@@ -697,23 +704,27 @@ chartSvgScatter df =
                    -- title a plot
                    & #titles
                      .~ [ ChartSVG.Priority 0 $
-                            ChartSVG.defaultTitleOptions "<$> titled scatter <$>"
+                            ChartSVG.defaultTitleOptions "titled scatter"
                               & #style % #size .~ 0.05,
                           -- add specific labels for x and y
                           ChartSVG.Priority 1 $
-                            ChartSVG.defaultTitleOptions "x label" & #place .~ PlaceBottom,
+                            ChartSVG.defaultTitleOptions "x label"
+                              & #place .~ PlaceBottom,
                           ChartSVG.Priority 2 $
                             ChartSVG.defaultTitleOptions "y label"
                               & #place .~ PlaceLeft
                         ]
                )
           -- change font
-          & #markupOptions % #cssOptions % #fontFamilies .~ "svg { font-family: \"Hasklug Nerd Font\"; }"
+          & #markupOptions % #cssOptions %
+            #fontFamilies .~ "svg { font-family: \"Hasklug Nerd Font\"; }"
           -- resize the plot
           & #markupOptions % #markupHeight .~ Just 200
           & #markupOptions % #chartAspect .~ ChartSVG.FixedAspect 3 ::
           ChartSVG.ChartOptions
-   in ChartSVG.writeChartOptions "plots/chartSvgScatterConfig.svg" scatterExample
+   in ChartSVG.writeChartOptions
+        "plots/chartSvgScatterConfig.svg"
+        scatterExample
 ```
 
 Configuring some parts of the `chart-svg` output were easier than others. The use of the 
@@ -724,7 +735,7 @@ Configuring some parts of the `chart-svg` output were easier than others. The us
 > optics; getting, setting and modding, makes manipulation more pleasant.
 
 I agree. Especially because I have a single module with a bunch of qualified imports, the alternative where I would
-have used record update syntax instead seemed really tedious.
+have used record update syntax instead would have been really tedious.
 
 Even when they're easy to set though, some of the styles are just raw CSS strings, like many of the properties under
 `cssOptions`. To set font for a title, I used
@@ -746,7 +757,7 @@ I did not figure out how to log scale one of the axes or change the axis limits.
 [`Chart` part 1]
 
 <div class="flex-container">
-<img src="../images/chartScatterConfig.png"/>
+  <img src="../images/chartScatterConfig.png" width="75%"/>
 </div>
 
 ```haskell
@@ -761,9 +772,32 @@ chartScatterConfig df =
         Chart.layout_x_axis
           . Chart.laxis_override
           .= Chart.axisLabelsOverride [(0.5, "x label")]
-        Chart.layout_y_axis . Chart.laxis_override .= Chart.axisLabelsOverride [(0.5, "y label")]
+        Chart.layout_y_axis . Chart.laxis_override
+          .= Chart.axisLabelsOverride [(0.5, "y label")]
         Chart.plot $ Chart.points "points" (zip xs ys)
 ```
+
+Lastly, I configured another scatter plot of the same data with `Chart`.
+
+`chart-svg` and `Chart` share an optics-oriented approach to configuration.[^3] Once you have the modifications lined
+up, the [`EC` helper type][^4] provides an imperative-looking API for setting different options, in contrast to the
+monoidal builder of `chart-svg` and the JSON Schema translation of `hvega`. That kind of API might be especially nice
+for people used to plotting in Python libraries.
+
+A neat piece of the API was the mechanism for converting an axis to a log scale. Instead of modifying the
+axis, I wrapped the values in a `LogValue` newtype, which caused the library to choose log scaling for the axis
+associated with those values.
+
+The [`Chart` gallery] makes me think I could have completed all of the configuration tasks I set out here, but I
+failed to change axis limits.
+
+## Other posts in this series
+
+I'll update this list as I complete the other posts, but here's the basic outline:
+
+* [Hello, plots]
+* Plot configuration (this post)
+* Low-level plotting (annotating plots, drawing shapes wherever you want)
 
 [`dataframe`]: #dataframe
 [`granite`]: #granite
@@ -783,9 +817,16 @@ chartScatterConfig df =
 [v5.0.0]: https://github.com/vega/vega/releases/tag/v5.0.0
 [`chart-svg` docs]: https://hackage-content.haskell.org/package/chart-svg-0.8.3.2/docs/Chart.html#g:7
 [`OverloadedLabels`]: https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/overloaded_labels.html
+[`EC` helper type]: https://hackage.haskell.org/package/Chart-1.9.5/docs/Graphics-Rendering-Chart-State.html#t:EC
+[`Chart` gallery]: https://github.com/timbod7/haskell-chart/wiki#gallery
+[Hello, plots]: ./2026-03-05-Haskell-data-visualization.html
+[`goofing-off` repo]: https://github.com/jisantuc/goofing-off/blob/main/src/plotting-survey/PlotSurvey/ScatterConfig.hs
 [^1]: Not that changing axis labels is the most power anyone can imagine in a charting library, but it's more power
 than _not_ changing axis labels.
 [^2]:  I also somehow broke the exported `svg` by including `<$>` in the title text for the main plot, so I've edited
 it slightly here so it will embed in this page correctly. The export went fine when saving it off as its own file, so
 I'm guessing it's something to do with pandoc's render of the markdown containing the svg, but I don't really know.
 Anyway, I don't think it was `chart-svg`'s fault. Computers, man.
+[^3]:  For some reason, I had an easier time with `chart-svg` than with `Chart`. It's possible the reason is that I
+did `chart-svg` first, and the first set of optics poisoned my brain for the second.
+[^4]: It took me way too long to check docs and realize this is just `StateT`. I really wish I'd done that sooner!
