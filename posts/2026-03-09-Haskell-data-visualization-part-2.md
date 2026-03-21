@@ -125,13 +125,9 @@ setTimeout(function() { new Chart("chart_FXMxePX5AGtOM8r3AZuD4LRP7Cd1Pete2PjN9Ir
 })}, 100);
 </script>
 
-```haskell
-{-# LANGUAGE OverloadedStrings #-}
+<div class="flex-container">
 
-import qualified Data.Text.IO as Text
-import qualified DataFrame.Display.Web.Plot as DfPlot
-import qualified DataFrame.Typed as DT
-import ExampleData (LabeledDfSchema)
+```haskell
 
 dataframeScatterConfig :: DT.TypedDataFrame LabeledDfSchema -> IO ()
 dataframeScatterConfig typedDf =
@@ -149,6 +145,8 @@ dataframeScatterConfig typedDf =
             )
 
 ```
+
+</div>
 
 There's not a ton else you can do -- you can't pick different axis limits switch to a log scale, change the axis
 labels, pick a different color cycle, or change the font.
@@ -295,13 +293,6 @@ unmodified. `defPlot` is the default plot configuration.
 </div>
 
 ```haskell
-{-# LANGUAGE OverloadedStrings #-}
-import qualified Data.Text.IO as Text
-import qualified DataFrame.Display.Web.Plot as DfPlot
-import qualified DataFrame.Typed as DT
-import qualified Granite as G
-import qualified Granite.Svg as GSvg
-
 graniteSvgScatterConfig :: DT.TypedDataFrame LabeledDfSchema -> IO ()
 graniteSvgScatterConfig df =
   let xs = DT.columnAsList @"x" df
@@ -358,18 +349,13 @@ If you want a monochrome/gradated purple scatter plot on a purple background, th
 </script>
 
 ```haskell
-{-# LANGUAGE OverloadedStrings #-}
-
-import qualified DataFrame.Typed as DT
-import ExampleData (LabeledDfSchema)
-import qualified Graphics.Vega.VegaLite as V
-
 hvegaScatterConfig :: DT.TypedDataFrame LabeledDfSchema -> IO ()
 hvegaScatterConfig df =
   let vegaColumns =
         [ V.dataColumn "x" (V.Numbers (DT.columnAsList @"x" df)),
           V.dataColumn "y" (V.Numbers (DT.columnAsList @"y" df)),
-          V.dataColumn "tag" (V.Strings ((Text.pack . pure <$> DT.columnAsList @"tag" df)))
+          V.dataColumn "tag"
+            (V.Strings ((Text.pack . pure <$> DT.columnAsList @"tag" df)))
         ]
       vegaData = foldl' (.) (V.dataFromColumns []) vegaColumns
       enc =
@@ -388,12 +374,18 @@ hvegaScatterConfig df =
               V.PmType V.Quantitative,
               -- set a log scale on y
               V.PScale [V.SType V.ScLog],
-              V.PAxis [V.AxTitle "The very important y values", V.AxTitleFontSize 18]
+              V.PAxis
+                [V.AxTitle "The very important y values",
+                 V.AxTitleFontSize 18]
             ]
           -- color the points based on tag using the "purples" scale
-          . V.color [V.MName "tag", V.MmType V.Nominal, V.MScale [V.SScheme "purples" [10]]]
+          . V.color [V.MName "tag",
+                     V.MmType V.Nominal,
+                     V.MScale [V.SScheme "purples" [10]]]
       -- set a different title with a different font
-      title = V.title "Wide purple plot >>=" [V.TFont "Hasklug Nerd Font", V.TFontStyle "italic"]
+      title = V.title
+                "Wide purple plot >>="
+                [V.TFont "Hasklug Nerd Font", V.TFontStyle "italic"]
    in V.toHtmlFile "plots/vegaScatterConfig.html" $
         V.toVegaLite
           [ vegaData [],
@@ -403,7 +395,6 @@ hvegaScatterConfig df =
             -- change the plot dimensions
             V.width 600,
             V.height 200,
-            -- set a background color even though that wasn't part of the challenge
             V.background "rgba(20, 0, 50, 0.2)"
           ]
 ```
@@ -753,6 +744,26 @@ I did not figure out how to log scale one of the axes or change the axis limits.
 ### `Chart`
 
 [`Chart` part 1]
+
+<div class="flex-container">
+<img src="../images/chartScatterConfig.png"/>
+</div>
+
+```haskell
+chartScatterConfig :: DT.TypedDataFrame LabeledDfSchema -> IO ()
+chartScatterConfig df =
+  let xs = DT.columnAsList @"x" df
+      ys = Chart.LogValue <$> DT.columnAsList @"y" df
+   in Cairo.toFile Chart.def "plots/chartScatterConfig.png" $ do
+        Chart.setColors [Chart.opaque Chart.dodgerblue]
+        Chart.layout_title_style . Chart.font_name .= "Hasklug Nerd Font"
+        Chart.layout_title .= "log y scatter >>="
+        Chart.layout_x_axis
+          . Chart.laxis_override
+          .= Chart.axisLabelsOverride [(0.5, "x label")]
+        Chart.layout_y_axis . Chart.laxis_override .= Chart.axisLabelsOverride [(0.5, "y label")]
+        Chart.plot $ Chart.points "points" (zip xs ys)
+```
 
 [`dataframe`]: #dataframe
 [`granite`]: #granite
