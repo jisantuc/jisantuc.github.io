@@ -420,6 +420,13 @@ work forever, but I didn't have any trouble with it.
 
 [`chart-svg` part 1]
 
+In part one I ignored the possibility of setting chart attributes without optics because
+
+> experience says if someone makes handy optics available, it's probably because not using them hurts.
+
+After using the optics here for chart configuration, I think that was
+the correct instinct.
+
 <div class="flex-container">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="200" viewBox="-1.5 -0.5 3.0 1.0">
         <style>
@@ -727,17 +734,16 @@ chartSvgScatter df =
         scatterExample
 ```
 
-Configuring some parts of the `chart-svg` output were easier than others. The use of the 
-[`OverloadedLabels`] with `optics` in the examples really pays off when trying to configure any part of the chart.
+The use of [`OverloadedLabels`] with `optics` in the examples really pays off.
 [`chart-svg` docs] note:
 
 > `Chart`, `HudOptions` and associated chart configuration types are big and sometimes deep syntax trees, and simple
 > optics; getting, setting and modding, makes manipulation more pleasant.
 
-I agree. Especially because I have a single module with a bunch of qualified imports, the alternative where I would
+Especially because I have a single module with a bunch of qualified imports, the alternative where I'd
 have used record update syntax instead would have been really tedious.
 
-Even when they're easy to set though, some of the styles are just raw CSS strings, like many of the properties under
+Even when they're easy to set though, some of the styles are raw CSS strings, like many of the properties under
 `cssOptions`. To set font for a title, I used
 
 ```haskell
@@ -782,7 +788,8 @@ Lastly, I configured another scatter plot of the same data with `Chart`.
 `chart-svg` and `Chart` share an optics-oriented approach to configuration.[^3] Once you have the modifications lined
 up, the [`EC` helper type][^4] provides an imperative-looking API for setting different options, in contrast to the
 monoidal builder of `chart-svg` and the JSON Schema translation of `hvega`. That kind of API might be especially nice
-for people used to plotting in Python libraries.
+for people used to plotting in Python libraries, though that translation may be hampered by a straw-Python-enthusiast's
+presumable unfamiliarity with optics and `StateT`.
 
 A neat piece of the API was the mechanism for converting an axis to a log scale. Instead of modifying the
 axis, I wrapped the values in a `LogValue` newtype, which caused the library to choose log scaling for the axis
