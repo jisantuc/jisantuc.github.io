@@ -33,8 +33,8 @@ I found a few libraries, with some help from the [DataHaskell Discord].
 * [`dataframe`]
 * [`granite`]
 * [`hvega`]
-* [`Chart`]
 * [`chart-svg`]
+* [`Chart`]
 
 I wanted to compare them on a few points, starting with what it looks like to take
 a dataframe and produce a scatter plot. I think of scatter plots as "hello, world"
@@ -407,7 +407,7 @@ in Haskell felt against the spirit of the exercise.
 I'll update this list as I complete the other posts, but here's the basic outline:
 
 * Hello, plots (this post)
-* Plot configuration (titles, axes, axis labels, axis scaling)
+* [Plot configuration] (titles, axes, axis labels, axis scaling)
 * Low-level plotting (annotating plots, drawing shapes wherever you want)
 
 [simulation code]: https://github.com/jisantuc/goofing-off/blob/main/src/mosconi-sim/Sim.hs
@@ -427,6 +427,7 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 [Vega visualization grammar]: https://vega.github.io/vega/
 [D3]: https://d3js.org/
 [`goofing-off` repository]: https://github.com/jisantuc/goofing-off/blob/main/src/plotting-survey/PlotSurvey/Scatter.hs
+[Plot configuration]: ./2026-03-09-Haskell-data-visualization-part-2.html
 [^1]: I took a Java course in high school that was probably helpful to have kicking around in the back of my brain
 for being able to learn Python, but this was when I became Serious™️.
 [^2]: I was also on team "we should get really good at Excel," though I don't think I had

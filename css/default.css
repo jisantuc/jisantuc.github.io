@@ -9,8 +9,16 @@ body {
 }
 
 main {
-  width: fit-content;
+  /* width: fit-content; */
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main p:has(img) {
+  justify-content: center;
+  display: flex;
 }
 
 header {
