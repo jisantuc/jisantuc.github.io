@@ -804,7 +804,8 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 
 * [Hello, plots]
 * Plot configuration (this post)
-* Low-level plotting (annotating plots, drawing shapes wherever you want)
+* Fancy plotting in `hvega`
+* Fancy plotting in `chart-svg`
 
 [`dataframe`]: #dataframe
 [`granite`]: #granite
