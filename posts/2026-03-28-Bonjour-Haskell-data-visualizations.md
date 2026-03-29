@@ -65,7 +65,10 @@ hvegaPiMonteCarlo =
           . V.fill [V.MName "inside", V.MmType V.Nominal]
           . V.color [V.MName "inside", V.MmType V.Nominal]
           . V.opacity [V.MNumber 0.15]
-      -- TODO: include comments from goofing-off
+      -- slider to choose a value bound to "num_points_idx" (combination of the
+      -- selection field name and slider field name, for reasons I don't really
+      -- understand); used to filter for rows with idx < slider value, i.e. to choose
+      -- how many points are used in the Monte Carlo estimation of pi
       slider = V.IRange "idx" [V.InMin 100, V.InMax (fromIntegral nRows), V.InStep 10]
       selection =
         V.selection
@@ -86,7 +89,7 @@ hvegaPiMonteCarlo =
                   ],
                 V.asSpec
                   [ pi_ [],
-                    V.mark V.Text [],
+                    V.mark V.Text [V.MFontSize 18, V.MFontWeight V.Bold],
                     V.encoding
                       . V.position V.X [V.PmType V.Quantitative, V.PDatum (V.Number 1)]
                       . V.position V.Y [V.PmType V.Quantitative, V.PDatum (V.Number 0.5)]
@@ -100,6 +103,23 @@ hvegaPiMonteCarlo =
               ]
           ]
 ```
+
+There's a lot more going on here than in previous examples. The biggest change is that this plot responds to user input
+with a slider for choosing how many points you want to use to calculate the value of pi. That happens via the
+`IRange` and `selection` functions. Additionally, I deviated from the example in [Vega's tutorials] by just writing
+the current estimate of pi onto the mai nplot instead of adding it to a different plot. I made this choice to show
+adding text at a particular location in the plot and to keep the example from taking on all the complexity of the
+version in the tutorial.
+
+Putting the annotation on the same plot works with _layers_ (the two `asSpec` values passed to `V.layer`). The first
+layer shows only the points colored by whether they're inside or outside the unit circle. The second layer shows
+only the current estimate of pi. `pi_` in the second layer is a filtered view of the data from the first layer
+containing only the last row of the input for the number of points you choose.
+
+If you pick a low value for the number of points then toggle back and forth, you can see that the data used to estimate
+pi are fixed -- each increment/decrement adds and removes the same 10 points to the plot. The reason for that is that
+I started with a `DataFrame` instead of letting Vega do all of the work of generating the data, then calculated the
+data to estimate pi from the random points in Vega.[^1]
 
 ## Faceting
 
@@ -117,3 +137,10 @@ This post is the third post in a series
 [part two]: ./2026-03-21-Haskell-data-visualization-part-2.html
 [Plot configuration]: ./2026-03-21-Haskell-data-visualization-part-2.html
 [Vega's tutorials]: https://vega.github.io/vega/examples/pi-monte-carlo/
+[^1]: An idea I've gotten a little stuck on is that there are striking similarities between accessing columns from
+dataframes and accessing columns from the Vega data definition. In each, you register something with a string, then
+later you refer to it by a string, and you really hope you've picked the same string both times. The similarity extends
+to transformations over the input data. `dataframe`'s typed API also models
+[derivations](https://hackage-content.haskell.org/package/dataframe-1.0.0.1/docs/DataFrame-Typed-Operations.html#v:derive)
+of new values from the initial schema, which would have been really useful in this plotting code as well. I don't want
+to say how many times I mixed up what I was calling `insideCount` vs. `countInside`.
