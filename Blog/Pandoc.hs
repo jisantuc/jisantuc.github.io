@@ -16,9 +16,9 @@ import GHC.IO.Handle (BufferMode (NoBuffering), hSetBuffering)
 import Hakyll
 import System.IO (hPrint)
 import System.Process (runInteractiveCommand)
-import Text.Pandoc.Definition (Block (CodeBlock, RawBlock), Pandoc)
+import Text.Pandoc (Block (Para), HTMLMathMethod (..), WriterOptions (..))
+import Text.Pandoc.Definition (Block (CodeBlock, RawBlock), Inline (Image), Pandoc)
 import Text.Pandoc.Walk (walkM)
-import Text.Pandoc (WriterOptions(..), HTMLMathMethod(..))
 
 tshow :: Int -> T.Text
 tshow = T.pack . show
@@ -45,12 +45,17 @@ pygmentsHighlight pandoc = unsafeCompiler do
   (`walkM` pandoc) \case
     CodeBlock _ body ->
       RawBlock "html" <$> T.readFile ("/tmp/" <> show (hash body))
+    Para [Image _ _ (p, _)]
+      | "./gen" `T.isPrefixOf` p -> do
+          print "transforming"
+          print p
+          RawBlock "html" <$> T.readFile (T.unpack p)
     block -> pure block
 
 customPandocCompiler :: Compiler (Item String)
 customPandocCompiler =
-  let writerOptions = defaultHakyllWriterOptions { writerHTMLMathMethod = MathML }
+  let writerOptions = defaultHakyllWriterOptions {writerHTMLMathMethod = MathML}
    in pandocCompilerWithTransformM
-    defaultHakyllReaderOptions
-    writerOptions
-    pygmentsHighlight
+        defaultHakyllReaderOptions
+        writerOptions
+        pygmentsHighlight
