@@ -62,7 +62,6 @@ hvegaPiMonteCarlo =
         V.encoding
           . V.position V.X [V.PName "x", V.PmType V.Quantitative]
           . V.position V.Y [V.PName "y", V.PmType V.Quantitative]
-          . V.fill [V.MName "inside", V.MmType V.Nominal]
           . V.color [V.MName "inside", V.MmType V.Nominal]
           . V.opacity [V.MNumber 0.15]
       -- slider to choose a value bound to "num_points_idx" (combination of the
@@ -83,7 +82,7 @@ hvegaPiMonteCarlo =
             randomPointsTransform,
             V.layer
               [ V.asSpec
-                  [ V.mark V.Point [],
+                  [ V.mark V.Point [V.MFilled True],
                     enc [],
                     selection []
                   ],
