@@ -107,7 +107,7 @@ hvegaPiMonteCarlo =
 There's a lot more going on here than in previous examples. The biggest change is that this plot responds to user input
 with a slider for choosing how many points you want to use to calculate the value of pi. That happens via the
 `IRange` and `selection` functions. Additionally, I deviated from the example in [Vega's tutorials] by just writing
-the current estimate of pi onto the mai nplot instead of adding it to a different plot. I made this choice to show
+the current estimate of pi onto the main plot instead of adding it to a different plot. I made this choice to show
 adding text at a particular location in the plot and to keep the example from taking on all the complexity of the
 version in the tutorial.
 

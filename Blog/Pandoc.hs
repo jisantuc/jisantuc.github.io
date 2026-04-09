@@ -47,8 +47,6 @@ pygmentsHighlight pandoc = unsafeCompiler do
       RawBlock "html" <$> T.readFile ("/tmp/" <> show (hash body))
     Para [Image _ _ (p, _)]
       | "./gen" `T.isPrefixOf` p -> do
-          print "transforming"
-          print p
           RawBlock "html" <$> T.readFile (T.unpack p)
     block -> pure block
 
