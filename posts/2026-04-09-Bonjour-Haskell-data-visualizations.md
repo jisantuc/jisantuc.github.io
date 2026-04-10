@@ -235,8 +235,12 @@ to transformations over the input data. `dataframe`'s typed API also models
 of new values from the initial schema, which would have been really useful in this plotting code as well. I don't want
 to say how many times I mixed up what I was calling `insideCount` vs. `countInside`.
 [^2]: Figuring this out took me way longer than I wish it had. I tried a few different `<path d="..."/>` tags, with
-Vega yelling at me about "Invalid SVG path, incorrect parameter type" before attempting to use the path instructions
-directly. There are a few SVG builder libraries like `lucid-svg`, `diagrams-svg`, and `blaze-svg`, but I wrote my little
-shape by hand instead (see [svg on hackage](https://hackage.haskell.org/packages/search?terms=svg)).
-[^3]: If you wanted, I bet you could use the [Haskell logo](https://commons.wikimedia.org/wiki/File:Haskell-Logo.svg) as a marker if you
+Vega yelling at me about "Invalid SVG path, incorrect parameter type". I didn't know what to do with that and googling
+the error didn't help. I don't know what caused me to try the path instructions directly. Also, I created the little
+chevron shape by hand. There are a few SVG builder libraries for Haskell like `lucid-svg`, `diagrams-svg`, and
+`blaze-svg`. They all look nice but they seemed like overkill here. If you want to create a more interesting shape than
+the one I used, one of those libraries could be useful
+(see [svg on hackage](https://hackage.haskell.org/packages/search?terms=svg)).
+[^3]: If you wanted, I bet you could use the [Haskell logo](https://commons.wikimedia.org/wiki/File:Haskell-Logo.svg)
+as a marker if you
 [restricted it to the right coordinate range](https://hackage.haskell.org/package/hvega-0.12.0.7/docs/Graphics-Vega-VegaLite.html#v:SymPath).
