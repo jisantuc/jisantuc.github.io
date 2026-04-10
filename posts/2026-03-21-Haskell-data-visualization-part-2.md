@@ -804,7 +804,8 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 
 * [Hello, plots]
 * Plot configuration (this post)
-* Low-level plotting (annotating plots, drawing shapes wherever you want)
+* [Fancy plotting in `hvega`]
+* Fancy plotting in `chart-svg`
 
 [`dataframe`]: #dataframe
 [`granite`]: #granite
@@ -828,6 +829,7 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 [`Chart` gallery]: https://github.com/timbod7/haskell-chart/wiki#gallery
 [Hello, plots]: ./2026-03-05-Haskell-data-visualization.html
 [`goofing-off` repo]: https://github.com/jisantuc/goofing-off/blob/main/src/plotting-survey/PlotSurvey/ScatterConfig.hs
+[Fancy plotting in `hvega`]: ./2026-04-09-Bonjour-Haskell-data-visualizations.html
 [^1]: Not that changing axis labels is the most power anyone can imagine in a charting library, but it's more power
 than _not_ changing axis labels.
 [^2]:  I also somehow broke the exported `svg` by including `<$>` in the title text for the main plot, so I've edited

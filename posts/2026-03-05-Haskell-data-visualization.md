@@ -13,7 +13,7 @@ tables with shaded cells and abused the annotations and shapes APIs while trying
 convince any coworker of mine who hadn't yet lost patience for that discussion that
 we should get rid of all of our Stata and SAS and R and Excel[^2] and whatever else people were
 using and do everything in Python. When I want to plot something now, I've often finished
-typing `fix, ax = plt.subplots()` before I've even figured out what kind of plot I want.
+typing `fig, ax = plt.subplots()` before I've even figured out what kind of plot I want.
 
 I'm explaining all this because a week ago I got around to posting [Don't fire Styer] with some plots showing
 distributions of simulated outcomes for an annual USA vs. Europe pool event. One of the challenges I set
@@ -408,7 +408,8 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 
 * Hello, plots (this post)
 * [Plot configuration] (titles, axes, axis labels, axis scaling)
-* Low-level plotting (annotating plots, drawing shapes wherever you want)
+* [Fancy plotting in `hvega`] (interactivity, faceting, weird markers)
+* Fancy plotting in `chart-svg`
 
 [simulation code]: https://github.com/jisantuc/goofing-off/blob/main/src/mosconi-sim/Sim.hs
 [Don't fire Styer]: ./2026-02-11-Don't-fire-Styer.html
@@ -428,6 +429,7 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 [D3]: https://d3js.org/
 [`goofing-off` repository]: https://github.com/jisantuc/goofing-off/blob/main/src/plotting-survey/PlotSurvey/Scatter.hs
 [Plot configuration]: ./2026-03-21-Haskell-data-visualization-part-2.html
+[Fancy plotting in `hvega`]: ./2026-04-09-Bonjour-Haskell-data-visualizations.html
 [^1]: I took a Java course in high school that was probably helpful to have kicking around in the back of my brain
 for being able to learn Python, but this was when I became Serious™️.
 [^2]: I was also on team "we should get really good at Excel," though I don't think I had
