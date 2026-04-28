@@ -409,7 +409,7 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 * Hello, plots (this post)
 * [Plot configuration] (titles, axes, axis labels, axis scaling)
 * [Fancy plotting in `hvega`] (interactivity, faceting, weird markers)
-* Fancy plotting in `chart-svg`
+* ~Fancy plotting in `chart-svg`~
 
 [simulation code]: https://github.com/jisantuc/goofing-off/blob/main/src/mosconi-sim/Sim.hs
 [Don't fire Styer]: ./2026-02-11-Don't-fire-Styer.html

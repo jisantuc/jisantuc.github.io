@@ -218,7 +218,7 @@ This post is the third post in a series:
 * [Hello, plots]
 * [Plot configuration]
 * Fancy plotting in `hvega` (this post)
-* Fancy plotting in `chart-svg`
+* ~Fancy plotting in `chart-svg`~
 
 [`goofing-off` repo]: https://github.com/jisantuc/goofing-off/blob/main/src/plotting-survey/PlotSurvey/BonjourHVega.hs
 [Hello, plots]: ./2026-03-05-Haskell-data-visualization.html

@@ -805,7 +805,7 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 * [Hello, plots]
 * Plot configuration (this post)
 * [Fancy plotting in `hvega`]
-* Fancy plotting in `chart-svg`
+* ~Fancy plotting in `chart-svg`~
 
 [`dataframe`]: #dataframe
 [`granite`]: #granite
