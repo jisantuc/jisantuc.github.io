@@ -277,6 +277,11 @@ th {
         align: center;
 }
 
+figcaption {
+        text-align: center;
+        font-style: italic;
+}
+
 .math-container {
         display: flex;
         justify-content: center;
