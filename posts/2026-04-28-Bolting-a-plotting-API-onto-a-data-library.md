@@ -27,6 +27,16 @@ the least important, so I pick power + not reinventing the wheel. Based on the t
     * as soon as anything's wrong in `hvega` you're debugging JS library errors instead of Haskell errors, and if that
       sounded fun to you you'd have given up on this series of posts a while ago
 
+* levels:
+  * low: construct hvega primitives almost directly
+  * mid: modify hvega-ish plots with convenient lenses (e.g. `colorBy :: VegaLite -> VegaLite`)
+  * high: named plot types, like `scatter`
+  * display
+* why's display separate
+  * displaying a plot is a different concern from constructing a plot -- want something like MPL's interactivity from
+    `plt.show()`, also want display to be easy in notebook settings, these are probably different things
+  * notion of backends? or just different functions?
+
 [^1]: Citation needed
 [^2]: No shade here -- built-in plotting in `dataframe` chose simple plotting a while ago. That makes sense for the
 goal of having the ability to plot anything vs. not having the ability to plot anything. Given the breadth of the `dataframe` library, it's unreasonable to expect every piece of the API to be alive in its final form already.
