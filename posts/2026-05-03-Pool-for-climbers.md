@@ -15,7 +15,7 @@ ideas and practice setup ought to build some pool intuition for anyone.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZMEtKVZZcfU?si=AHK6LlZ4M3TATFn_" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-There are two pool skills that are prior to all the others: shooting straight at aiming. I don't mean that all other
+There are two pool skills that are prior to all the others: shooting straight and aiming. I don't mean that all other
 skills are derived from these two -- mental skills for competitive play obviously aren't derived from these two -- but
 they're both definitely required if you want to be able to work on any other skills
 
