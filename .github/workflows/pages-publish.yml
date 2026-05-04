@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
           token: ${{ secrets.GH_PAT }}
@@ -42,7 +42,7 @@ jobs:
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-      - uses: cachix/cachix-action@v16
+      - uses: cachix/cachix-action@v17
         with:
           name: jisantuc
           authToken: '${{ secrets.CACHIX_TOKEN }}'
@@ -65,4 +65,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
