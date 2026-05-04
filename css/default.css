@@ -21,6 +21,12 @@ main p:has(img) {
   display: flex;
 }
 
+figure {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
 header {
   border-bottom: 0.2rem solid #000;
 }

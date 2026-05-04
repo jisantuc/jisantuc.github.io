@@ -41,12 +41,10 @@ Shooting straighter is easier to practice because it's easy to take aim out of a
 two balls in a straight line to a pocket, aiming is done for you, since making the ball requires shooting
 the center of the cue ball through the center of the object ball.[^2]
 
-<div class="image-container">
 <figure>
 <img src="../images/straight-shot.png" height="50%"/>
 <figcaption>The only thing to do here is shoot in a straight line.<br/>Diagram made with [ChalkySticks].</figcaption>
 </figure>
-</div>
 
 Straight shots have some other nice properties for practice. They're easy to set up with a laser level and some cheap
 stickers and they support progressions in different directions (more distance, stopping the cue ball, stringing a few
@@ -55,15 +53,11 @@ straight shots together).
 Climbers are used to circuits, so I set up a two-problem circuit for straight shots. The first problem has yellow
 stickers and requires hitting the same shot over different distances. I think it goes at V0 to V1.
 
-<div class="image-container">
 <img src="../images/v1-straight.jpg"/>
-</div>
 
 The second requires stringing a few straight stop shots together on blue stickers, and I think it goes at V2 to V3.
 
-<div class="image-container">
 <img src="../images/v2-straight-stop.jpg"/>
-</div>
 
 A good stance, a smooth stroke, a stable bridge, a relaxed back hand, and stillness in the rest of your body all
 contribute to straight shooting, but straight shooting is good however you achieve it. There's a lot of diversity
@@ -83,12 +77,10 @@ The easiest way to practice finding the right aim point is by putting an actual 
 [ghost ball][^3] into a real ball. If you have someone to remove the ghost ball before you shoot, then you're back
 to just shooting in a straight line.
 
-<div class="image-container">
 <figure>
 <img src="../images/ghost-ball.png"/>
 <figcaption>Aiming through the center of the ghost ball makes the cut.<br/>Diagram made with [ChalkySticks].</figcaption>
 </figure>
-</div>
 
 When many people try to aim a shot, they aim the center of the cue ball through the point on the object ball that they
 think they need to hit. Aiming this way is wrong because both balls are spheres. Aiming this way will be more wrong the
@@ -99,15 +91,11 @@ Another difficult challenge about cut shots is that where the cue ball ends up d
 spin choices than with straight shots. I also set up a cuts circuit. It contains a green V3 with increasingly
 difficult cuts and a heartbreaking finish
 
-<div class="image-container">
 <img src="../images/v3-cuts.jpg"/>
-</div>
 
 and a purple reversible V4 aka "the rhombus."[^4]
 
-<div class="image-container">
 <img src="../images/v4-cuts.jpg"/>
-</div>
 
 Aiming is harder to improve, because the feedback from misses is less obvious. It's possible to aim fine and
 fail to shoot straight, but it's also easy to change the aim by accident after aiming correctly then to shoot straight
@@ -124,6 +112,6 @@ you have to be able to shoot, and you either do it or you don't. If you  miss, i
 That's pretty rough on the ego.
 [^3]: tl;dr: the "ghost ball" is an imaginary ball contacting the object ball at a point where the line through the
 center of both balls traces the path you want the real ball to follow.
-[^4]: Climbing grades [are subjective](https://www.sportrock.com/post/understanding-climbing-grades). Climbing grades
+[^4]: Climbing grades [are subjective](https://www.reddit.com/r/climbing/comments/r9r4mu/v2_in_my_gym_visualising_the_distributions_of/). Climbing grades
 for pool drills will necessarily be even more subjective and a little non-sensical. If the purple V4 is V2 on your pool
 table, good for you.
