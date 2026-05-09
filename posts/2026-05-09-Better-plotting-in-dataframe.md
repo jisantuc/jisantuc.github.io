@@ -1,12 +1,12 @@
 ---
-title: Bolting a plotting API onto a data library
-date: 2026-04-28
-description: Bolting a plotting API onto a data library
+title: Better plotting in dataframe
+date: 2026-05-09
+description: |
+  dataframe's current plotting interface is simple but low powered. Off-the-shelf options can add a lot of power at the
+  cost of simplicity. Maybe there's a way to have both.
 ---
 
 Now that I'm the foremost amateur[^1] in Haskell plotting libraries, `rest of intro`
-
-
 
 1. Learn from other plotting libraries.
 2. Maximize power (aka [make hard things possible])
