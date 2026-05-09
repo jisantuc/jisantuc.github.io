@@ -11,6 +11,9 @@ Now that I'm the foremost amateur[^1] in Haskell plotting libraries, `rest of in
 1. Learn from other plotting libraries.
 2. Maximize power (aka [make hard things possible])
 
+`dataframe-hvega` -- distinct plotting package that just makes plots (like `dataframe-fastcsv`, `dataframe-hasktorch`,
+etc.)
+
 ### Learning from other plotting libraries
 
 * good stuff to borrow:
