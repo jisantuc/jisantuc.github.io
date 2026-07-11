@@ -12,6 +12,8 @@ in [a 2d pointing satellite simulator](https://github.com/jisantuc/schedule-2d-s
 [Advent of Code solutions](https://github.com/jisantuc/advent-of-code/),
 and a [tiny library for explaining property-based testing](https://github.com/jisantuc/tiny-test/). I also like small
 programs to make my life easier, like this little [tool](https://github.com/jisantuc/ynab-split) to split transactions
-in YNAB.
+in [YNAB].
 
 You can find my resume [here](/resume/resume.pdf).
+
+[YNAB]: https://www.ynab.com/
