@@ -1,17 +1,85 @@
 ---
-title: Better plotting in dataframe
-date: 2026-05-09
+title: Still more plotting with dataframe
+date: 2026-07-11
 description: |
   dataframe's current plotting interface is simple but low powered. Off-the-shelf options can add a lot of power at the
   cost of simplicity. Maybe there's a way to have both.
 ---
 
-Now that I'm the foremost amateur[^1] in Haskell plotting libraries, `rest of intro`
+A few months ago I worked on a few posts about the state of plotting in Haskell.
+Those posts took me through [`hvega`], [`granite`], [`chart-svg`], and [`Chart`].[^1]
+Since then, `@frenzieddoll` started work on a new plotting library that speaks (un-typed) `dataframe` called
+[`hgg`].
+As the foremost scrub[^2] in Haskell plotting libraries, I tried it out while I was also trying to write a nice interop
+layer between `hvega` and `dataframe`. The latter didn't go great, but I feel optimistic that `hgg` could serve as an
+ergonomic plotting backend that provides a lot of power while also not baffling data scientists who find themselves
+writing Haskell who are used to `ggplot`. That's neat!
+
+This post will discuss what was hard about the `hvega` work and where I think building on `hgg` can go better.
+
+## Setting out in `hvega`
+
+I wanted to learn from what I liked about using the plotting libraries I tried out in building a nicer API to use
+`hvega` with `dataframe`. I thought the way that'd work would be:
+
+* a low-level API that does nothing but construct `hvega` data from dataframes,
+* a mid-level API for combining those into more meaningful components, and
+* a high-level API that provides complete plots, returning some datatype that conforms to what the mid-level API
+  expects for e.g. changing the title, colors, legend placements, or whatever afterward.
+
+My first effort focused on building up a scatter plot that way.
+
+<div class="flex-container">
+![](./gen/dataframe-plot-scatter.html)
+</div>
+
+That gave me a bunch of the typed machinery for converting between `TypedDataFrame` values and `hvega` data. Low-level
+functions produced `hvega` types, the mid-level API produced `VegaLite` values, and the high level API produced
+displayable plots. You can browse the repo at that [checkpoint] to see how the pieces fit together.
+
+The next step was to be able to set the plot title, and it got awkward. `VegaLite` is a newtype over an `aeson`
+`Value`, meaning the only structure preserved in the type system is that it's JSON of some sort. I thought it'd be fine
+just to be _really careful_ in modifying that JSON, but `hvega` pretty sensibly makes that difficult -- there's a
+[`fromVL`] function to get the `Value` out of the `VegaLite` newtype, with a pretty big caveat:
+
+> Note that there is no validation done to ensure that the output matches the Vega Lite schema. That is, it is possible
+> to create an invalid visualization with this module (e.g. missing a data source or referring to an undefined field).
+
+There's no handy constructor to go the other way.[^3] Given that a `VegaLite` value isn't known valid, I think that's
+reasonable -- what kinds of guarantees is it possible to make for a workflow that starts with an invalid value,
+modifies that value without constraints, then puts the modified value back into the wrapper? Maybe none, certainly not
+strong ones, and facilitating that workflow seems like a way to get a bunch of bug reports that are hard to pin on
+the library vs. the open-ended modification (even though, and I can't emphasize this enough, I was going to be
+_really, really careful_).
+
+That made it pretty awkward to implement `setTitle`. In the mid-level, I wanted its signature to be
+`Text -> VegaLite -> VegaLite`. The `VegaLite -> VegaLite` trailer was supposed to support easy plot construction and
+modification along the lines of `somePlot & setTitle "foo" & setTheme something & ...`. That was never really going to
+work at the `VegaLite` level though.
+
+There's a level below that -- `[PropertySpec]`, which, if you expand the aliases and newtypes, is a
+`[(VLProperty, Value)]`, where `VLProperty` is a union type holding all of the unique properties a Vega specification
+might contain. That's... fine. I mean, it was workable. It's not hard to build another `(VLProperty, Value)`, since
+that's what a lot of the functions in `hvega` return (e.g. [`title`]). But if I'm just building a list of tuples where
+all I know about the second element is that it's a JSON value, then I'm pretty much building a `Map String Value`,
+which didn't feel like it was going to help the type system keep me from doing something dumb.
+
+On top of the JSON-flavored data modeling, I had trouble getting [`vl-convert`](https://github.com/vega/vl-convert)
+into a `nix` flake[^4] and I didn't have another plan for how I was going to create PNGs. The yak shave was starting
+to feel yak shave-y enough that I was losing confidence in the low/mid/high APIs I'd imagined on top of `hvega`.
+
+## Enter `hgg`
+
+tktktk
+
+# cut below
+
+### Goals
 
 1. Learn from other plotting libraries.
 2. Maximize power (aka [make hard things possible])
 
-`dataframe-hvega` -- distinct plotting package that just makes plots (like `dataframe-fastcsv`, `dataframe-hasktorch`,
+`dataframe-plot` -- distinct plotting package that just makes plots (like `dataframe-fastcsv`, `dataframe-hasktorch`,
 etc.)
 
 ### Learning from other plotting libraries
@@ -20,8 +88,9 @@ etc.)
   * attitude of "easy thing easy / [make hard things possible]" -- simple plots should be simple to express (`matplotlib`,
     `dataframe`, [`granite`], `pandas`, ...), you shouldn't have to care about power unless you need it
   * model plot data ([`chart-svg`], [`hvega`] / `Vega` even if it's basically JSON) instead of text (`granite`)
+* what I thought I'd borrow:
   * optics for setting attributes on whatever the data representation of the plot is (`chart-svg`) because the data
-    representation is probably huge / complex
+    representation is probably huge / complex -- not actually though, structure in `hvega` was rough
 
 ### Maximizing power
 
@@ -134,6 +203,8 @@ This post is part of a series on data visualization in Haskell. You can find oth
 [`hvega`]: https://hackage.haskell.org/package/hvega
 [`chart-svg`]: https://hackage.haskell.org/package/chart-svg
 [`granite`]: https://hackage.haskell.org/package/granite
+[`matplotlib`]: https://hackage.haskell.org/package/matplotlib
+[`hgg`]: https://github.com/frenzieddoll/hgg/tree/provisional/docs-wip-20260703
 [make hard things possible]: https://matplotlib.org/
 [Plot configuration]: ./2026-03-21-Haskell-data-visualization-part-2.html
 [Hello, plots]: ./2026-03-05-Haskell-data-visualization.html
@@ -142,7 +213,11 @@ This post is part of a series on data visualization in Haskell. You can find oth
 [slider]: ./2026-04-09-Bonjour-Haskell-data-visualizations.html#interactivity-and-annotation
 [Vega specification]: https://vega.github.io/
 [roadmap]: https://www.datahaskell.org/docs/community/roadmap.html
-[^1]: Not a real certification
-[^2]: No shade here -- built-in plotting in `dataframe` chose simple plotting a while ago. That makes sense for the
-goal of having the ability to plot anything vs. not having the ability to plot anything. Given the breadth of the `dataframe` library, it's unreasonable to expect every piece of the API to be alive in its final form already.
-[^3]: I never encounter iron triangles in the wild! This is great for me.
+[checkpoint]: https://github.com/jisantuc/dataframe-plot/tree/ba2f6536aa691d6d3d736014ed6b8c84844ca7e8/src/DataFrame/Plot/Typed
+[`fromVL`]: https://hackage.haskell.org/package/hvega-0.12.0.7/docs/Graphics-Vega-VegaLite.html#v:fromVL
+[`title`]: https://hackage.haskell.org/package/hvega-0.12.0.7/docs/Graphics-Vega-VegaLite.html#v:title
+[^1]: and nearly a Haskell... frontend? client? of [`matplotlib`], but it's difficult to figure out even what to call it.
+[^2]: Not a real certification
+[^3]: Also, [`coerce`](https://hackage-content.haskell.org/package/base-4.22.0.0/docs/Data-Coerce.html#v:coerce) isn't
+  an option because the `VL` constructor isn't exported.
+[^4]: Skill issue for sure, but anyway.
