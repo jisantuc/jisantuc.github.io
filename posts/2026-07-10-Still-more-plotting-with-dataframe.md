@@ -61,8 +61,8 @@ There's a level below that -- `[PropertySpec]`, which, if you expand the aliases
 `[(VLProperty, Value)]`, where `VLProperty` is a union type holding all of the unique properties a Vega specification
 might contain. That's... fine. I mean, it was workable. It's not hard to build another `(VLProperty, Value)`, since
 that's what a lot of the functions in `hvega` return (e.g. [`title`]). But if I'm just building a list of tuples where
-all I know about the second element is that it's a JSON value, then I'm pretty much building a `Map String Value`,
-which didn't feel like it was going to help the type system keep me from doing something dumb.
+all I know about the second element is that it's a JSON value, then the type system can't really keep me from doing
+something dumb. To me, most of the point of the type system is to keep me from doing something dumb.[^5]
 
 On top of the JSON-flavored data modeling, I had trouble getting [`vl-convert`](https://github.com/vega/vl-convert)
 into a `nix` flake[^4] and I didn't have another plan for how I was going to create PNGs. The yak shave was starting
@@ -70,7 +70,16 @@ to feel yak shave-y enough that I was losing confidence in the low/mid/high APIs
 
 ## Enter `hgg`
 
-tktktk
+`hgg` similarly has a two-layered API. The type similar to `[PropertySpec]` is `Layer`, and many functions for creating
+or configuring specific graph elements return `Layer`s.[^6] Like `VegaLite`, `Layer`s are big record types keyed by
+everything you can configure in an `hgg` plot, but there are two improvements to the data modeling that add clarity
+
+* bunch of new data types for specs of different kind like `Chart` does, but still based on grammar of graphics, so
+there's some external reference for the kinds of things that exist
+* `Monoid`! This makes sense given that in `ggplot2` you mash stuff together with `+`, and `Sum` is one of the
+first `Monoid`s people learn. Makes combination behavior more obvious / tells you more clearly how to extend / combine
+components. I like this more than everything in `hvega` returning a function. I also like that implication of `mempty`
+tells you pretty clearly where to start.
 
 # cut below
 
@@ -220,4 +229,11 @@ This post is part of a series on data visualization in Haskell. You can find oth
 [^2]: Not a real certification
 [^3]: Also, [`coerce`](https://hackage-content.haskell.org/package/base-4.22.0.0/docs/Data-Coerce.html#v:coerce) isn't
   an option because the `VL` constructor isn't exported.
-[^4]: Skill issue for sure, but anyway.
+[^4]: Other points of the type system: memory challenges for which kinds of transformations are required to get a
+monad at one leve of a stack into a different level of a stack; documentation for future me about what I was up to
+many months ago when I had more time and enthusiasm for a project; ruling out bad programs in the _Thinking With Types_
+intro's sense; prototyping without implementations in the _Algebra-Driven Design_ sense. Collectively those provide
+me less value than the value of preventing me from doing obviously dumb things though.
+[^5]: Skill issue for sure, but anyway.
+[^6]: Aside -- especially for projects not yet in Hackage, [this HLS feature](https://summer.haskell.org/ideas.html#goto-third-party-deps)
+will be really nice someday.
