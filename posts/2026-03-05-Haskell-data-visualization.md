@@ -409,7 +409,8 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 * Hello, plots (this post)
 * [Plot configuration] (titles, axes, axis labels, axis scaling)
 * [Fancy plotting in `hvega`] (interactivity, faceting, weird markers)
-* Fancy plotting in `chart-svg`
+* ~~Fancy plotting in `chart-svg`~~
+* [Better plotting in `dataframe`]
 
 [simulation code]: https://github.com/jisantuc/goofing-off/blob/main/src/mosconi-sim/Sim.hs
 [Don't fire Styer]: ./2026-02-11-Don't-fire-Styer.html
@@ -430,6 +431,8 @@ I'll update this list as I complete the other posts, but here's the basic outlin
 [`goofing-off` repository]: https://github.com/jisantuc/goofing-off/blob/main/src/plotting-survey/PlotSurvey/Scatter.hs
 [Plot configuration]: ./2026-03-21-Haskell-data-visualization-part-2.html
 [Fancy plotting in `hvega`]: ./2026-04-09-Bonjour-Haskell-data-visualizations.html
+[Better plotting in `dataframe`]: ./2026-05-09-Better-plotting-in-dataframe.html
+
 [^1]: I took a Java course in high school that was probably helpful to have kicking around in the back of my brain
 for being able to learn Python, but this was when I became Serious™️.
 [^2]: I was also on team "we should get really good at Excel," though I don't think I had

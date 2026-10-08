@@ -211,14 +211,15 @@ At 3, I didn't have to provide data to each of the subplots. I don't know exactl
 but as an approximation, the faceted plots get their data from the root of the specification, filtered only to the part
 of the data that's relevant for each subplot.
 
-## Other posts
+## Other posts in this series
 
 This post is the third post in a series:
 
 * [Hello, plots]
 * [Plot configuration]
 * Fancy plotting in `hvega` (this post)
-* Fancy plotting in `chart-svg`
+* ~~Fancy plotting in `chart-svg`~~
+* [Better plotting in `dataframe`]
 
 [`goofing-off` repo]: https://github.com/jisantuc/goofing-off/blob/main/src/plotting-survey/PlotSurvey/BonjourHVega.hs
 [Hello, plots]: ./2026-03-05-Haskell-data-visualization.html
@@ -226,6 +227,7 @@ This post is the third post in a series:
 [Plot configuration]: ./2026-03-21-Haskell-data-visualization-part-2.html
 [Vega's tutorials]: https://vega.github.io/vega/examples/pi-monte-carlo/
 [SVG path instructions]: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch/Paths
+[Better plotting in `dataframe`]: ./2026-05-09-Better-plotting-in-dataframe.html
 
 [^1]: An idea I've gotten a little stuck on is that there are striking similarities between accessing columns from
 dataframes and accessing columns from the Vega data definition. In each, you register something with a string, then
