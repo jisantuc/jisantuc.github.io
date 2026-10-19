@@ -110,7 +110,7 @@ your problem as the reader. When an LLM summarizes a meeting, unless participant
 create a false picture of what people on different teams have agreed to, and if enough time passes, there's no recourse
 to the recollections of the meeting's participants.
 
-Widespread LLM use kills text as a medium for human communication. This is no way for working people to communicate
+Widespread LLM use ruins text as a medium for human communication.[^11] This is no way for working people to communicate
 with each other. I think being able to trust the text I read and to expect authors of documents to understand their
 contents, or at least I expect them to be able to explain anything that's unclear. If I think LLMs get in the way of
 that, then the non-hypocritical thing for me to do is not to use LLMs to write prose.
@@ -219,6 +219,9 @@ the work of understanding what problems need solving and coming up with efficien
 [^9]:  To be clear, I think that's bad and that reading and writing are pretty good. Just, you know, history is pretty
     weird, and it's hard to pick causes for things.
 [^10]: I even like the annoying parts of working on a team, like when someone who isn't me has a great idea.
+[^11]: This claim is similar to the a claim made in ["On the Death of Amazon's Writing
+    Culture"](https://alifeengineered.substack.com/p/on-the-death-of-amazons-writing-culture). I have never worked
+    anywhere with Amazon's writing culture (probably just Amazon!), but I was sad reading that.
 
 2. Rejecting the premise
     * I wanted to write code. It took me a while to get to write code. Taking that from me isn't a
