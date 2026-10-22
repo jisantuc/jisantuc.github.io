@@ -46,6 +46,10 @@ experience of living and working worse _today_. This is, in part, cheating. You 
 experience of living and working is wrong, it's _my_ subjective experience. But if my subjective experience is similar
 to your subjective experience, maybe we could both, just, like, not use LLMs for everything.
 
+<!-- TODO: goal here is to make each of these sections one paragraph and make the tone more direct;
+I think I can write this for myself instead of in a polemical (?) style; I can organize it as thing I think has gotten
+worse + one or two examples each. -->
+
 ## More LLM-generated code now means harder debugging later
 
 LLMs generate too much code. I don't just mean that they're more verbose than necessary for specific problems
