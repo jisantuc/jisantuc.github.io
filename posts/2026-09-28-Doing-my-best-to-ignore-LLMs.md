@@ -5,63 +5,86 @@ description: Doing my best to ignore LLMs
 ---
 
 Hi, I'm a professional software engineer, and I don't use LLMs personally or in my day job. I [don't think I'm alone]
-in my suspicion of the value of LLMs (at least, relative to their costs).[^1] But I'm pretty alone in my own
-professional circle, so I wanted to record my rejection and its justification in a single place so I can stop
-stammering over the answer every time this comes up.
+in my suspicion of the value of LLMs.[^1] But I'm pretty alone in my own professional circle, so I wanted to record my
+rejection and its justification in a single place so I can stop stammering over the answer every time this comes up.
 
 I'm a senior software engineer at [Umbra]. I have not yet been compelled to integrate AI tooling into my daily work,
-and to the best of my knowledge token consumption is not part of my performance review this year. At this point, I
+and to the best of my knowledge token consumption was not part of my performance review this year. At this point, I
 think my refusal is being treated as a curiosity. I have a burrito bet with my manager about whether I'll have
 integrated any generative AI tooling into my daily work by June 2027.[^2] I'm also my team's tech lead[^3], so
-the proportion of my responsibility that production of code takes up has shrunk since January 2025. That shift
-might matter for how useful LLMs are likely to be for me. It also might not -- writing prose ate up most of that shift
-in responsibility, and that's also something people are turning to LLMs for. But in any case, if I could generate good
-code 100x faster, it wouldn't make me 100x more effective at my current job.
+the proportion of my responsibility that production of code takes up has shrunk since January 2025. That shift might
+matter for how useful LLMs are likely to be for me. It also might not -- writing prose ate up most of that shift in
+responsibility, and that's also something people are turning to LLMs for.
 
-I'm going to skip environmental arguments about AI and data centers. The US [energy source mix] is more than 70% fossil
-fuels, so additional electricity consumption today is _pretty bad_ for how soon we melt the ice caps. I don't make all
-of my choices around minimizing CO2 emissions though (I'm not a vegetarian, I have taken like 10 flights this year, I
-often forget to turn lights off when I leave a room) and I don't want to have some emissions reduction purity test. And
-while the energy mix in the US _today_ is abysmal, there's probably a set of die rolls where an AI crash happens after
-a bunch of relatively clean power gets added to the grid to power all the data centers from the mania, and like with
-the railroad and dot-com bubbles, maybe we get something useful after the crash for very dumb reasons. I don't know
-man, the future is very long and pretty far away, and I'm not going to guess at how many wars of choice the US will
-stumble into with fossil fuel exporters or what the consequences will be for the energy mix that powers the next 20
-years of data centers. While I think the short-term and most likely medium- and long-term outlooks for LLMs and
-energy/land/urban head are _pretty bad_, I do not want to use LLMs regardless of whether they're terrible for the
-planet.
+I'm not going to tell you you shouldn't use LLMs because of the environmental impact of AI and data centers. Those
+impacts are _bad_, but I don't make all of my choices around minimizing CO2 emissions[^1234] and I don't want to
+have an eco-consciousness purity test. While the energy mix in the US _today_ is abysmal, there's probably a set of die
+rolls where an AI crash happens after a bunch of relatively clean power gets added to the grid for data center mania,
+and like with the railroad and dot-com bubbles, maybe we get something useful for very dumb reasons. Or the US could
+stumble into enough wars of choice with fossil fuel exporters that the renewable energy revolution gets forced on us
+and everyone says "obviously I supported clean energy independence the whole time." I don't know man, the future is
+very long and far away and probably too weird to predict with much specificity. While I think the short-term and most
+likely medium- and long-term outlooks for LLMs and energy/land use are alarming, I do not want to use LLMs regardless
+of whether they're terrible for the planet.
 
-I'm also going to skip arguments about whether AI and LLMs are going to send us back to the Dark Ages by eroding
-everyone's critical thinking and [ability to read any text longer than a few sentences]. It wouldn't be the first time
-that a large group of humans has lost the ability to [read] and [write].[^9] LLMs join a parade of assassins of
-reading and writing including the internet, text messaging, and social media. Maybe those things are succeeding in
-killing literacy -- they had a good [head start] on it before ChatGPT showed up -- but either way, I don't think a
-world where all of the LLMs vanished tomorrow is a world where books are so back. I do not want to use LLMs regarldess
-of whether they're hastening the end of literacy.
+I'm also not going to try to convince you that AI and LLMs are going to send us back to the Dark Ages by eroding
+everyone's [ability to read any text longer than a few sentences]. It wouldn't be the first time that a large group of
+humans has lost the ability to [read] and [write].[^9] LLMs join a parade of assassins of reading and writing in my
+lifetime including the internet, text messaging, and social media. Those had a good [head start] before ChatGPT showed
+up. I wouldn't be surprised if ChatGPT and Claude are doing their part, but I do not want to use LLMs regarldess of
+whether they're hastening the end of literacy, numeracy, and critical thinking.
 
-[Forecasting] is hard. I'm not going to claim any special knowledge of the future here, and I'm not going to
-cherry-pick the forecasts that make my refusal to use LLMs look smart and good. Instead, I'll focus on my subjective
-experience of living and working. I don't need to be right about the future, because LLMs are making my subjective
-experience of living and working worse _today_. This is, in part, cheating. You can't tell me that my subjective
-experience of living and working is wrong, it's _my_ subjective experience. But if my subjective experience is similar
-to your subjective experience, maybe we could both, just, like, not use LLMs for everything.
+I'm going to focus on my subjective experience of reading text in the post-LLM era. Text consumption may seem pretty
+narrow, but I produce and consume _a lot_ of text -- I write tens of thousands of lines of code per year, I read tens
+of thousands of lines of my coworkers' code, and I read and write massive volumes of work stuff in Confluence and Jira.
+I also read books sometimes, but I don't have a handy way to figure out a word count estimate there. I spend a lot of
+time reading text, most of which is written for explanation rather than entertainment, where the text's most important
+job is that I should understand what the author was trying to communicate, and if I don't, we should be able to work
+out what they were trying to say together.
 
-<!-- TODO: goal here is to make each of these sections one paragraph and make the tone more direct;
-I think I can write this for myself instead of in a polemical (?) style; I can organize it as thing I think has gotten
-worse + one or two examples each. -->
+Focusing on my subjective experience is partly cheating. You can't tell me that my subjective experience of consuming
+text is wrong, it's _my_ subjective experience. But I don't want to try to convince you of which of 93 competing
+visions of the future is the right one. [Forecasting] is hard -- I don't know, you don't know, and I don't want to take
+this discussion to prediction markets. If my subjective experience is similar to your subjective experience though,
+maybe we could both, just, like, not use LLMs for everything, or maybe you'll join me in not using them for anything.
 
-## More LLM-generated code now means harder debugging later
+## Code text
 
-LLMs generate too much code. I don't just mean that they're more verbose than necessary for specific problems
-or that they ignore library code in favor of rewriting things from scratch or that they invent new constants
-indistinguishable from existing constants.[^4] I mean that the volume of code that it's possible to produce in a
-short time is too high for people to understand.
+A lot of the text I read every year is code. Sometimes I do that joyfully, like for the two weeks of [Advent of
+Code] I have time for each year, when I get stuck and have to learn something I might have learned in an algorithms
+course if I'd had one to get unstuck. Most of the time I read code because it's my job.
 
-We (software engineers) are pretty bad at reading code.[^19] You can espouse whatever reasons you want for that,[^5] but
-it's a broadly underdeveloped skill. Mostly that's _fine_ in team-based software engineering because someone on the
-team wrote the code and has a wrote-the-code level of understanding of what's going on and how it relates to the rest
-of the software. That balance shifts if the `git blame` points you to someone who also only has a read-the-code level
-of understanding.
+Professional software engineering requires you to write code that solves the current problem, that you can change when
+it turns out it didn't solve the current problem exactly how you thought it would or the current problem changes, and
+that other people on your team can understand well enough to tell whether they think it meets the other two criteria.
+
+Code text also has a weird property where because of [`git`] you can see the entire history of who changed one specific
+line of code that you're looking at. There's something nostalgic about this -- you can trace a team's evolution through
+years by rewinding a function from the unmaintainable 600-line mess that it is today to the well-tested
+single-responsibility baby (with no docstring of course, but nothing's perfect) it started as, including seeing who
+made each change. "Remember when we had any idea what this function was for, before its unholy collection of appendages
+reached out and ensnared every dream of beauty and parsimony we've had?" "Ah yes, `x` was here then, she must never
+see what's become of this function or of us." It's nice.
+
+The person responsible for each change is the _author_, and authorship is treated as a
+reliable indicator of who you can bug about something if you're confused about how it's related to some other broken
+thing.
+
+In general, it was good to have less code. It isn't always the case that a function with five lines is better than a
+function with ten lines, but it's probably generally true that solving a problem in 5,000 lines of code is better than
+solving it in 10,000.
+
+LLMs generate too much code. They're fine, I guess? at generating code that solves the current problem, but they suffer
+at the rest and ruin authorship as an indication of understanding.
+
+<!-- TODO: pull everything in here up -->
+
+LLMs generate too much code. One problem is they're more verbose than necessary for specific
+problems, ignoring library code and inventing new constants indistinguishable from existing constants.[^4] Across
+many problems, they are too efficient at producing mountains of code, and software engineers are pretty bad at reading
+code.[^19] Mostly that's _fine_ in team-based software engineering because someone on the team wrote the code and
+has a wrote-the-code level of understanding of what's going on. But it stops being fine if you can't get from `git
+blame` to anyone who has a theory of what the software is for.[^5]
 
 This concern isn't hypothetical. This recent LeadDev[^6] article called ["AI code causes real world production outages"]
 includes these extremely unsurprising lines:
@@ -71,34 +94,20 @@ includes these extremely unsurprising lines:
 > maintaining it can likely never end up with the detailed knowledge that those who wrote it in previous generations
 > would.
 
-If you think developers primarily produce text, that's weird. Surely there'd be no reason that developers doing text
-production would do a better job than tireless machines doing text production. If instead you think developers produce
-text only incidentally as an artifact of learning, it's an obvious consequence. Producing software with LLMs skips the
-learning step. Choosing to generate any considerable portion of your software with LLMs is a choice to know less about
-your work a year from now than you know today. I don't think you should make that choice, and I will not.
+If you think developers primarily produce text, that's weird. Surely there's no reason that developers producing text
+should do a better job than tireless machines producing text. If instead you think developers produce text only
+incidentally as an artifact of learning, it's an obvious consequence. Producing software with LLMs skips the learning
+step. Choosing to generate any considerable portion of your software with LLMs is a choice to know less about your work
+a week/a month/a year from now than you know today. I don't think you should make that choice, and I won't.
 
-I'm a part of an on-call rotation for the services my software team owns. I don't want my team to steadily understand
-less of the software we maintain because I can be paged at 2am if that software is broken. I also don't want the teams
-that own the services that interact with my team's services to understand steadily less of their software, because I
-can also be paged to debug surprising interactions between software those teams are responsible for and software my
-team is responsible for. When I get paged, I want to have confidence that anyone else who was paged to deal with the
-problem knows what's going on. I also expect that other people want me to know what's going on.
+Coworkers of mine have also used LLMs to write lengthy prose documents. These documents are also more verbose than I'd
+like them to be, but beyond the verbosity, they're _socially bad_.
 
-I've seen some people in DataHaskell Discord and in blogs argue that a lot of the understanding penalty of LLMs goes
-away if you use Haskell to [make a lot of your opinions into hard constraints on the code]. I also have a coworker
-who's LLM-ing through a Rust CLI for geospatial-aware [`jq`]-like querying into GeoJSON who says that's going really
-well. It may be the case that languages with better cultures of representing human knowledge in code are less subject
-to this critique and that my _real_ problem is that I'm responsible for a mountain of python. I am currently
-responsible for a mountain of python though, and that mountain is in a range full of other mountains of python, so for
-now, this is important to me.
+<!-- TODO: problem 1, no more trust that the "author" believes the words on the page; ... is there a problem 2? -->
 
-## LLMs have not made people I work with better communicators
+tktktk edit within
 
-One promise of LLMs is that everyone can be an average writer by letting the machine do it. In practice though, when
-I've read docs that have had large disclosed LLM contributions, I've found them less parseable than even bad docs
-written by humans.
-
-I've found original documents more difficult to understand since LLM contribution became common. In the past, if a
+I've found prose documentation more difficult to understand since LLM contribution became common. In the past, if a
 document was unclear, it was easy to understand why -- the person adding words to the document couldn't find the right
 words for what they were trying to express. That's fine, like many things, writing clearly is pretty hard. But now
 there's an added possibility that the person whose words you're supposedly reading has never even read the unclear
@@ -120,7 +129,11 @@ with each other. I think being able to trust the text I read and to expect autho
 contents, or at least I expect them to be able to explain anything that's unclear. If I think LLMs get in the way of
 that, then the non-hypocritical thing for me to do is not to use LLMs to write prose.
 
+tktktk edit above
+
 ## LLMs have made teamwork worse on my team
+
+<!-- TODO: I think this is basically the writing argument again -->
 
 I'm not sure what a team is for if Codex is the first teammate everyone talks to and Codex doesn't talk to anyone else.
 
@@ -215,12 +228,12 @@ to think that I care an amount that makes me special. I probably care an average
 between emotional investment and effort. Whether or not you feel emotionally invested, you can still show up and put in
 the work of understanding what problems need solving and coming up with efficient solutions to those problems.
 
+[`git`]: https://git-scm.com/
 [obvious]: #more-llm-generated-code-now-means-harder-debugging-later
 [reasons]: #llms-have-not-made-people-i-work-with-better-communicators
 [make a lot of your opinions into hard constraints on the code]: https://blog.jle.im/entry/llms-and-haskell-1-constraint-evading-behavior.html
 [don't think I'm alone]: https://leaddev.com/ai/meet-the-developers-rejecting-ai
 [Umbra]: https://umbra.space/
-[energy source mix]: https://www.iea.org/countries/united-states/energy-mix
 [ability to read any text longer than a few sentences]: https://www.smbc-comics.com/comic/summary
 [read]: https://en.wikipedia.org/wiki/Middle_Ages#Church_and_monasticism
 [write]: https://jackghazi.com/essays/bronze-age-collapse-forgot-writing/
@@ -234,6 +247,7 @@ the work of understanding what problems need solving and coming up with efficien
 [research articles]: https://queue.acm.org/doi/10.1145/3454122.3454124
 [blog posts]: https://newsletter.pragmaticengineer.com/p/measuring-developer-productivity
 [total factor productivity]: https://www.bls.gov/productivity/educational-material/labor-productivity-total-factor-productivity-comparison.htm
+[Advent of Code]: https://adventofcode.com/
 [^1]: http://ozark.hendrix.edu/~yorgey/forest/009L/index.xml,
     https://sboots.ca/2026/03/11/generative-ai-vegetarianism/, each of which has links to spicier takes.
 [^2]: Low-stakes gambling is a really great way to resolve disagreements about future states of the world.
@@ -244,12 +258,14 @@ the work of understanding what problems need solving and coming up with efficien
 [^4]: Though of course they do all of that. Googling for "LLMs defensive programming" or "LLMs ignore libraries" will
     get you a nice AI-summary explaining why LLMs do this, with plenty of links to other people writing about how to
     keep their agents from writing garbage code.
-[^5]: Whether that's based on something like Felienne Hermanns's claim in _The Programmer's Brain_ that computer
-    science education is hyper-focused on writing code or something like Peter Naur's argument in ["Programming as
-    Theory Building"](https://pages.cs.wisc.edu/~remzi/Naur.pdf) that the lines of text aren't the important part of
-    what the activity of programming produces, I think there's a vibe-y consensus that writing code yourself is better
-    for understanding than reading code.
-[^6]: I don't think LeadDev is gospel, but the LeadDev vibe isn't super AI-skeptical.
+[^5]: I think there's a vibe-y consensus that writing code yourself is better for understanding than reading code,
+       but I want to justify my belief anyway. My belief that software engineers are bad at reading code comes from
+       Felienne Hermans's _The Programmer's Brain_. I think a general ineffectiveness of code reading can be read into
+       Peter Naur's ["Programming as Theory Building"](https://pages.cs.wisc.edu/~remzi/Naur.pdf), where the lines of
+       text aren't the most important artifact of programming, and authoring software and developing a theory of
+       the software's function are overlapping activities.
+[^6]: I don't think LeadDev is gospel, but the LeadDev vibe is pretty AI-enthusiastic, so I think it's noteworthy that
+    in the last few months I've noticed a lot more "things that aren't going great with AI" articles.
 [^9]:  To be clear, I think that's bad and that reading and writing are pretty good. Just, you know, history is pretty
     weird, and it's hard to pick causes for things.
 [^10]: I even like the annoying parts of working on a team, like when someone who isn't me has a great idea.
@@ -262,6 +278,8 @@ the work of understanding what problems need solving and coming up with efficien
         human pace, and I think pace matters.
 [^43]: I'm not cherry-picking, labor productivity looks [basically the
     same](https://fred.stlouisfed.org/series/OPHNFB).
+[^1234]: I'm not a vegetarian, I have taken like 10 flights this year, I often forget to turn lights off when I leave a
+    room.
 
 2. Rejecting the premise
     * I wanted to write code. It took me a while to get to write code. Taking that from me isn't a
