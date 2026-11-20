@@ -1,70 +1,80 @@
 ---
-title: On refusing to use LLMs
+title: On not using LLMs
 date: 2026-11-10
 description: Doing my best to ignore LLMs
-readingTime: 13
+readingTime: 14
 ---
 
 Hi, I'm a professional software engineer, and I don't use LLMs personally or in my day job. I [don't think I'm alone]
-in my suspicion of the value of LLMs.[^1] But I'm pretty alone in my own professional circle, so I wanted to record my
-rejection and its justification in a single place so I can stop stammering over the answer every time this comes up.
+in my suspicion of the value of LLMs.[^1] But I'm pretty unusual in my own professional circle, so I wanted to
+record my justification in a single place so I can stop stammering over the answer every time this comes up.
 
 I'm a senior software engineer at [Umbra]. I have not yet been compelled to integrate AI tooling into my daily work,
 and to the best of my knowledge token consumption was not part of my performance review this year. At this point, I
-think my refusal is being treated as a curiosity. I have a burrito bet with my manager about whether I'll have
+think my disinterest is being treated as a curiosity. I have a burrito bet with my manager about whether I'll have
 integrated any generative AI tooling into my daily work by June 2027.[^2] I'm also my team's tech lead[^3], so
 the proportion of my responsibility that production of code takes up has shrunk since January 2025. That shift might
 matter for how useful LLMs are likely to be for me. It also might not -- writing prose ate up most of that shift in
-responsibility, and that's also something people are turning to LLMs for.
+responsibility, and that's also something people use LLMs for.
 
-I'm not going to tell you you shouldn't use LLMs because of the environmental impact of AI and data centers. Those
-impacts are _bad_, but I don't make all of my choices around minimizing CO2 emissions[^1234] and I don't want to
-have an eco-consciousness purity test. While the energy mix in the US today is abysmal, there's probably a set of die
-rolls where an AI crash happens after a bunch of relatively clean power gets added to the grid for data center mania,
-and like with the railroad and dot-com bubbles, maybe we get something useful for very dumb reasons. Or the US could
-stumble into enough wars of choice with fossil fuel exporters that the renewable energy revolution gets forced on us
-and everyone says "obviously I supported clean energy independence the whole time." I don't know man, the future is
-very long and far away and probably too weird to predict with much specificity. While I think the short-term and most
-likely medium- and long-term outlooks for LLMs and energy/land use are alarming, I do not want to use LLMs regardless
-of whether they're terrible for the planet.
+My goal is to explain why I don't use LLMs. That choice is largely driven by the consequences I've observed of other
+people's LLM use, but I'm going to construe "consequences" very narrowly.
 
-I'm also not going to try to convince you that AI and LLMs are going to send us back to the Dark Ages by eroding
+I'm going to focus on my subjective experience of reading text in the post-LLM era. I produce and consume a lot of text
+-- I write tens of thousands of lines of code per year, I read tens of thousands of lines of my coworkers' code, and I
+read and write massive volumes of work stuff in Confluence and Jira.[^837] I spend a lot of time reading text,
+most of which is written for explanation rather than entertainment, where the text's most important job is that I
+should understand what the author was trying to communicate, and if I don't, we should be able to work out what they
+were trying to say together.
+
+Focusing on my subjective experience is partly cheating. You can't tell me that my subjective experience of consuming
+text is wrong, it's _my_ subjective experience. But I don't want to try to convince you of which of 93 competing
+visions of the future is the right one. [Forecasting] is hard -- I don't know, you don't know, and I don't want to take
+this discussion to prediction markets.
+
+
+I'm not going to focus on the environmental impact of AI and data centers. Those impacts are _bad_, but I don't make
+all of my choices around minimizing CO2 emissions[^1234] and I don't want to have an eco-consciousness purity
+test. While the energy mix in the US today is abysmal, there's probably a set of die rolls where an AI crash happens
+after a bunch of relatively clean power gets added to the grid for data center mania, and like with the railroad and
+dot-com bubbles, maybe we get something useful for very dumb reasons. Or the US could stumble into enough wars of
+choice with fossil fuel exporters that the renewable energy revolution gets forced on us and everyone says "obviously I
+supported clean energy independence the whole time." I don't know man, the future is very long and far away and
+probably too weird to predict with much specificity. While I think the short-term and most likely medium- and long-term
+outlooks for LLMs and energy/land use are alarming, I do not want to use LLMs regardless of whether they're terrible
+for the planet.
+
+I'm also not going to argue about whether AI and LLMs are going to send us back to the Dark Ages by eroding
 everyone's [ability to read any text longer than a few sentences]. It would not be the first time that a large group of
 humans has lost the ability to [read] and [write].[^9] LLMs join a parade of assassins of reading and writing in my
 lifetime including the internet, text messaging, and social media. Those had a good [head start] before ChatGPT showed
 up. I wouldn't be surprised if ChatGPT and Claude are doing their part, but I do not want to use LLMs regarldess of
 whether they're hastening the end of literacy, numeracy, and critical thinking.
 
-I'm going to focus on my subjective experience of reading text in the post-LLM era. Text consumption may seem pretty
-narrow, but I produce and consume a lot of text -- I write tens of thousands of lines of code per year, I read tens
-of thousands of lines of my coworkers' code, and I read and write massive volumes of work stuff in Confluence and Jira.
-I also read books sometimes, but I don't have a handy way to figure out a word count estimate there. I spend a lot of
-time reading text, most of which is written for explanation rather than entertainment, where the text's most important
-job is that I should understand what the author was trying to communicate, and if I don't, we should be able to work
-out what they were trying to say together.
+But also, focusing on my subjective experience is _really_ not cheating. It ought to be easy to make an argument if one
+side is arguing for convenience and ehhhh maybe humans go extinct, while the other side is arguing that human
+extinction is bad actually. It seems like the anti-extinction side should have that pretty wrapped up. It's weird that
+they don't!
 
-Focusing on my subjective experience is partly cheating. You can't tell me that my subjective experience of consuming
-text is wrong, it's _my_ subjective experience. But I don't want to try to convince you of which of 93 competing
-visions of the future is the right one. [Forecasting] is hard -- I don't know, you don't know, and I don't want to take
-this discussion to prediction markets. If my subjective experience is similar to your subjective experience though,
-maybe we could both, just, like, not use LLMs for everything, or maybe you'll join me in not using them for anything.
+I'll stick to smaller stakes though. I don't want to use LLMs because of how I feel about everyone else's LLM usage,
+and how I feel is that it sucks.
 
 ## Code text
 
 A lot of the text I read every year is code. Sometimes I do that joyfully, like for the two weeks of [Advent of Code] I
-have time for each year when I get stuck and have to learn something I might have learned in an algorithms course if
-I'd had one. Most of the time I read code because it's my job.
+have time for each year. Most of the time I read code because it's my job.
 
-Professional software engineering requires you to write code that solves a problem, that you can change when it turns
-out it didn't solve the problem exactly how you thought it would or the problem changes, and that other people on your
-team can understand well enough to tell whether they think it meets the other two criteria.
+Team-driven professional software engineering requires you to write code that solves a problem, that you can change
+when it turns out it didn't solve the problem exactly how you thought it would or the problem changes, and that other
+people on your team can understand well enough to tell whether they think it meets the other two criteria. That part of
+the job requires producing code as text.
 
-Code text also has a weird property where because of [`git`] you can see the entire history of who changed one specific
-line of code that you're looking at. There's something nostalgic about this -- you can rewind a function from the
+Code text has a weird property where you can see the entire history of who changed one specific line of code that
+you're looking at because of [`git`]. There's a nice nostalgia to this -- you can rewind a function from the
 unmaintainable 600-line mess that it is today to the well-tested single-responsibility baby (with no docstring of
 course; nothing's perfect) it started as, seeing who made each change. "Remember when we had any idea what this
 function was for, before its unholy collection of appendages reached out and ensnared every dream of beauty and
-parsimony we've had?" "Ah yes, `x` was here then, she must never see what's become of this function or of us." It's
+parsimony?" "Ah yes, `x` was here then, she must never see what's become of this function or of us." It's
 nice.
 
 The person responsible for each change is the _author_, and authorship is treated as a reliable indicator of who you
@@ -77,12 +87,15 @@ solving it in 10,000.
 LLMs generate too much code. They're fine, I guess, at generating code that solves the current problem, but they suffer
 at the rest and ruin authorship as an indication of understanding. The argument in their favor to me sounds exactly
 like the argument for Python -- it's so easy to get something working _right now_! I just think that's the third most
-of the responsibilities of professional software engineering.
+important of the responsibilities of professional software engineering.
 
-As the mixture of LLM-generated and human-generated code shifts more to LLM-generated code, it's harder to make changes
-without the aid of an LLM, and it's harder for anyone else to tell whether the changes are good changes. The pervasive
-tech debt problem, where there's never enough time to refactor / remove code, adds a ratchet -- most of the slop is
-here to stay.
+LLMs' verbosity shifts the mixture of LLM-generated and human-generated code more to LLM-generated code over time. That
+means that authorship becomes a less reliable indicator of who understands the choices made over time, since for a
+growing proportion of any given codebase, the answer to "who understands?" is "no one." That makes it harder to make
+changes without the aid of an LLM, setting up an authorship/understanding death spiral. It's also harder for anyone
+else to tell whether changes are good changes, since the number of hops to a human-understood part of the code will
+grow larger. The pervasive tech debt problem where there's never enough time to refactor / remove code adds a ratchet
+-- most of the slop is here to stay.
 
 A recent LeadDev[^6] article called ["AI code causes real world production outages"] includes these extremely
 unsurprising lines:
@@ -94,21 +107,24 @@ unsurprising lines:
 
 If you think the hard part of software engineering is producing code, that's weird. Surely there's no reason that
 humans producing code should do a better job than tireless machines producing code. But if you think it's important for
-someone on the team to have a theory of what the software is for and how it relates to the rest of the software your
-team is responsible for, it's obvious.[^5]
+anyone on the team to have a theory of what the software is for and how it relates to the rest of the software your
+team is responsible for, that's obvious.[^5]
 
-<!-- WARN: actually watch the talk and make sure he says what I think he's going to say -->
+I don't think this concern with understanding is [sentimentality]. I am responsible for making bets about what it will
+be possible to do in the future with our software, and people use some of those bets to make decisions about what
+several software teams should prioritize. I base those bets on my and my teammates' assessments. If those assessments
+are consistently _bad_ because we don't understand our software anymore, we'll waste a lot of time and money, and
+wasting a lot of time and money is how businesses die.
 
-I wrote most of this before watching any of Bryan Cantrill's [talk at Rust NYC] about "Rust in the LLM Age." He's
-focused there on systems programming, but the argument about the different experiences of the author (who, for
-LLM-generated code, is barely an author) and the operator applies just as well in a 900-microservice Frankenstein. An
-author prone to generating un-operatable garbage should have _more_ roadblocks thrown in their way, not fewer.
+I think that the consequence of other people's decisions to use LLMs is a mountain of code that's unmaintainable
+except with more LLM usage, and I think that's _bad_. I also think the tech debt ratchet makes it worse. Believing both
+of those things, I'd be a hypocrite to generate code myself.
 
 ## Non-code business text
 
 A good chunk of the remainder of the text I read is documentation of one kind or another. Three big categories are
 planning documents written before we write software, descriptions of the software we've actually produced written
-afterward, and aspirations for what our software might do in the far future (aka three or more months from now).
+afterward, and aspirations for what our software might do in the far future (three or more months from now).
 
 A common format for describing work that needs to be done is a Jira ticket. Jira tickets have titles, which are
 supposed to be short descriptions of what needs to occur, and descriptions, which are free text descriptions of what
@@ -118,35 +134,34 @@ that work entails.
 <figcaption>A Jira ticket (image sourced from
 [Wrangle.io](https://www.wrangle.io/post/jira-ticketing-system-an-introductory-guide))</figcaption> </figure>
 
-Historically it's been difficult to convince software engineers to write prose of any kind. I have never worked
-somewhere that didn't have some trouble convincing software engineers to write descriptions.
-
-One common solution to this problem is _templates_. With a template, the software engineer writing a ticket doesn't
-have to figure out the structure on the fly and can instead just fill in the sections. I have also never worked
-anywhere without seeing someone delete or ignore an entire template.
+Historically it's been difficult to convince software engineers to write prose of any kind, and I have never worked
+somewhere that didn't have some trouble convincing software engineers to write ticket descriptions. One common solution
+to this problem is _templates_. With a template, the software engineer writing a ticket doesn't have to figure out the
+structure on the fly and can instead just fill in the sections. I have also never worked anywhere without seeing
+someone delete or ignore an entire template.
 
 Jira tickets are the simplest writing of the three categories. Typically, even if you write all of the details like why
-the problem is a problem, what indicates that the problem is solved, and some links to evidence of the problem's
-existence, they're still a few hundred words, but software engineers still don't want to write them. As a group we're
-more reluctant to write the other two categories -- descriptions of what we've actually done and dreams for the far
-future.
+the problem is a problem, what counts as evidence that the problem has been solved, and what evidence is available that
+the problem exists at all, they're still only a few hundred words, but software engineers still don't want to write
+them. As a group we're more reluctant to write the other two categories -- descriptions of what we've actually done and
+dreams for the far future.
 
 I bring all this up to head off any critique that I'm nostalgic for a past glorious era of software engineering
-writing. I'm not. I know how bad it was.
+writing. I'm not. I know how bad it is/was. But it's worse with ubiquitous LLM-generated prose.
 
 However bad the authorship problem is for LLM-generated code, it's worse for LLM-generated non-code. Code has some
 ability to describe the conditions under which it's correct. All programming languages[^978] have syntactical
 rules that describe whether a given sequence of characters can be interpreted as a program in that language. Some
 languages have compilers which will tell you whether a syntactically valid sequence of characters attempts to do
 something nonsensical, like evaluate `3 / "hello"`. I haven't yet seen a programming language that doesn't let you
-write tests that will verify more complicated behaviors that it would be challenging to encode in types.
+write tests that will verify more complicated behaviors that it would be challenging for a compiler to verify.
 
 None of that is true for non-code text. There's syntax, there are rules, and various descendants of Clippy will give
-you green or red underlines telling you when you've written something they don't like. But so much of producing good,
-correct non-code text formerly depended on the author's ability to form an idea and choose the right syntactically
-valid mostly rule-following words to express it.
+you green or red underlines telling you when you've written something they don't like. But producing a
+plausible-seeming document formerly depended on the author's ability to form an idea and choose the right syntactically
+valid, mostly rule-following words to express it.
 
-That barrier is gone post-LLMs. Any partially formed idea can become a thoughtful-looking document with minimal effort.
+That barrier is gone post-LLMs. Any partially formed idea can become a plausible-seeming document with minimal effort.
 This is fine if you think that the point of professional writing is to produce documents, but it's _very bad_ if you
 think the point of professional writing is refine your ideas and share them with your coworkers.
 
@@ -163,9 +178,9 @@ earnest argument gets polluted with whatever a statistically average person migh
 your company's internal documentation.
 
 Before slop, there was [bullshit] -- speech or writing where the speaker/author doesn't care whether what they
-communicate is true or not. Before LLMs, even bullshitting took effort though; even plagiarizing bullshit took effort!
-Now, instead, if you want a document that resembles what you might have written if you'd thought hard about something,
-you can have one for cheap.
+communicate is true or not. Even bullshitting took effort though; even plagiarizing bullshit took effort! Now, instead,
+if you want a document that resembles what you might have written if you'd thought hard about something, you can have
+one for cheap.
 
 ## I don't buy that LLMs have made people so much more productive
 
@@ -240,6 +255,7 @@ makes them to me a net negative.
 [Advent of Code]: https://adventofcode.com/
 [talk at Rust NYC]: https://www.youtube.com/watch?v=5D7QPOIZ7gY
 [bullshit]: https://www2.csudh.edu/ccauthen/576f12/frankfurt__harry_-_on_bullshit.pdf
+[sentimentality]: https://statmodeling.stat.columbia.edu/2026/11/02/science-is-not-naturally-aligned/?utm_source=substack&utm_medium=email
 [^1]: http://ozark.hendrix.edu/~yorgey/forest/009L/index.xml,
     https://sboots.ca/2026/03/11/generative-ai-vegetarianism/, each of which has links to spicier takes.
 [^2]: Low-stakes gambling is a really great way to resolve disagreements about future states of the world.
@@ -265,3 +281,5 @@ makes them to me a net negative.
 [^978]: I'm pretty sure? Like I don't know a ton about [brainfuck](https://en.wikipedia.org/wiki/Brainfuck) or other
     golfing languages or extremely-narrow-purpose languages.
 [^897]: which was never the hard part of software jobs to begin with!
+[^837]: I also read books sometimes, but I don't have a handy way to figure out a word count estimate there, and my coworkers
+  don't write the books I read, so their choices about LLM usage aren't relevant there. Still, _text_!
